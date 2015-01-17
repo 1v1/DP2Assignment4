@@ -9,6 +9,7 @@ import it.polito.dp2.FDS.sol4.client.gen.GetBoardedPassengers;
 import it.polito.dp2.FDS.sol4.client.gen.GetBoardedPassengersResponse;
 import it.polito.dp2.FDS.sol4.client.gen.Passenger;
 import it.polito.dp2.FDS.sol4.client.gen.RegisterPassenger;
+import it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +50,7 @@ public class FDSControlClient {
 	private static File outputFile;
 
 	private static Control controlProxy;
-//	private static Info infoProxy;
+	//	private static Info infoProxy;
 
 	private static FileOutputStream outputstream;
 	private static FileInputStream inputstream;
@@ -148,7 +149,7 @@ public class FDSControlClient {
 		try {
 			if (boardingInfo.getEndpoint() == null)
 				throw new MalformedURLException("The endpoint url is null");
-			
+
 			URL endpointUrl = new URL(boardingInfo.getEndpoint()+"?wsdl");
 
 			FDSControl service = new FDSControl( endpointUrl,
@@ -168,28 +169,28 @@ public class FDSControlClient {
 		}
 	}
 
-//	private static void prepareInfoEndpoint()
-//	{
-//		try {
-//			URL endpointUrl = new URL("http://localhost:7071/fdsinfo?wsdl");
-//
-//			FDSInfo service = new FDSInfo( endpointUrl,
-//					new QName("http://pad.polito.it/FDSInfo", "FDSInfo"));
-//			
-//			infoProxy = service.getFDSInfoImplPort();
-//
-//			BindingProvider bindprov = (BindingProvider) infoProxy;
-//			bindprov.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:7071/fdsinfo?wsdl");
-//		} catch (MalformedURLException e)
-//		{
-//			e.printStackTrace();
-//			closeBuffers(2);
-//		}  catch (Exception e)
-//		{
-//			e.printStackTrace();
-//			closeBuffers(2);
-//		}
-//	}
+	//	private static void prepareInfoEndpoint()
+	//	{
+	//		try {
+	//			URL endpointUrl = new URL("http://localhost:7071/fdsinfo?wsdl");
+	//
+	//			FDSInfo service = new FDSInfo( endpointUrl,
+	//					new QName("http://pad.polito.it/FDSInfo", "FDSInfo"));
+	//			
+	//			infoProxy = service.getFDSInfoImplPort();
+	//
+	//			BindingProvider bindprov = (BindingProvider) infoProxy;
+	//			bindprov.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:7071/fdsinfo?wsdl");
+	//		} catch (MalformedURLException e)
+	//		{
+	//			e.printStackTrace();
+	//			closeBuffers(2);
+	//		}  catch (Exception e)
+	//		{
+	//			e.printStackTrace();
+	//			closeBuffers(2);
+	//		}
+	//	}
 
 	private static void registerPassengers() throws MalformedURLException
 	{
@@ -213,9 +214,9 @@ public class FDSControlClient {
 		System.out.println("FLIGHTID="+flightID);
 		System.out.println("DEPARTURE DATE="+departureDate);
 
-		for (String passengerName:boardingInfo.getPassenger())
-		{
-			try {
+		try {
+			for (String passengerName:boardingInfo.getPassenger())
+			{
 				GregorianCalendar date = new GregorianCalendar();
 				date.clear();
 				date = departureDate.toGregorianCalendar();
@@ -227,16 +228,18 @@ public class FDSControlClient {
 				req.setFlightID(flightID);
 				req.setPassengerName(passengerName);
 
-				controlProxy.registerPassengerAsync(req);
-
-			} catch (DatatypeConfigurationException e) {
-				e.printStackTrace();
-				closeBuffers(2);
-			} catch(Exception e)
-			{
-				e.printStackTrace();
-				closeBuffers(1);
+				Response<RegisterPassengerResponse> res = controlProxy.registerPassengerAsync(req);
+				res.get();
 			}
+		} catch (DatatypeConfigurationException e) {
+			e.printStackTrace();
+			closeBuffers(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			closeBuffers(1);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			closeBuffers(1);
 		}
 	}
 
@@ -347,25 +350,25 @@ public class FDSControlClient {
 		System.exit(exitCode);
 	}
 
-//	private static void printFlights()
-//	{
-//		prepareInfoEndpoint();
-//		try {
-//			GetFlights req = new GetFlights();
-//			req.setDepartureAirport(null);
-//			req.setDepartureTime(null);
-//			req.setDestinationAirport(null);
-//			Response<GetFlightsResponse> res = infoProxy.getFlightsAsync(req);
-//			List<Flight> returnList = res.get().getReturn();
-//			for (Flight f:returnList)
-//				System.out.println("FLIGHT ID="+f.getNumber()+" DEP="+f.getDepartureAirport()+
-//						" ARR="+f.getDestinationAirport()+" TIME="+f.getDepartureTime().getHour()+":"+f.getDepartureTime().getMinute());
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//			closeBuffers(1);
-//		} catch (ExecutionException e) {
-//			e.printStackTrace();
-//			closeBuffers(1);
-//		}
-//	}
+	//	private static void printFlights()
+	//	{
+	//		prepareInfoEndpoint();
+	//		try {
+	//			GetFlights req = new GetFlights();
+	//			req.setDepartureAirport(null);
+	//			req.setDepartureTime(null);
+	//			req.setDestinationAirport(null);
+	//			Response<GetFlightsResponse> res = infoProxy.getFlightsAsync(req);
+	//			List<Flight> returnList = res.get().getReturn();
+	//			for (Flight f:returnList)
+	//				System.out.println("FLIGHT ID="+f.getNumber()+" DEP="+f.getDepartureAirport()+
+	//						" ARR="+f.getDestinationAirport()+" TIME="+f.getDepartureTime().getHour()+":"+f.getDepartureTime().getMinute());
+	//		} catch (InterruptedException e) {
+	//			e.printStackTrace();
+	//			closeBuffers(1);
+	//		} catch (ExecutionException e) {
+	//			e.printStackTrace();
+	//			closeBuffers(1);
+	//		}
+	//	}
 }

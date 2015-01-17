@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "InvalidArgument", targetNamespace = "http://pad.polito.it/FDSInfo")
+@WebFault(name = "InvalidArgument", targetNamespace = "http://pad.polito.it/FDSControl")
 public class InvalidArgument_Exception
     extends Exception
 {
