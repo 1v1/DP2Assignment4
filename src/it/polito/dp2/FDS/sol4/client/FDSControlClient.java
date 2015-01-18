@@ -179,7 +179,7 @@ public class FDSControlClient {
 			System.out.println("Invalid flight ID in the input file");
 			closeBuffers(1);
 		}
-
+		
 		if (departureDate == null)
 		{
 			System.out.println("Invalid departure date in the input file");

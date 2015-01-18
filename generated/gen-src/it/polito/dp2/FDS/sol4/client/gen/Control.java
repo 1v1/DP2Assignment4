@@ -32,57 +32,6 @@ public interface Control {
      * 
      * @param parameters
      * @return
-     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse>
-     */
-    @WebMethod(operationName = "registerPassenger")
-    public Response<RegisterPassengerResponse> registerPassengerAsync(
-        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-        RegisterPassenger parameters);
-
-    /**
-     * 
-     * @param asyncHandler
-     * @param parameters
-     * @return
-     *     returns java.util.concurrent.Future<? extends java.lang.Object>
-     */
-    @WebMethod(operationName = "registerPassenger")
-    public Future<?> registerPassengerAsync(
-        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-        RegisterPassenger parameters,
-        @WebParam(name = "registerPassengerResponse", targetNamespace = "", partName = "asyncHandler")
-        AsyncHandler<RegisterPassengerResponse> asyncHandler);
-
-    /**
-     * 
-     * @param parameters
-     * @return
-     *     returns it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse
-     * @throws PassengerAlreadyRegisteredException
-     * @throws InvalidArgumentException
-     * @throws UnknownFlightInstanceException
-     * @throws MonitorException
-     * @throws NotBoardingException
-     */
-    @WebMethod
-    @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-    @Action(input = "http://pad.polito.it/FDSControl/Control/registerPassengerRequest", output = "http://pad.polito.it/FDSControl/Control/registerPassengerResponse", fault = {
-        @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/InvalidArgument"),
-        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/Monitor"),
-        @FaultAction(className = NotBoardingException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/NotBoarding"),
-        @FaultAction(className = PassengerAlreadyRegisteredException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/PassengerAlreadyRegistered"),
-        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/UnknownFlightInstance")
-    })
-    public RegisterPassengerResponse registerPassenger(
-        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-        RegisterPassenger parameters)
-        throws InvalidArgumentException, MonitorException, NotBoardingException, PassengerAlreadyRegisteredException, UnknownFlightInstanceException
-    ;
-
-    /**
-     * 
-     * @param parameters
-     * @return
      *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse>
      */
     @WebMethod(operationName = "startBoarding")
@@ -109,11 +58,11 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse
-     * @throws InvalidStatusException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
-     * @throws MonitorException
      * @throws CancelledFlightException
+     * @throws InvalidArgumentException
+     * @throws InvalidStatusException
+     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -128,6 +77,57 @@ public interface Control {
         @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
         StartBoarding parameters)
         throws CancelledFlightException, InvalidArgumentException, InvalidStatusException, MonitorException, UnknownFlightInstanceException
+    ;
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse>
+     */
+    @WebMethod(operationName = "registerPassenger")
+    public Response<RegisterPassengerResponse> registerPassengerAsync(
+        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        RegisterPassenger parameters);
+
+    /**
+     * 
+     * @param asyncHandler
+     * @param parameters
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "registerPassenger")
+    public Future<?> registerPassengerAsync(
+        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        RegisterPassenger parameters,
+        @WebParam(name = "registerPassengerResponse", targetNamespace = "", partName = "asyncHandler")
+        AsyncHandler<RegisterPassengerResponse> asyncHandler);
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse
+     * @throws UnknownFlightInstanceException
+     * @throws NotBoardingException
+     * @throws InvalidArgumentException
+     * @throws PassengerAlreadyRegisteredException
+     * @throws MonitorException
+     */
+    @WebMethod
+    @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @Action(input = "http://pad.polito.it/FDSControl/Control/registerPassengerRequest", output = "http://pad.polito.it/FDSControl/Control/registerPassengerResponse", fault = {
+        @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/InvalidArgument"),
+        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/Monitor"),
+        @FaultAction(className = NotBoardingException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/NotBoarding"),
+        @FaultAction(className = PassengerAlreadyRegisteredException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/PassengerAlreadyRegistered"),
+        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/UnknownFlightInstance")
+    })
+    public RegisterPassengerResponse registerPassenger(
+        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        RegisterPassenger parameters)
+        throws InvalidArgumentException, MonitorException, NotBoardingException, PassengerAlreadyRegisteredException, UnknownFlightInstanceException
     ;
 
     /**
@@ -160,8 +160,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetBoardedPassengersResponse
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
      * @throws MonitorException
      */
     @WebMethod
@@ -175,55 +175,6 @@ public interface Control {
         @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
         GetBoardedPassengers parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
-    ;
-
-    /**
-     * 
-     * @param parameters
-     * @return
-     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.AssignSeatResponse>
-     */
-    @WebMethod(operationName = "assignSeat")
-    public Response<AssignSeatResponse> assignSeatAsync(
-        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-        AssignSeat parameters);
-
-    /**
-     * 
-     * @param asyncHandler
-     * @param parameters
-     * @return
-     *     returns java.util.concurrent.Future<? extends java.lang.Object>
-     */
-    @WebMethod(operationName = "assignSeat")
-    public Future<?> assignSeatAsync(
-        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-        AssignSeat parameters,
-        @WebParam(name = "assignSeatResponse", targetNamespace = "", partName = "asyncHandler")
-        AsyncHandler<AssignSeatResponse> asyncHandler);
-
-    /**
-     * 
-     * @param parameters
-     * @return
-     *     returns it.polito.dp2.FDS.sol4.client.gen.AssignSeatResponse
-     * @throws SeatAlreadyAssignedException
-     * @throws FullyBookedFlightException
-     * @throws UnknownFlightInstanceException
-     * @throws MonitorException
-     */
-    @WebMethod
-    @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-    @Action(input = "http://pad.polito.it/FDSControl/Control/assignSeatRequest", output = "http://pad.polito.it/FDSControl/Control/assignSeatResponse", fault = {
-        @FaultAction(className = FullyBookedFlightException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/FullyBookedFlight"),
-        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/Monitor"),
-        @FaultAction(className = SeatAlreadyAssignedException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/SeatAlreadyAssigned"),
-        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/UnknownFlightInstance")
-    })
-    public AssignSeatResponse assignSeat(
-        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
-        AssignSeat parameters)
-        throws FullyBookedFlightException, MonitorException, SeatAlreadyAssignedException, UnknownFlightInstanceException
     ;
 
     /**
@@ -256,8 +207,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.CancelFlightInstanceResponse
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
      * @throws MonitorException
      */
     @WebMethod
@@ -303,8 +254,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.ChangeBoardingGateResponse
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
      * @throws MonitorException
      */
     @WebMethod
@@ -350,8 +301,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.ChangeDelayResponse
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
      * @throws MonitorException
      */
     @WebMethod
@@ -365,6 +316,55 @@ public interface Control {
         @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
         ChangeDelay parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
+    ;
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.AssignSeatResponse>
+     */
+    @WebMethod(operationName = "assignSeat")
+    public Response<AssignSeatResponse> assignSeatAsync(
+        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        AssignSeat parameters);
+
+    /**
+     * 
+     * @param asyncHandler
+     * @param parameters
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "assignSeat")
+    public Future<?> assignSeatAsync(
+        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        AssignSeat parameters,
+        @WebParam(name = "assignSeatResponse", targetNamespace = "", partName = "asyncHandler")
+        AsyncHandler<AssignSeatResponse> asyncHandler);
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns it.polito.dp2.FDS.sol4.client.gen.AssignSeatResponse
+     * @throws UnknownFlightInstanceException
+     * @throws FullyBookedFlightException
+     * @throws SeatAlreadyAssignedException
+     * @throws MonitorException
+     */
+    @WebMethod
+    @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @Action(input = "http://pad.polito.it/FDSControl/Control/assignSeatRequest", output = "http://pad.polito.it/FDSControl/Control/assignSeatResponse", fault = {
+        @FaultAction(className = FullyBookedFlightException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/FullyBookedFlight"),
+        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/Monitor"),
+        @FaultAction(className = SeatAlreadyAssignedException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/SeatAlreadyAssigned"),
+        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/UnknownFlightInstance")
+    })
+    public AssignSeatResponse assignSeat(
+        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        AssignSeat parameters)
+        throws FullyBookedFlightException, MonitorException, SeatAlreadyAssignedException, UnknownFlightInstanceException
     ;
 
 }

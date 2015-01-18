@@ -7,27 +7,6 @@
 <xsd:import namespace="http://pad.polito.it/FDSControl" schemaLocation="http://localhost:7070/fdscontrol?xsd=2"></xsd:import>
 </xsd:schema>
 </types>
-<message name="registerPassenger">
-<part name="parameters" element="tns:registerPassenger"></part>
-</message>
-<message name="registerPassengerResponse">
-<part name="parameters" element="tns:registerPassengerResponse"></part>
-</message>
-<message name="InvalidArgument_Exception">
-<part xmlns:ns1="http://pad.polito.it/FDSInfo" name="fault" element="ns1:InvalidArgument"></part>
-</message>
-<message name="Monitor_Exception">
-<part xmlns:ns2="http://pad.polito.it/FDSInfo" name="fault" element="ns2:Monitor"></part>
-</message>
-<message name="NotBoarding_Exception">
-<part name="fault" element="tns:NotBoarding"></part>
-</message>
-<message name="PassengerAlreadyRegistered_Exception">
-<part name="fault" element="tns:PassengerAlreadyRegistered"></part>
-</message>
-<message name="UnknownFlightInstance_Exception">
-<part xmlns:ns3="http://pad.polito.it/FDSInfo" name="fault" element="ns3:UnknownFlightInstance"></part>
-</message>
 <message name="startBoarding">
 <part name="parameters" element="tns:startBoarding"></part>
 </message>
@@ -37,26 +16,35 @@
 <message name="CancelledFlight_Exception">
 <part name="fault" element="tns:CancelledFlight"></part>
 </message>
+<message name="InvalidArgument_Exception">
+<part xmlns:ns1="http://pad.polito.it/FDSInfo" name="fault" element="ns1:InvalidArgument"></part>
+</message>
 <message name="InvalidStatus_Exception">
 <part name="fault" element="tns:InvalidStatus"></part>
+</message>
+<message name="Monitor_Exception">
+<part xmlns:ns2="http://pad.polito.it/FDSInfo" name="fault" element="ns2:Monitor"></part>
+</message>
+<message name="UnknownFlightInstance_Exception">
+<part xmlns:ns3="http://pad.polito.it/FDSInfo" name="fault" element="ns3:UnknownFlightInstance"></part>
+</message>
+<message name="registerPassenger">
+<part name="parameters" element="tns:registerPassenger"></part>
+</message>
+<message name="registerPassengerResponse">
+<part name="parameters" element="tns:registerPassengerResponse"></part>
+</message>
+<message name="NotBoarding_Exception">
+<part name="fault" element="tns:NotBoarding"></part>
+</message>
+<message name="PassengerAlreadyRegistered_Exception">
+<part name="fault" element="tns:PassengerAlreadyRegistered"></part>
 </message>
 <message name="getBoardedPassengers">
 <part name="parameters" element="tns:getBoardedPassengers"></part>
 </message>
 <message name="getBoardedPassengersResponse">
 <part name="parameters" element="tns:getBoardedPassengersResponse"></part>
-</message>
-<message name="assignSeat">
-<part name="parameters" element="tns:assignSeat"></part>
-</message>
-<message name="assignSeatResponse">
-<part name="parameters" element="tns:assignSeatResponse"></part>
-</message>
-<message name="FullyBookedFlight_Exception">
-<part name="fault" element="tns:FullyBookedFlight"></part>
-</message>
-<message name="SeatAlreadyAssigned_Exception">
-<part name="fault" element="tns:SeatAlreadyAssigned"></part>
 </message>
 <message name="cancelFlightInstance">
 <part name="parameters" element="tns:cancelFlightInstance"></part>
@@ -76,16 +64,19 @@
 <message name="changeDelayResponse">
 <part name="parameters" element="tns:changeDelayResponse"></part>
 </message>
+<message name="assignSeat">
+<part name="parameters" element="tns:assignSeat"></part>
+</message>
+<message name="assignSeatResponse">
+<part name="parameters" element="tns:assignSeatResponse"></part>
+</message>
+<message name="FullyBookedFlight_Exception">
+<part name="fault" element="tns:FullyBookedFlight"></part>
+</message>
+<message name="SeatAlreadyAssigned_Exception">
+<part name="fault" element="tns:SeatAlreadyAssigned"></part>
+</message>
 <portType name="Control">
-<operation name="registerPassenger">
-<input wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassengerRequest" message="tns:registerPassenger"></input>
-<output wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassengerResponse" message="tns:registerPassengerResponse"></output>
-<fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/InvalidArgument"></fault>
-<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/Monitor"></fault>
-<fault message="tns:NotBoarding_Exception" name="NotBoarding_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/NotBoarding"></fault>
-<fault message="tns:PassengerAlreadyRegistered_Exception" name="PassengerAlreadyRegistered_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/PassengerAlreadyRegistered"></fault>
-<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/UnknownFlightInstance"></fault>
-</operation>
 <operation name="startBoarding">
 <input wsam:Action="http://pad.polito.it/FDSControl/Control/startBoardingRequest" message="tns:startBoarding"></input>
 <output wsam:Action="http://pad.polito.it/FDSControl/Control/startBoardingResponse" message="tns:startBoardingResponse"></output>
@@ -95,20 +86,21 @@
 <fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/startBoarding/Fault/Monitor"></fault>
 <fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/startBoarding/Fault/UnknownFlightInstance"></fault>
 </operation>
+<operation name="registerPassenger">
+<input wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassengerRequest" message="tns:registerPassenger"></input>
+<output wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassengerResponse" message="tns:registerPassengerResponse"></output>
+<fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/InvalidArgument"></fault>
+<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/Monitor"></fault>
+<fault message="tns:NotBoarding_Exception" name="NotBoarding_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/NotBoarding"></fault>
+<fault message="tns:PassengerAlreadyRegistered_Exception" name="PassengerAlreadyRegistered_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/PassengerAlreadyRegistered"></fault>
+<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/UnknownFlightInstance"></fault>
+</operation>
 <operation name="getBoardedPassengers">
 <input wsam:Action="http://pad.polito.it/FDSControl/Control/getBoardedPassengersRequest" message="tns:getBoardedPassengers"></input>
 <output wsam:Action="http://pad.polito.it/FDSControl/Control/getBoardedPassengersResponse" message="tns:getBoardedPassengersResponse"></output>
 <fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/getBoardedPassengers/Fault/InvalidArgument"></fault>
 <fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/getBoardedPassengers/Fault/Monitor"></fault>
 <fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/getBoardedPassengers/Fault/UnknownFlightInstance"></fault>
-</operation>
-<operation name="assignSeat">
-<input wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeatRequest" message="tns:assignSeat"></input>
-<output wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeatResponse" message="tns:assignSeatResponse"></output>
-<fault message="tns:FullyBookedFlight_Exception" name="FullyBookedFlight_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/FullyBookedFlight"></fault>
-<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/Monitor"></fault>
-<fault message="tns:SeatAlreadyAssigned_Exception" name="SeatAlreadyAssigned_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/SeatAlreadyAssigned"></fault>
-<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/UnknownFlightInstance"></fault>
 </operation>
 <operation name="cancelFlightInstance">
 <input wsam:Action="http://pad.polito.it/FDSControl/Control/cancelFlightInstanceRequest" message="tns:cancelFlightInstance"></input>
@@ -131,33 +123,17 @@
 <fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/changeDelay/Fault/Monitor"></fault>
 <fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/changeDelay/Fault/UnknownFlightInstance"></fault>
 </operation>
+<operation name="assignSeat">
+<input wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeatRequest" message="tns:assignSeat"></input>
+<output wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeatResponse" message="tns:assignSeatResponse"></output>
+<fault message="tns:FullyBookedFlight_Exception" name="FullyBookedFlight_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/FullyBookedFlight"></fault>
+<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/Monitor"></fault>
+<fault message="tns:SeatAlreadyAssigned_Exception" name="SeatAlreadyAssigned_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/SeatAlreadyAssigned"></fault>
+<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSControl/Control/assignSeat/Fault/UnknownFlightInstance"></fault>
+</operation>
 </portType>
 <binding name="FDSControlImplPortBinding" type="tns:Control">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
-<operation name="registerPassenger">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="NotBoarding_Exception">
-<soap:fault name="NotBoarding_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="PassengerAlreadyRegistered_Exception">
-<soap:fault name="PassengerAlreadyRegistered_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlightInstance_Exception">
-<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
 <operation name="startBoarding">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -182,7 +158,85 @@
 <soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
 </fault>
 </operation>
+<operation name="registerPassenger">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="NotBoarding_Exception">
+<soap:fault name="NotBoarding_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="PassengerAlreadyRegistered_Exception">
+<soap:fault name="PassengerAlreadyRegistered_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlightInstance_Exception">
+<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
 <operation name="getBoardedPassengers">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlightInstance_Exception">
+<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="cancelFlightInstance">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlightInstance_Exception">
+<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="changeBoardingGate">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlightInstance_Exception">
+<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="changeDelay">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -216,60 +270,6 @@
 </fault>
 <fault name="SeatAlreadyAssigned_Exception">
 <soap:fault name="SeatAlreadyAssigned_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlightInstance_Exception">
-<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="cancelFlightInstance">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlightInstance_Exception">
-<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="changeBoardingGate">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlightInstance_Exception">
-<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="changeDelay">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
 </fault>
 <fault name="UnknownFlightInstance_Exception">
 <soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>

@@ -211,7 +211,8 @@
 		</operation>
 		<operation name="changeDelay">
 			<documentation>
-				This operations allows the user to change the delay value of a single
+				This operations allows the user to change the delay
+				value of a single
 				flight instance
 			</documentation>
 			<input wsam:Action="http://pad.polito.it/FDSControl/Control/changeDelayRequest"
@@ -353,6 +354,11 @@
 			</fault>
 		</operation>
 		<operation name="changeDelay">
+			<documentation>
+				This operations allows the user to change the delay
+				value of a single
+				flight instance
+			</documentation>
 			<soap:operation soapAction="" />
 			<input>
 				<soap:body use="literal" />
