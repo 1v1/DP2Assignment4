@@ -102,7 +102,7 @@
 			<arg value="-b" />
 			<arg path="${META-INF.dir}/server/custom/server-control-custom-bindings.xml" />
 			<arg value="-p" />
-			<arg value="it.polito.dp2.FDS.sol4.server.jaxws.control" />
+			<arg value="it.polito.dp2.FDS.sol4.server.jaxws" />
 			<arg file="${wsdl_FDSControl.file}" />
 		</exec>
 	</target>
@@ -117,7 +117,7 @@
 			<arg value="-b" />
 			<arg path="${META-INF.dir}/server/custom/server-info-custom-bindings.xml" />
 			<arg value="-p" />
-			<arg value="it.polito.dp2.FDS.sol4.server.jaxws.info" />
+			<arg value="it.polito.dp2.FDS.sol4.server.jaxws" />
 			<arg file="${wsdl_FDSInfo.file}" />
 		</exec>
 	</target>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://pad.polito.it/FDSControl" xmlns:tns="http://pad.polito.it/FDSControl" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="CancelledFlight" type="tns:CancelledFlight"/>
+
+  <xs:element name="FullyBookedFlight" type="tns:FullyBookedFlight"/>
+
+  <xs:element name="InvalidArgument" type="tns:InvalidArgument"/>
+
+  <xs:element name="InvalidStatus" type="tns:InvalidStatus"/>
+
+  <xs:element name="Monitor" type="tns:Monitor"/>
+
+  <xs:element name="NotBoarding" type="tns:NotBoarding"/>
+
+  <xs:element name="PassengerAlreadyRegistered" type="tns:PassengerAlreadyRegistered"/>
+
+  <xs:element name="SeatAlreadyAssigned" type="tns:SeatAlreadyAssigned"/>
+
+  <xs:element name="UnknownFlightInstance" type="tns:UnknownFlightInstance"/>
+
+  <xs:element name="assignSeat" type="tns:assignSeat"/>
+
+  <xs:element name="assignSeatResponse" type="tns:assignSeatResponse"/>
+
+  <xs:element name="cancelFlightInstance" type="tns:cancelFlightInstance"/>
+
+  <xs:element name="cancelFlightInstanceResponse" type="tns:cancelFlightInstanceResponse"/>
+
+  <xs:element name="changeBoardingGate" type="tns:changeBoardingGate"/>
+
+  <xs:element name="changeBoardingGateResponse" type="tns:changeBoardingGateResponse"/>
+
+  <xs:element name="changeDelay" type="tns:changeDelay"/>
+
+  <xs:element name="changeDelayResponse" type="tns:changeDelayResponse"/>
+
+  <xs:element name="getBoardedPassengers" type="tns:getBoardedPassengers"/>
+
+  <xs:element name="getBoardedPassengersResponse" type="tns:getBoardedPassengersResponse"/>
+
+  <xs:element name="registerPassenger" type="tns:registerPassenger"/>
+
+  <xs:element name="registerPassengerResponse" type="tns:registerPassengerResponse"/>
+
+  <xs:element name="startBoarding" type="tns:startBoarding"/>
+
+  <xs:element name="startBoardingResponse" type="tns:startBoardingResponse"/>
+
+  <xs:complexType name="changeBoardingGate">
+    <xs:sequence>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="gate" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="changeBoardingGateResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="UnknownFlightInstance">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InvalidArgument">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Monitor">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelFlightInstance">
+    <xs:sequence>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cancelFlightInstanceResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getBoardedPassengers">
+    <xs:sequence>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getBoardedPassengersResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:passenger" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="passenger">
+    <xs:sequence>
+      <xs:element name="boarded" type="xs:boolean"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="seat" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="changeDelay">
+    <xs:sequence>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="delay" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="changeDelayResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="assignSeat">
+    <xs:sequence>
+      <xs:element name="passengerName" type="xs:string" minOccurs="0"/>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="assignSeatResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:boardingInfo" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="boardingInfo">
+    <xs:sequence>
+      <xs:element name="delay" type="xs:int"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="gate" type="xs:string" minOccurs="0"/>
+      <xs:element name="passengerName" type="xs:string" minOccurs="0"/>
+      <xs:element name="seat" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SeatAlreadyAssigned">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FullyBookedFlight">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="startBoarding">
+    <xs:sequence>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="startBoardingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="CancelledFlight">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InvalidStatus">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registerPassenger">
+    <xs:sequence>
+      <xs:element name="flightID" type="xs:string" minOccurs="0"/>
+      <xs:element name="departureDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="passengerName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registerPassengerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="NotBoarding">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PassengerAlreadyRegistered">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
