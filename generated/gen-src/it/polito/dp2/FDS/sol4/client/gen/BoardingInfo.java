@@ -3,6 +3,7 @@ package it.polito.dp2.FDS.sol4.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -19,11 +20,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="gate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="passengerName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="seat" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="passengerName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="seat" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,11 +45,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class BoardingInfo {
 
     protected int delay;
+    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
+    @XmlElement(required = true)
     protected String flightID;
     protected String gate;
+    @XmlElement(required = true)
     protected String passengerName;
+    @XmlElement(required = true)
     protected String seat;
 
     /**

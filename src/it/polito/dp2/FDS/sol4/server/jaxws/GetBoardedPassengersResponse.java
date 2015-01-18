@@ -10,6 +10,11 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
+ * 
+ * 				The flightID and departure date uniquely identify
+ * 				the single flight instance that the user wants to delete.
+ * 			
+ * 
  * <p>Java class for getBoardedPassengersResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.

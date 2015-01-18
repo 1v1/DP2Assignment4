@@ -7,6 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
+ * 
+ * 				This fault warns the user that the status of the
+ * 				specified flight
+ * 				instance is not boarding.
+ * 			
+ * 
  * <p>Java class for NotBoarding complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.

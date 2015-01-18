@@ -7,6 +7,11 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
+ * 
+ * 				This fault is sent when the flight instance, on
+ * 				which the user had tried to receive a seat, is fully booked.
+ * 			
+ * 
  * <p>Java class for FullyBookedFlight complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.

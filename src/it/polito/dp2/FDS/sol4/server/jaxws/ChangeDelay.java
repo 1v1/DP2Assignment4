@@ -3,6 +3,7 @@ package it.polito.dp2.FDS.sol4.server.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
@@ -11,6 +12,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
+ * 
+ * 				In order to change the value of the delay of a
+ * 				flight instance is mandatory to specify the flight ID and the
+ * 				departure date and the new delay value. Therefore all these three
+ * 				elements are mandatory.
+ * 			
+ * 
  * <p>Java class for changeDelay complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
@@ -20,9 +28,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="flightID" type="{http://pad.polito.it/FDSControl}FlightIDType" minOccurs="0"/>
- *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDSControl}FlightIDType"/>
+ *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,11 +47,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ChangeDelay {
 
+    @XmlElement(required = true)
     @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String flightID;
+    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
-    protected String delay;
+    protected int delay;
 
     /**
      * Gets the value of the flightID property.
@@ -96,24 +106,16 @@ public class ChangeDelay {
     /**
      * Gets the value of the delay property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getDelay() {
+    public int getDelay() {
         return delay;
     }
 
     /**
      * Sets the value of the delay property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setDelay(String value) {
+    public void setDelay(int value) {
         this.delay = value;
     }
 

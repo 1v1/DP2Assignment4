@@ -3,7 +3,7 @@ package it.polito.dp2.FDS.sol4.server;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
-import java.io.InputStream;
+import java.io.File;
 import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
@@ -11,12 +11,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
+import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConstants;
 import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
-import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.ws.handler.MessageContext;
@@ -26,7 +25,7 @@ import javax.xml.ws.handler.soap.SOAPMessageContext;
 //FIXME: UnmarshalException everytime
 public class ControlValidationHandler  implements SOAPHandler<SOAPMessageContext>
 {
-	protected String schemaLocation = "/META-INF/server/wsdl/FDSControl_schema1.xsd";
+	protected String schemaLocation = "./wsdl/FDSControl_schema1.xsd";
 	protected String jaxbPackage = "it.polito.dp2.FDS.sol4.server.jaxws";
 
 
@@ -55,14 +54,16 @@ public class ControlValidationHandler  implements SOAPHandler<SOAPMessageContext
 					return false;
 				}
 
-				InputStream schemaStream = ControlValidationHandler.class.getResourceAsStream(schemaLocation);
+				File schemaFile = new File(schemaLocation);
+//				InputStream schemaStream = ControlValidationHandler.class.getResourceAsStream(schemaLocation);
 				JAXBContext jc = JAXBContext.newInstance(jaxbPackage);
 				Unmarshaller u = jc.createUnmarshaller();
 
 				SchemaFactory sf = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
 				try
 				{
-					Schema schema = sf.newSchema(new StreamSource(schemaStream));
+//					Schema schema = sf.newSchema(new StreamSource(schemaStream));
+					Schema schema = sf.newSchema(schemaFile);
 					u.setSchema(schema);
 				} catch (org.xml.sax.SAXException se)
 				{
