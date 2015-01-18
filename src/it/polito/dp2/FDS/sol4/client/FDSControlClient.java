@@ -169,29 +169,6 @@ public class FDSControlClient {
 		}
 	}
 
-	//	private static void prepareInfoEndpoint()
-	//	{
-	//		try {
-	//			URL endpointUrl = new URL("http://localhost:7071/fdsinfo?wsdl");
-	//
-	//			FDSInfo service = new FDSInfo( endpointUrl,
-	//					new QName("http://pad.polito.it/FDSInfo", "FDSInfo"));
-	//			
-	//			infoProxy = service.getFDSInfoImplPort();
-	//
-	//			BindingProvider bindprov = (BindingProvider) infoProxy;
-	//			bindprov.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:7071/fdsinfo?wsdl");
-	//		} catch (MalformedURLException e)
-	//		{
-	//			e.printStackTrace();
-	//			closeBuffers(2);
-	//		}  catch (Exception e)
-	//		{
-	//			e.printStackTrace();
-	//			closeBuffers(2);
-	//		}
-	//	}
-
 	private static void registerPassengers() throws MalformedURLException
 	{
 		XMLGregorianCalendar departureDate = boardingInfo.getDate();
@@ -272,12 +249,22 @@ public class FDSControlClient {
 
 			XMLGregorianCalendar depDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(departureDate.toGregorianCalendar());
 
-			GetBoardedPassengers req = new GetBoardedPassengers();
-			req.setDepartureDate(depDate);
-			req.setFlightID(flightID);
+			Boolean lastPage = false;
+			int pageNumber = 0;
+			while(!lastPage)
+			{
+				GetBoardedPassengers req = new GetBoardedPassengers();
+				req.setDepartureDate(depDate);
+				req.setFlightID(flightID);
+				req.setPageNumber(pageNumber);
 
-			Response<GetBoardedPassengersResponse> res = controlProxy.getBoardedPassengersAsync(req);
-			returnList.addAll(res.get().getReturn());
+				Response<GetBoardedPassengersResponse> res = controlProxy.getBoardedPassengersAsync(req);
+				pageNumber++;
+				returnList.addAll(res.get().getReturn());
+				if (res.get().isLastPage())
+					lastPage=true;
+			}
+
 		} catch (DatatypeConfigurationException e) {
 			e.printStackTrace();
 			closeBuffers(2);
@@ -288,18 +275,6 @@ public class FDSControlClient {
 			e.printStackTrace();
 			closeBuffers(1);
 		}
-
-		//			GetBoardedPassengersResponse res = new GetBoardedPassengersResponse();
-		//			res = controlProxy.getBoardedPassengers(req);
-		//			returnList.addAll(res.getReturn());
-
-		//		} catch (InvalidArgumentException e) {
-		//			e.printStackTrace();
-		//			closeBuffers(1);
-		//		} catch (UnknownFlightInstanceException e) {
-		//			e.printStackTrace();
-		//			closeBuffers(1);
-		//		}
 
 		printBoardList(returnList);
 	}

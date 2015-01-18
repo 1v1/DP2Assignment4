@@ -51,6 +51,7 @@ public class FDSControlImpl implements Control {
 	private static DataManager manager;
 
 	private static final String FLIGHTID_PATTERN = "^[A-Z]{2}[0-9]{1,4}$"; //two char and three numbers
+	private static final Integer MAX_ENTRIES_PER_PAGE = 10;
 
 	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
 
@@ -270,13 +271,49 @@ public class FDSControlImpl implements Control {
 				GetBoardedPassengersResponse res = new GetBoardedPassengersResponse();
 
 				List<Passenger> passList;
+				
+				// Paging response parameters
+				int boardedPassengers = 0;
+				int pageNumber = parameters.getPageNumber();
+				//TODO complete paging
+				int entriesPerPage = 0;
+				int pageBeginning = pageNumber * FDSControlImpl.MAX_ENTRIES_PER_PAGE;
+				int passengers = 0;
 				synchronized(passList = manager.getPassengerList(key))
 				{
 					for (Passenger p:passList)
+					{
+						passengers++;
 						if (p.isBoarded())
-							res.getReturn().add(p);
+						{
+							boardedPassengers++;
+							if (boardedPassengers > pageBeginning)
+							{
+								// Boarded passengers not returned yet
+								entriesPerPage++;
+								res.getReturn().add(p);
+								if (entriesPerPage == MAX_ENTRIES_PER_PAGE)
+								{
+									// Max entries per page limit reached
+									res.setPageNumber(pageNumber);
+									if (passengers == passList.size())
+									{
+										res.setLastPage(true);
+										logger.info("Boarded passengers last page returned!");
+									}else
+									{
+										logger.info("Boarded passengers page number "+pageNumber+" returned!");
+										res.setLastPage(false);
+									}
+									return res;
+								}
+							}
+						}
+					}
 				}
-				logger.info("Boarded passengers returned!");
+				logger.info("Boarded passengers last page returned!");
+				res.setLastPage(true);
+				res.setPageNumber(pageNumber);
 				return res;
 			}else
 			{

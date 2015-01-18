@@ -58,10 +58,10 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.AssignSeatResponse
-     * @throws SeatAlreadyAssignedException
-     * @throws MonitorException
      * @throws FullyBookedFlightException
      * @throws UnknownFlightInstanceException
+     * @throws MonitorException
+     * @throws SeatAlreadyAssignedException
      */
     @WebMethod
     @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -107,11 +107,11 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse
-     * @throws InvalidStatusException
-     * @throws MonitorException
-     * @throws CancelledFlightException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     * @throws CancelledFlightException
+     * @throws MonitorException
+     * @throws InvalidStatusException
      */
     @WebMethod
     @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -158,10 +158,10 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse
-     * @throws MonitorException
      * @throws NotBoardingException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     * @throws MonitorException
      * @throws PassengerAlreadyRegisteredException
      */
     @WebMethod
@@ -209,9 +209,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetBoardedPassengersResponse
-     * @throws MonitorException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "getBoardedPassengersResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -256,9 +256,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.CancelFlightInstanceResponse
-     * @throws MonitorException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "cancelFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -303,9 +303,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.ChangeBoardingGateResponse
-     * @throws MonitorException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "changeBoardingGateResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -350,9 +350,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.ChangeDelayResponse
-     * @throws MonitorException
-     * @throws InvalidArgumentException
      * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "changeDelayResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
