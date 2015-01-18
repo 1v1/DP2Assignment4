@@ -30,9 +30,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.AssignSeatResponse
+     * @throws FullyBookedFlight_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws FullyBookedFlight_Exception
      * @throws SeatAlreadyAssigned_Exception
      */
     @WebMethod
@@ -55,10 +55,10 @@ public interface Control {
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.StartBoardingResponse
      * @throws Monitor_Exception
-     * @throws CancelledFlight_Exception
      * @throws InvalidArgument_Exception
-     * @throws UnknownFlightInstance_Exception
      * @throws InvalidStatus_Exception
+     * @throws UnknownFlightInstance_Exception
+     * @throws CancelledFlight_Exception
      */
     @WebMethod
     @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
@@ -81,10 +81,10 @@ public interface Control {
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.RegisterPassengerResponse
      * @throws Monitor_Exception
-     * @throws NotBoarding_Exception
+     * @throws PassengerAlreadyRegistered_Exception
      * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws PassengerAlreadyRegistered_Exception
+     * @throws NotBoarding_Exception
      */
     @WebMethod
     @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
