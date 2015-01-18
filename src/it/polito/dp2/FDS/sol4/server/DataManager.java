@@ -8,12 +8,12 @@ import it.polito.dp2.FDS.FlightMonitorFactory;
 import it.polito.dp2.FDS.FlightReader;
 import it.polito.dp2.FDS.MalformedArgumentException;
 import it.polito.dp2.FDS.PassengerReader;
-import it.polito.dp2.FDS.sol4.server.jaxws.AircraftType;
-import it.polito.dp2.FDS.sol4.server.jaxws.Flight;
-import it.polito.dp2.FDS.sol4.server.jaxws.FlightInstance;
-import it.polito.dp2.FDS.sol4.server.jaxws.FlightInstanceStatus;
-import it.polito.dp2.FDS.sol4.server.jaxws.Passenger;
-import it.polito.dp2.FDS.sol4.server.jaxws.Time;
+import it.polito.dp2.FDS.sol4.server.jaxws.info.AircraftType;
+import it.polito.dp2.FDS.sol4.server.jaxws.info.Flight;
+import it.polito.dp2.FDS.sol4.server.jaxws.info.FlightInstance;
+import it.polito.dp2.FDS.sol4.server.jaxws.info.FlightInstanceStatus;
+import it.polito.dp2.FDS.sol4.server.jaxws.info.Passenger;
+import it.polito.dp2.FDS.sol4.server.jaxws.info.Time;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;

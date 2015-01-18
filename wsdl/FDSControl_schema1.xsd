@@ -173,7 +173,8 @@
 				minOccurs="1" />
 			<xs:element name="name" type="xs:normalizedString"
 				minOccurs="1" />
-			<xs:element name="seat" type="tns:SeatType" minOccurs="0" />
+			<xs:element name="seat" type="tns:SeatType" minOccurs="1"
+				nillable="true" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -364,6 +365,29 @@
 		</xs:sequence>
 	</xs:complexType>
 
+	<xs:complexType name="flightInstance">
+		<xs:sequence>
+			<xs:element name="aircraft" type="tns:aircraftType"
+				minOccurs="0" />
+			<xs:element name="date" type="xs:dateTime" minOccurs="1" />
+			<xs:element name="delay" type="xs:int" />
+			<xs:element name="departureGate" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType"
+				minOccurs="1" />
+			<xs:element name="status" type="tns:flightInstanceStatus"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="aircraftType">
+		<xs:sequence>
+			<xs:element name="freeSeat" type="xs:string" nillable="false"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="model" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:simpleType name="FlightIDType">
 		<xs:restriction base="xs:normalizedString">
 			<xs:pattern value="([A-Z][A-Z])([0-9]{0,4})" />
@@ -373,6 +397,17 @@
 	<xs:simpleType name="SeatType">
 		<xs:restriction base="xs:normalizedString">
 			<xs:pattern value="^[A-Z]{2}[0-9]{1,4}$" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+		<xs:simpleType name="flightInstanceStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ARRIVED" />
+			<xs:enumeration value="BOARDING" />
+			<xs:enumeration value="BOOKING" />
+			<xs:enumeration value="CANCELLED" />
+			<xs:enumeration value="CHECKINGIN" />
+			<xs:enumeration value="DEPARTED" />
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

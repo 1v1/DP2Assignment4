@@ -1,45 +1,42 @@
 package it.polito.dp2.FDS.sol4.server;
 
-import it.polito.dp2.FDS.sol4.server.jaxws.AssignSeat;
-import it.polito.dp2.FDS.sol4.server.jaxws.AssignSeatResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.CancelFlightInstance;
-import it.polito.dp2.FDS.sol4.server.jaxws.CancelFlightInstanceResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.CancelledFlight;
-import it.polito.dp2.FDS.sol4.server.jaxws.CancelledFlight_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.ChangeBoardingGate;
-import it.polito.dp2.FDS.sol4.server.jaxws.ChangeBoardingGateResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.ChangeDelay;
-import it.polito.dp2.FDS.sol4.server.jaxws.ChangeDelayResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.Control;
-import it.polito.dp2.FDS.sol4.server.jaxws.FlightInstance;
-import it.polito.dp2.FDS.sol4.server.jaxws.FlightInstanceStatus;
-import it.polito.dp2.FDS.sol4.server.jaxws.FullyBookedFlight_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.GetBoardedPassengers;
-import it.polito.dp2.FDS.sol4.server.jaxws.GetBoardedPassengersResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.InvalidArgument;
-import it.polito.dp2.FDS.sol4.server.jaxws.InvalidArgument_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.InvalidStatus;
-import it.polito.dp2.FDS.sol4.server.jaxws.InvalidStatus_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.Monitor;
-import it.polito.dp2.FDS.sol4.server.jaxws.Monitor_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.NotBoarding;
-import it.polito.dp2.FDS.sol4.server.jaxws.NotBoarding_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.Passenger;
-import it.polito.dp2.FDS.sol4.server.jaxws.PassengerAlreadyRegistered;
-import it.polito.dp2.FDS.sol4.server.jaxws.PassengerAlreadyRegistered_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.RegisterPassenger;
-import it.polito.dp2.FDS.sol4.server.jaxws.RegisterPassengerResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.SeatAlreadyAssigned_Exception;
-import it.polito.dp2.FDS.sol4.server.jaxws.StartBoarding;
-import it.polito.dp2.FDS.sol4.server.jaxws.StartBoardingResponse;
-import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlightInstance;
-import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlightInstance_Exception;
+
+import it.polito.dp2.FDS.sol4.server.jaxws.control.CancelFlightInstance;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.CancelFlightInstanceResponse;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.CancelledFlight;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.CancelledFlight_Exception;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.ChangeBoardingGate;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.ChangeBoardingGateResponse;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.ChangeDelay;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.ChangeDelayResponse;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.FlightInstance;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.FlightInstanceStatus;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.GetBoardedPassengers;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.GetBoardedPassengersResponse;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.InvalidArgument;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.InvalidArgument_Exception;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.InvalidStatus;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.InvalidStatus_Exception;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.Monitor_Exception;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.NotBoarding;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.NotBoarding_Exception;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.Passenger;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.PassengerAlreadyRegistered;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.PassengerAlreadyRegistered_Exception;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.RegisterPassenger;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.RegisterPassengerResponse;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.StartBoarding;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.StartBoardingResponse;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.UnknownFlightInstance;
+import it.polito.dp2.FDS.sol4.server.jaxws.control.UnknownFlightInstance_Exception;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
 import javax.jws.WebService;
+import javax.management.monitor.Monitor;
+import javax.naming.ldap.Control;
 
 @WebService(serviceName="FDSControl",
 portName="FDSControlImplPort",
@@ -62,12 +59,6 @@ public class FDSControlImpl implements Control {
 	}
 
 
-	@Override
-	public AssignSeatResponse assignSeat(AssignSeat parameters)
-			throws FullyBookedFlight_Exception, SeatAlreadyAssigned_Exception,
-			UnknownFlightInstance_Exception, Monitor_Exception {
-		return null;
-	}
 
 	@Override
 	public StartBoardingResponse startBoarding(StartBoarding parameters)
@@ -99,7 +90,7 @@ public class FDSControlImpl implements Control {
 			if (manager.containsKeyFlightInstancesMap(key))
 			{
 				FlightInstance f;
-				synchronized(f = manager.getFlightInstance(key))
+				synchronized(f = (FlightInstance)manager.getFlightInstance(key))
 				{
 					if (f.getStatus() == FlightInstanceStatus.CHECKINGIN)
 					{
@@ -346,6 +337,27 @@ public class FDSControlImpl implements Control {
 	@Override
 	public ChangeDelayResponse changeDelay(ChangeDelay parameters)
 			throws InvalidArgument_Exception, UnknownFlightInstance_Exception, Monitor_Exception {
+		return null;
+	}
+
+
+	@Override
+	public String getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean isCritical() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public byte[] getEncodedValue() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
