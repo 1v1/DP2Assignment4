@@ -4,11 +4,11 @@
 <xsd:import namespace="http://pad.polito.it/FDSInfo" schemaLocation="http://localhost:7071/fdsinfo?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
-<message name="getPassengers">
-<part name="parameters" element="tns:getPassengers"></part>
+<message name="getFlightInstance">
+<part name="parameters" element="tns:getFlightInstance"></part>
 </message>
-<message name="getPassengersResponse">
-<part name="parameters" element="tns:getPassengersResponse"></part>
+<message name="getFlightInstanceResponse">
+<part name="parameters" element="tns:getFlightInstanceResponse"></part>
 </message>
 <message name="InvalidArgument_Exception">
 <part name="fault" element="tns:InvalidArgument"></part>
@@ -46,19 +46,19 @@
 <message name="getFlightsResponse">
 <part name="parameters" element="tns:getFlightsResponse"></part>
 </message>
-<message name="getFlightInstance">
-<part name="parameters" element="tns:getFlightInstance"></part>
+<message name="getPassengers">
+<part name="parameters" element="tns:getPassengers"></part>
 </message>
-<message name="getFlightInstanceResponse">
-<part name="parameters" element="tns:getFlightInstanceResponse"></part>
+<message name="getPassengersResponse">
+<part name="parameters" element="tns:getPassengersResponse"></part>
 </message>
 <portType name="Info">
-<operation name="getPassengers">
-<input wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengersRequest" message="tns:getPassengers"></input>
-<output wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengersResponse" message="tns:getPassengersResponse"></output>
-<fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/InvalidArgument"></fault>
-<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/Monitor"></fault>
-<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/UnknownFlightInstance"></fault>
+<operation name="getFlightInstance">
+<input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceRequest" message="tns:getFlightInstance"></input>
+<output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceResponse" message="tns:getFlightInstanceResponse"></output>
+<fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstance/Fault/InvalidArgument"></fault>
+<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstance/Fault/Monitor"></fault>
+<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstance/Fault/UnknownFlightInstance"></fault>
 </operation>
 <operation name="getAircrafts">
 <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getAircraftsRequest" message="tns:getAircrafts"></input>
@@ -85,17 +85,17 @@
 <fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlights/Fault/InvalidArgument"></fault>
 <fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlights/Fault/Monitor"></fault>
 </operation>
-<operation name="getFlightInstance">
-<input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceRequest" message="tns:getFlightInstance"></input>
-<output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceResponse" message="tns:getFlightInstanceResponse"></output>
-<fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstance/Fault/InvalidArgument"></fault>
-<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstance/Fault/Monitor"></fault>
-<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstance/Fault/UnknownFlightInstance"></fault>
+<operation name="getPassengers">
+<input wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengersRequest" message="tns:getPassengers"></input>
+<output wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengersResponse" message="tns:getPassengersResponse"></output>
+<fault message="tns:InvalidArgument_Exception" name="InvalidArgument_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/InvalidArgument"></fault>
+<fault message="tns:Monitor_Exception" name="Monitor_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/Monitor"></fault>
+<fault message="tns:UnknownFlightInstance_Exception" name="UnknownFlightInstance_Exception" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/UnknownFlightInstance"></fault>
 </operation>
 </portType>
 <binding name="FDSInfoImplPortBinding" type="tns:Info">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
-<operation name="getPassengers">
+<operation name="getFlightInstance">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -176,7 +176,7 @@
 <soap:fault name="Monitor_Exception" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="getFlightInstance">
+<operation name="getPassengers">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

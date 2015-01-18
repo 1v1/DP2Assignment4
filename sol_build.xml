@@ -122,12 +122,6 @@
 		</exec>
 	</target>
 	
-	<!--
-	
-	<get src="http://localhost:7070/fdscontrol?xsd=1" dest="${META-INF.dir}/client/wsdl/FDSInfo_schema1.xsd" />
-	
-	-->
-	
 	<target name="generate-client-wsdl" depends="init">
 		<get src="${url.wsdl2}" dest="${META-INF.dir}/client/wsdl/FDSControl.wsdl"/>
 		<get src="${url.wsdl}" dest="${META-INF.dir}/client/wsdl/FDSInfo.wsdl"/>
