@@ -222,7 +222,6 @@ public class FDSControlClient {
 
 	private static void getBoardedPassengers()
 	{
-		// FIXME: paging
 		XMLGregorianCalendar departureDate = boardingInfo.getDate();
 		String flightID = boardingInfo.getFlight();
 

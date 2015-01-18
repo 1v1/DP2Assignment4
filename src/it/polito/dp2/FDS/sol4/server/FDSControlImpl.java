@@ -275,7 +275,6 @@ public class FDSControlImpl implements Control {
 				// Paging response parameters
 				int boardedPassengers = 0;
 				int pageNumber = parameters.getPageNumber();
-				//TODO complete paging
 				int entriesPerPage = 0;
 				int pageBeginning = pageNumber * FDSControlImpl.MAX_ENTRIES_PER_PAGE;
 				int passengers = 0;
