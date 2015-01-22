@@ -6,6 +6,6 @@ GetBoardedPassengers implemented using paging approach
 
 
 SERVER SIDE:
-ValidationHandler not implemented yet.
+ValidationHandler implemented.
 Lazy Initialization.
 GetBoardedPassengers implemented using paging approach
