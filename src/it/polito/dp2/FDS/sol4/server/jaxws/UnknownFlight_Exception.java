@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "UnknownFlight", targetNamespace = "http://pad.polito.it/FDSInfo")
+@WebFault(name = "UnknownFlight", targetNamespace = "http://pad.polito.it/FDS")
 public class UnknownFlight_Exception
     extends Exception
 {

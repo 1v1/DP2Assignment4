@@ -30,7 +30,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="flightID" type="{http://pad.polito.it/FDSControl}FlightIDType"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="gate" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>

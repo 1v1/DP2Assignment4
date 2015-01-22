@@ -30,6 +30,7 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -39,7 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 portName="FDSInfoImplPort",
 targetNamespace="http://pad.polito.it/FDSInfo",
 endpointInterface="it.polito.dp2.FDS.sol4.server.jaxws.Info")
-//@HandlerChain(file = "META-INF/server/custom/handler-chain2.xml")
+@HandlerChain(file = "META-INF/server/custom/handler-chain.xml")
 public class FDSInfoImpl implements Info {
 
 	private static DataManager manager;

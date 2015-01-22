@@ -19,12 +19,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="aircraft" type="{http://pad.polito.it/FDSInfo}aircraftType" minOccurs="0"/>
+ *         &lt;element name="aircraft" type="{http://pad.polito.it/FDS}aircraftType" minOccurs="0"/>
  *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departureGate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="status" type="{http://pad.polito.it/FDSInfo}flightInstanceStatus" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://pad.polito.it/FDS}flightInstanceStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

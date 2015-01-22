@@ -20,7 +20,7 @@ import javax.xml.ws.Response;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "Control", targetNamespace = "http://pad.polito.it/FDSControl")
+@WebService(name = "Control", targetNamespace = "http://pad.polito.it/FDS")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
     ObjectFactory.class
@@ -36,7 +36,7 @@ public interface Control {
      */
     @WebMethod(operationName = "startBoarding")
     public Response<StartBoardingResponse> startBoardingAsync(
-        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         StartBoarding parameters);
 
     /**
@@ -48,7 +48,7 @@ public interface Control {
      */
     @WebMethod(operationName = "startBoarding")
     public Future<?> startBoardingAsync(
-        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         StartBoarding parameters,
         @WebParam(name = "startBoardingResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<StartBoardingResponse> asyncHandler);
@@ -65,7 +65,7 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/startBoardingRequest", output = "http://pad.polito.it/FDSControl/Control/startBoardingResponse", fault = {
         @FaultAction(className = CancelledFlightException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/CancelledFlight"),
         @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/InvalidArgument"),
@@ -74,7 +74,7 @@ public interface Control {
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/UnknownFlightInstance")
     })
     public StartBoardingResponse startBoarding(
-        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         StartBoarding parameters)
         throws CancelledFlightException, InvalidArgumentException, InvalidStatusException, MonitorException, UnknownFlightInstanceException
     ;
@@ -87,7 +87,7 @@ public interface Control {
      */
     @WebMethod(operationName = "registerPassenger")
     public Response<RegisterPassengerResponse> registerPassengerAsync(
-        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         RegisterPassenger parameters);
 
     /**
@@ -99,7 +99,7 @@ public interface Control {
      */
     @WebMethod(operationName = "registerPassenger")
     public Future<?> registerPassengerAsync(
-        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         RegisterPassenger parameters,
         @WebParam(name = "registerPassengerResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<RegisterPassengerResponse> asyncHandler);
@@ -116,7 +116,7 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/registerPassengerRequest", output = "http://pad.polito.it/FDSControl/Control/registerPassengerResponse", fault = {
         @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/InvalidArgument"),
         @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/Monitor"),
@@ -125,7 +125,7 @@ public interface Control {
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/registerPassenger/Fault/UnknownFlightInstance")
     })
     public RegisterPassengerResponse registerPassenger(
-        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "registerPassenger", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         RegisterPassenger parameters)
         throws InvalidArgumentException, MonitorException, NotBoardingException, PassengerAlreadyRegisteredException, UnknownFlightInstanceException
     ;
@@ -138,7 +138,7 @@ public interface Control {
      */
     @WebMethod(operationName = "getBoardedPassengers")
     public Response<GetBoardedPassengersResponse> getBoardedPassengersAsync(
-        @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         GetBoardedPassengers parameters);
 
     /**
@@ -150,7 +150,7 @@ public interface Control {
      */
     @WebMethod(operationName = "getBoardedPassengers")
     public Future<?> getBoardedPassengersAsync(
-        @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         GetBoardedPassengers parameters,
         @WebParam(name = "getBoardedPassengersResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<GetBoardedPassengersResponse> asyncHandler);
@@ -165,14 +165,14 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "getBoardedPassengersResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "getBoardedPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/getBoardedPassengersRequest", output = "http://pad.polito.it/FDSControl/Control/getBoardedPassengersResponse", fault = {
         @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/getBoardedPassengers/Fault/InvalidArgument"),
         @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/getBoardedPassengers/Fault/Monitor"),
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/getBoardedPassengers/Fault/UnknownFlightInstance")
     })
     public GetBoardedPassengersResponse getBoardedPassengers(
-        @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "getBoardedPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         GetBoardedPassengers parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
     ;
@@ -185,7 +185,7 @@ public interface Control {
      */
     @WebMethod(operationName = "cancelFlightInstance")
     public Response<CancelFlightInstanceResponse> cancelFlightInstanceAsync(
-        @WebParam(name = "cancelFlightInstance", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "cancelFlightInstance", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         CancelFlightInstance parameters);
 
     /**
@@ -197,7 +197,7 @@ public interface Control {
      */
     @WebMethod(operationName = "cancelFlightInstance")
     public Future<?> cancelFlightInstanceAsync(
-        @WebParam(name = "cancelFlightInstance", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "cancelFlightInstance", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         CancelFlightInstance parameters,
         @WebParam(name = "cancelFlightInstanceResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<CancelFlightInstanceResponse> asyncHandler);
@@ -212,14 +212,14 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "cancelFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "cancelFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/cancelFlightInstanceRequest", output = "http://pad.polito.it/FDSControl/Control/cancelFlightInstanceResponse", fault = {
         @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/cancelFlightInstance/Fault/InvalidArgument"),
         @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/cancelFlightInstance/Fault/Monitor"),
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/cancelFlightInstance/Fault/UnknownFlightInstance")
     })
     public CancelFlightInstanceResponse cancelFlightInstance(
-        @WebParam(name = "cancelFlightInstance", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "cancelFlightInstance", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         CancelFlightInstance parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
     ;
@@ -232,7 +232,7 @@ public interface Control {
      */
     @WebMethod(operationName = "changeBoardingGate")
     public Response<ChangeBoardingGateResponse> changeBoardingGateAsync(
-        @WebParam(name = "changeBoardingGate", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "changeBoardingGate", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         ChangeBoardingGate parameters);
 
     /**
@@ -244,7 +244,7 @@ public interface Control {
      */
     @WebMethod(operationName = "changeBoardingGate")
     public Future<?> changeBoardingGateAsync(
-        @WebParam(name = "changeBoardingGate", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "changeBoardingGate", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         ChangeBoardingGate parameters,
         @WebParam(name = "changeBoardingGateResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<ChangeBoardingGateResponse> asyncHandler);
@@ -259,14 +259,14 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "changeBoardingGateResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "changeBoardingGateResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/changeBoardingGateRequest", output = "http://pad.polito.it/FDSControl/Control/changeBoardingGateResponse", fault = {
         @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/changeBoardingGate/Fault/InvalidArgument"),
         @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/changeBoardingGate/Fault/Monitor"),
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/changeBoardingGate/Fault/UnknownFlightInstance")
     })
     public ChangeBoardingGateResponse changeBoardingGate(
-        @WebParam(name = "changeBoardingGate", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "changeBoardingGate", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         ChangeBoardingGate parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
     ;
@@ -279,7 +279,7 @@ public interface Control {
      */
     @WebMethod(operationName = "changeDelay")
     public Response<ChangeDelayResponse> changeDelayAsync(
-        @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         ChangeDelay parameters);
 
     /**
@@ -291,7 +291,7 @@ public interface Control {
      */
     @WebMethod(operationName = "changeDelay")
     public Future<?> changeDelayAsync(
-        @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         ChangeDelay parameters,
         @WebParam(name = "changeDelayResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<ChangeDelayResponse> asyncHandler);
@@ -306,14 +306,14 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "changeDelayResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "changeDelayResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/changeDelayRequest", output = "http://pad.polito.it/FDSControl/Control/changeDelayResponse", fault = {
         @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/changeDelay/Fault/InvalidArgument"),
         @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/changeDelay/Fault/Monitor"),
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/changeDelay/Fault/UnknownFlightInstance")
     })
     public ChangeDelayResponse changeDelay(
-        @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "changeDelay", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         ChangeDelay parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
     ;
@@ -326,7 +326,7 @@ public interface Control {
      */
     @WebMethod(operationName = "assignSeat")
     public Response<AssignSeatResponse> assignSeatAsync(
-        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         AssignSeat parameters);
 
     /**
@@ -338,7 +338,7 @@ public interface Control {
      */
     @WebMethod(operationName = "assignSeat")
     public Future<?> assignSeatAsync(
-        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         AssignSeat parameters,
         @WebParam(name = "assignSeatResponse", targetNamespace = "", partName = "asyncHandler")
         AsyncHandler<AssignSeatResponse> asyncHandler);
@@ -354,7 +354,7 @@ public interface Control {
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
-    @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+    @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
     @Action(input = "http://pad.polito.it/FDSControl/Control/assignSeatRequest", output = "http://pad.polito.it/FDSControl/Control/assignSeatResponse", fault = {
         @FaultAction(className = FullyBookedFlightException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/FullyBookedFlight"),
         @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/Monitor"),
@@ -362,7 +362,7 @@ public interface Control {
         @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/assignSeat/Fault/UnknownFlightInstance")
     })
     public AssignSeatResponse assignSeat(
-        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDSControl", partName = "parameters")
+        @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         AssignSeat parameters)
         throws FullyBookedFlightException, MonitorException, SeatAlreadyAssignedException, UnknownFlightInstanceException
     ;

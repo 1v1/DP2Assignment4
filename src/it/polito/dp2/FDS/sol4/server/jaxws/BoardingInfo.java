@@ -32,10 +32,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="flightID" type="{http://pad.polito.it/FDSControl}FlightIDType"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType"/>
  *         &lt;element name="gate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="passengerName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="seat" type="{http://pad.polito.it/FDSControl}SeatType"/>
+ *         &lt;element name="seat" type="{http://pad.polito.it/FDS}SeatType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

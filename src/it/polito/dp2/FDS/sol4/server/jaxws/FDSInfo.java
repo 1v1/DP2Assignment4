@@ -17,20 +17,20 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "FDSInfo", targetNamespace = "http://pad.polito.it/FDSInfo", wsdlLocation = "file:/Users/emdotzed/Documents/Assignment4bv4/build/META-INF/server/wsdl/FDSInfo.wsdl")
+@WebServiceClient(name = "FDSInfo", targetNamespace = "http://pad.polito.it/FDS", wsdlLocation = "file:/Users/emdotzed/Documents/workspace/ValidationAss4bv4/build/META-INF/server/wsdl/FDSInfo.wsdl")
 public class FDSInfo
     extends Service
 {
 
     private final static URL FDSINFO_WSDL_LOCATION;
     private final static WebServiceException FDSINFO_EXCEPTION;
-    private final static QName FDSINFO_QNAME = new QName("http://pad.polito.it/FDSInfo", "FDSInfo");
+    private final static QName FDSINFO_QNAME = new QName("http://pad.polito.it/FDS", "FDSInfo");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/emdotzed/Documents/Assignment4bv4/build/META-INF/server/wsdl/FDSInfo.wsdl");
+            url = new URL("file:/Users/emdotzed/Documents/workspace/ValidationAss4bv4/build/META-INF/server/wsdl/FDSInfo.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +69,7 @@ public class FDSInfo
      */
     @WebEndpoint(name = "FDSInfoImplPort")
     public Info getFDSInfoImplPort() {
-        return super.getPort(new QName("http://pad.polito.it/FDSInfo", "FDSInfoImplPort"), Info.class);
+        return super.getPort(new QName("http://pad.polito.it/FDS", "FDSInfoImplPort"), Info.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class FDSInfo
      */
     @WebEndpoint(name = "FDSInfoImplPort")
     public Info getFDSInfoImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://pad.polito.it/FDSInfo", "FDSInfoImplPort"), Info.class, features);
+        return super.getPort(new QName("http://pad.polito.it/FDS", "FDSInfoImplPort"), Info.class, features);
     }
 
     private static URL __getWsdlLocation() {

@@ -21,7 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="flightStatus" type="{http://pad.polito.it/FDSInfo}flightInstanceStatus"/>
+ *         &lt;element name="flightStatus" type="{http://pad.polito.it/FDS}flightInstanceStatus"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

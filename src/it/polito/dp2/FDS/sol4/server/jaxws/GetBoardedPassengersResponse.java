@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="lastPage" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="return" type="{http://pad.polito.it/FDSControl}passenger" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://pad.polito.it/FDS}passenger" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

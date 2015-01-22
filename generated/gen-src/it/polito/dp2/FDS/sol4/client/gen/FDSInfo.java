@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "FDSInfo", targetNamespace = "http://pad.polito.it/FDSInfo", wsdlLocation = "file:/Users/emdotzed/Documents/Assignment4bv4/build/META-INF/client/wsdl/FDSInfo.wsdl")
+@WebServiceClient(name = "FDSInfo", targetNamespace = "http://pad.polito.it/FDSInfo", wsdlLocation = "file:/Users/emdotzed/Documents/workspace/ValidationAss4bv4/build/META-INF/client/wsdl/FDSInfo.wsdl")
 public class FDSInfo
     extends Service
 {
@@ -30,7 +30,7 @@ public class FDSInfo
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/emdotzed/Documents/Assignment4bv4/build/META-INF/client/wsdl/FDSInfo.wsdl");
+            url = new URL("file:/Users/emdotzed/Documents/workspace/ValidationAss4bv4/build/META-INF/client/wsdl/FDSInfo.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

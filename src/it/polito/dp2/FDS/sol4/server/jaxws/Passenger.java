@@ -23,9 +23,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="boarded" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="flightID" type="{http://pad.polito.it/FDSInfo}FlightIDType"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="seat" type="{http://pad.polito.it/FDSInfo}SeatType"/>
+ *         &lt;element name="seat" type="{http://pad.polito.it/FDS}SeatType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

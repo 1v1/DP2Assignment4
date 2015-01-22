@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "InvalidStatus", targetNamespace = "http://pad.polito.it/FDSControl")
+@WebFault(name = "InvalidStatus", targetNamespace = "http://pad.polito.it/FDS")
 public class InvalidStatusException
     extends Exception
 {

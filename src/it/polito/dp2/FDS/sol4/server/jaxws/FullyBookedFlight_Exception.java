@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "FullyBookedFlight", targetNamespace = "http://pad.polito.it/FDSControl")
+@WebFault(name = "FullyBookedFlight", targetNamespace = "http://pad.polito.it/FDS")
 public class FullyBookedFlight_Exception
     extends Exception
 {

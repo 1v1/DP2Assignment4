@@ -1,6 +1,5 @@
 package it.polito.dp2.FDS.sol4.server;
 
-
 import it.polito.dp2.FDS.sol4.server.jaxws.AssignSeat;
 import it.polito.dp2.FDS.sol4.server.jaxws.AssignSeatResponse;
 import it.polito.dp2.FDS.sol4.server.jaxws.CancelFlightInstance;
@@ -40,13 +39,14 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 
 @WebService(serviceName="FDSControl",
 portName="FDSControlImplPort",
 targetNamespace="http://pad.polito.it/FDSControl",
 endpointInterface="it.polito.dp2.FDS.sol4.server.jaxws.Control")
-//@HandlerChain(file = "META-INF/server/custom/handler-chain.xml")
+@HandlerChain(file = "META-INF/server/custom/handler-chain.xml")
 public class FDSControlImpl implements Control {
 
 	private static DataManager manager;

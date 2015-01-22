@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "PassengerAlreadyRegistered", targetNamespace = "http://pad.polito.it/FDSControl")
+@WebFault(name = "PassengerAlreadyRegistered", targetNamespace = "http://pad.polito.it/FDS")
 public class PassengerAlreadyRegisteredException
     extends Exception
 {

@@ -17,20 +17,20 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "FDSControl", targetNamespace = "http://pad.polito.it/FDSControl", wsdlLocation = "file:/Users/emdotzed/Documents/Assignment4bv4/build/META-INF/server/wsdl/FDSControl.wsdl")
+@WebServiceClient(name = "FDSControl", targetNamespace = "http://pad.polito.it/FDS", wsdlLocation = "file:/Users/emdotzed/Documents/workspace/ValidationAss4bv4/build/META-INF/server/wsdl/FDSControl.wsdl")
 public class FDSControl
     extends Service
 {
 
     private final static URL FDSCONTROL_WSDL_LOCATION;
     private final static WebServiceException FDSCONTROL_EXCEPTION;
-    private final static QName FDSCONTROL_QNAME = new QName("http://pad.polito.it/FDSControl", "FDSControl");
+    private final static QName FDSCONTROL_QNAME = new QName("http://pad.polito.it/FDS", "FDSControl");
 
     static {
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/emdotzed/Documents/Assignment4bv4/build/META-INF/server/wsdl/FDSControl.wsdl");
+            url = new URL("file:/Users/emdotzed/Documents/workspace/ValidationAss4bv4/build/META-INF/server/wsdl/FDSControl.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +69,7 @@ public class FDSControl
      */
     @WebEndpoint(name = "FDSControlImplPort")
     public Control getFDSControlImplPort() {
-        return super.getPort(new QName("http://pad.polito.it/FDSControl", "FDSControlImplPort"), Control.class);
+        return super.getPort(new QName("http://pad.polito.it/FDS", "FDSControlImplPort"), Control.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class FDSControl
      */
     @WebEndpoint(name = "FDSControlImplPort")
     public Control getFDSControlImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://pad.polito.it/FDSControl", "FDSControlImplPort"), Control.class, features);
+        return super.getPort(new QName("http://pad.polito.it/FDS", "FDSControlImplPort"), Control.class, features);
     }
 
     private static URL __getWsdlLocation() {

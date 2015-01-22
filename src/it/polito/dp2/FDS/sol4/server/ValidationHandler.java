@@ -22,10 +22,9 @@ import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.soap.SOAPHandler;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
 
-//FIXME: UnmarshalException everytime
-public class ControlValidationHandler  implements SOAPHandler<SOAPMessageContext>
+public class ValidationHandler  implements SOAPHandler<SOAPMessageContext>
 {
-	protected String schemaLocation = "./wsdl/FDSControl_schema1.xsd";
+	protected String schemaLocation = "./wsdl/FDS_schema1.xsd";
 	protected String jaxbPackage = "it.polito.dp2.FDS.sol4.server.jaxws";
 
 
@@ -55,14 +54,12 @@ public class ControlValidationHandler  implements SOAPHandler<SOAPMessageContext
 				}
 
 				File schemaFile = new File(schemaLocation);
-//				InputStream schemaStream = ControlValidationHandler.class.getResourceAsStream(schemaLocation);
 				JAXBContext jc = JAXBContext.newInstance(jaxbPackage);
 				Unmarshaller u = jc.createUnmarshaller();
 
 				SchemaFactory sf = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
 				try
 				{
-//					Schema schema = sf.newSchema(new StreamSource(schemaStream));
 					Schema schema = sf.newSchema(schemaFile);
 					u.setSchema(schema);
 				} catch (org.xml.sax.SAXException se)
