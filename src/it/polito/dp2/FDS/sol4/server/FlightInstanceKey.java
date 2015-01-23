@@ -20,7 +20,8 @@ public class FlightInstanceKey {
 		final int prime1 = 31;
 		final int prime2 = 2659;
 		int hashcode = (departureDate.getDay() + departureDate.getMonth() +
-				departureDate.getYear() + departureDate.getTimezone()) * prime2;
+				departureDate.getYear() + departureDate.getTimezone()) 
+				* prime2 * (departureDate.toGregorianCalendar().getTimeZone().getRawOffset());
 		int c1 = (int) flightID.charAt(0);
 		int c2 = (int) flightID.charAt(1);
 		String number = flightID.substring(2);
@@ -50,7 +51,8 @@ public class FlightInstanceKey {
 			return false;
 		if (departureDate.getDay() != other.departureDate.getDay())
 			return false;
-		if (departureDate.getTimezone() != other.departureDate.getTimezone())
+		if (departureDate.toGregorianCalendar().getTimeZone().getRawOffset() !=
+				other.departureDate.toGregorianCalendar().getTimeZone().getRawOffset())
 			return false;
 		return true;
 	}

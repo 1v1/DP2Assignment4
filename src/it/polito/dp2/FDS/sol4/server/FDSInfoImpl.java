@@ -28,12 +28,9 @@ import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlight_Exception;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.jws.HandlerChain;
 import javax.jws.WebService;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 @WebService(serviceName="FDSInfo",
@@ -44,30 +41,20 @@ endpointInterface="it.polito.dp2.FDS.sol4.server.jaxws.Info")
 public class FDSInfoImpl implements Info {
 
 	private static DataManager manager;
+	
+	private static final String FLIGHTID_PATTERN = "^[A-Z]{2}[0-9]{1,4}$";
 
-	private static final String FLIGHTID_PATTERN = "^[A-Z]{2}[0-9]{1,4}$"; //two char and three numbers
-	private static final String	AIRPORT_PATTERN = "^[A-Z]{3}$"; //three letters
-
-	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
+//	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
 
 	public FDSInfoImpl ()
 	{
-		logger.entering(logger.getName(), "FDSInfoImpl()");
+//		logger.entering(logger.getName(), "FDSInfoImpl()");
 		FDSInfoImpl.manager = DataManager.getInstance();
 	}
 
 	@Override
 	public GetFlightResponse getFlight(GetFlight parameters)
 			throws InvalidArgument_Exception, UnknownFlight_Exception, Monitor_Exception {
-
-		if ( (parameters.getFlightID() != null) && (!parameters.getFlightID().matches(FLIGHTID_PATTERN)) )
-		{
-			logger.warning("The requested flight ID is not valid");
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The requested flight ID is not valid");
-			throw new InvalidArgument_Exception("The requested flight ID is not valid", invArg);
-		}
-
 
 		try {
 			if (manager.containsKeyFlightsMap(parameters.getFlightID()))
@@ -81,7 +68,7 @@ public class FDSInfoImpl implements Info {
 				}
 			}else
 			{
-				logger.warning("The requested flight number is not present in our database");
+//				logger.warning("The requested flight number is not present in our database");
 				UnknownFlight unkFli = new UnknownFlight();
 				unkFli.setMessage("The requested flight number is not present in our database");
 				throw new UnknownFlight_Exception("The requested flight number is not present in our database", unkFli);
@@ -98,41 +85,15 @@ public class FDSInfoImpl implements Info {
 	public GetFlightsResponse getFlights(GetFlights parameters)
 			throws InvalidArgument_Exception, Monitor_Exception {
 
-		if (parameters.getDestinationAirport() != null)
-			if (!parameters.getDestinationAirport().matches(AIRPORT_PATTERN))
-			{
-				logger.warning("The destination airport codes are not valid");
-				InvalidArgument invArg = new InvalidArgument();
-				invArg.setMessage("The destination airport codes are not valid");
-				throw new InvalidArgument_Exception("The destination airport codes are not valid", invArg);
-			}
-		
-		if (parameters.getDepartureAirport() != null)
-			if (!parameters.getDepartureAirport().matches(AIRPORT_PATTERN))
-			{
-				logger.warning("The departure airport codes are not valid");
-				InvalidArgument invArg = new InvalidArgument();
-				invArg.setMessage("The departure airport codes are not valid");
-				throw new InvalidArgument_Exception("The departure airport codes are not valid", invArg);
-			}
-
+		Time startTime = new Time();
 		if (parameters.getDepartureTime()==null)
 		{
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.clear();
-			gc.set(Calendar.HOUR_OF_DAY, 0);
-			gc.set(Calendar.MINUTE, 0);
-			XMLGregorianCalendar depTime;
-			try {
-				depTime = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
-			} catch (DatatypeConfigurationException e) {
-				e.printStackTrace();
-				logger.warning("Error during data conversion");
-				Monitor mon = new Monitor();
-				mon.setMessage("Error during data conversion");
-				throw new Monitor_Exception("Error during data conversion", mon);
-			}
-			parameters.setDepartureTime(depTime);
+			startTime.setHour(0);
+			startTime.setMinute(0);
+		}else
+		{
+			startTime.setHour(parameters.getDepartureTime().getHour());
+			startTime.setMinute(parameters.getDepartureTime().getMinute());
 		}
 			
 		GetFlightsResponse res = new GetFlightsResponse();
@@ -144,7 +105,7 @@ public class FDSInfoImpl implements Info {
 						( parameters.getDepartureAirport() == null ) ) &&
 						( ( entry.getValue().getDestinationAirport().equals(parameters.getDestinationAirport()) ) ||
 								( parameters.getDestinationAirport() == null ) ) &&
-								( ( isBefore( entry.getValue().getDepartureTime(), parameters.getDepartureTime() ) ) ||
+								( ( isTimeBefore( entry.getValue().getDepartureTime(), startTime ) ) ||
 										( parameters.getDepartureTime() == null ) ) )
 				{
 					// This is one of the requested flights
@@ -166,21 +127,6 @@ public class FDSInfoImpl implements Info {
 			GetFlightInstance parameters) throws InvalidArgument_Exception,
 			UnknownFlightInstance_Exception, Monitor_Exception
 	{
-		if (!parameters.getFlightID().matches(FLIGHTID_PATTERN))
-		{
-			logger.warning("The requested flight number is not valid");
-			InvalidArgument unkFli = new InvalidArgument();
-			unkFli.setMessage("The requested flight number is not valid");
-			throw new InvalidArgument_Exception("The requested flight number is not valid", unkFli);
-		}
-		if (parameters.getDepartureDate() == null)
-		{
-			logger.warning("The specified departure date is not valid");
-			InvalidArgument unkFli = new InvalidArgument();
-			unkFli.setMessage("The specified departure date is not valid");
-			throw new InvalidArgument_Exception("The specified departure date is not valid", unkFli);
-		}
-
 		FlightInstanceKey key = new FlightInstanceKey(parameters.getFlightID(), parameters.getDepartureDate());
 
 		try {
@@ -192,11 +138,11 @@ public class FDSInfoImpl implements Info {
 				{
 					res.setReturn(f);
 				}
-				logger.fine("Flight instance returned");
+//				logger.fine("Flight instance returned");
 				return res;
 			}else
 			{
-				logger.warning("The specified flight instance does not exist");
+//				logger.warning("The specified flight instance does not exist");
 				UnknownFlightInstance unkFli = new UnknownFlightInstance();
 				unkFli.setMessage("The specified flight instance does not exist");
 				throw new UnknownFlightInstance_Exception("The specified flight instance does not exist", unkFli);
@@ -216,7 +162,7 @@ public class FDSInfoImpl implements Info {
 	{
 		if ( (!parameters.getFlightID().matches(FLIGHTID_PATTERN) ) && (parameters.getFlightID() != null) )
 		{
-			logger.warning("The requested flight number is not valid");
+//			logger.warning("The requested flight number is not valid");
 			InvalidArgument unkFli = new InvalidArgument();
 			unkFli.setMessage("The requested flight number is not valid");
 			throw new InvalidArgument_Exception("The requested flight number is not valid", unkFli);
@@ -224,7 +170,7 @@ public class FDSInfoImpl implements Info {
 
 		if ( (! isStatusValid(parameters.getFlightStatus())) && ( parameters.getFlightStatus() != null ) )
 		{
-			logger.warning("The requested flight status is not valid");
+//			logger.warning("The requested flight status is not valid");
 			InvalidArgument unkFli = new InvalidArgument();
 			unkFli.setMessage("The requested flight status is not valid");
 			throw new InvalidArgument_Exception("The requested flight status is not valid", unkFli);
@@ -234,15 +180,15 @@ public class FDSInfoImpl implements Info {
 
 		try {
 			for (FlightInstance f: manager.getflightInstancesMap().values())
-				if ( ( (f.getStatus().equals(parameters.getFlightStatus())) ||
-						(parameters.getFlightStatus() == null) ) &&
-						(( isBefore(f.getDate(), parameters.getDepartureDate())) ||
-								(parameters.getDepartureDate() == null ) ) &&
-								((f.getFlightID().equals(parameters.getFlightID()) ||
-										(parameters.getFlightID() == null))))
+				if ( ( (parameters.getFlightStatus() == null) ||
+						(f.getStatus().equals(parameters.getFlightStatus())) ) &&
+						((parameters.getDepartureDate() == null ) ||
+						( isBefore(f.getDate(), parameters.getDepartureDate()) ) ) &&
+						((parameters.getFlightID() == null) ||
+						 (f.getFlightID().equals(parameters.getFlightID()))) )
 
 					res.getReturn().add(f);
-			logger.info("Flight instances returned!");
+//			logger.info("Flight instances returned!");
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
@@ -257,22 +203,6 @@ public class FDSInfoImpl implements Info {
 			throws InvalidArgument_Exception, UnknownFlightInstance_Exception, Monitor_Exception
 	{
 
-		if (!parameters.getFlightID().matches(FLIGHTID_PATTERN))
-		{
-			logger.warning("The requested flight number is not valid");
-			InvalidArgument unkFli = new InvalidArgument();
-			unkFli.setMessage("The requested flight number is not valid");
-			throw new InvalidArgument_Exception("The requested flight number is not valid", unkFli);
-		}
-
-		if (parameters.getDepartureDate()==null)
-		{
-			logger.warning("The requested departure date is not valid");
-			InvalidArgument unkFli = new InvalidArgument();
-			unkFli.setMessage("The requested departure date is not valid");
-			throw new InvalidArgument_Exception("The requested departure date is not valid", unkFli);
-		}
-
 		FlightInstanceKey key = new FlightInstanceKey(parameters.getFlightID(), parameters.getDepartureDate());
 
 		try {
@@ -283,7 +213,7 @@ public class FDSInfoImpl implements Info {
 				return res;
 			}else
 			{
-				logger.warning("The requested flight number is not in our database");
+//				logger.warning("The requested flight number is not in our database");
 				UnknownFlightInstance unkFli = new UnknownFlightInstance();
 				unkFli.setMessage("The requested flight number is not in our database");
 				throw new UnknownFlightInstance_Exception("The requested flight number is not in our database", unkFli);
@@ -305,17 +235,6 @@ public class FDSInfoImpl implements Info {
 	}
 
 
-	private boolean isBefore(Time flightTime, XMLGregorianCalendar wantedTime)
-	{
-		if (flightTime.getHour() > wantedTime.getHour())
-			return true;
-		else if ((flightTime.getHour() == wantedTime.getHour()) &&
-				(flightTime.getMinute() >= wantedTime.getMinute()) )
-			return true;
-
-		return false;
-	}
-
 	private boolean isStatusValid(FlightInstanceStatus Status)
 	{
 		String status = Status.toString();
@@ -336,11 +255,30 @@ public class FDSInfoImpl implements Info {
 
 	}
 
+	private boolean isTimeBefore(Time flightTime, Time wantedTime)
+	{
+		if (flightTime.getHour() > wantedTime.getHour())
+			return true;
+		else if (flightTime.getHour() == wantedTime.getHour())
+			if (flightTime.getMinute() >= wantedTime.getMinute())
+				return true;
+		return false;
+	}
+	
 	private boolean isBefore(XMLGregorianCalendar flightDate, XMLGregorianCalendar wantedDate)
 	{
 		GregorianCalendar flightDate_gc = flightDate.toGregorianCalendar();
 		GregorianCalendar wantedDate_gc = wantedDate.toGregorianCalendar();
-
+		
+		flightDate_gc.set(Calendar.HOUR, 0);
+		flightDate_gc.set(Calendar.MINUTE, 0);
+		flightDate_gc.set(Calendar.SECOND, 0);
+		flightDate_gc.set(Calendar.MILLISECOND, 0);
+		wantedDate_gc.set(Calendar.HOUR, 0);
+		wantedDate_gc.set(Calendar.MINUTE, 0);
+		wantedDate_gc.set(Calendar.SECOND, 0);
+		wantedDate_gc.set(Calendar.MILLISECOND, 0);
+		
 		return !wantedDate_gc.after(flightDate_gc);
 	}
 }

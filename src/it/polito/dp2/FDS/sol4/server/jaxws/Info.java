@@ -73,8 +73,8 @@ public interface Info {
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightInstanceResponse
      * @throws Monitor_Exception
-     * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -117,8 +117,8 @@ public interface Info {
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetPassengersResponse
      * @throws Monitor_Exception
-     * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")

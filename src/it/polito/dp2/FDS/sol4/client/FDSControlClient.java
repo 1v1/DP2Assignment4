@@ -78,14 +78,13 @@ public class FDSControlClient {
 
 		try
 		{
-			if (args.length!=2)
+			if ( (args.length!=2) || (args[0] == null) || (args[1] == null) )
 			{
 				System.out.println("usage: input_filename output_filename");
-				closeBuffers(2);
+				closeBuffers(1);
 			}
 			String inputFilename=args[0];
 			String outputFilename=args[1];
-
 
 			parseFiles(inputFilename, outputFilename);
 
@@ -95,7 +94,7 @@ public class FDSControlClient {
 		}catch(ArrayIndexOutOfBoundsException e)
 		{
 			e.printStackTrace();
-			closeBuffers(2);
+			closeBuffers(1);
 		}catch (Exception e)
 		{
 			e.printStackTrace();
@@ -108,10 +107,7 @@ public class FDSControlClient {
 	{
 		try {
 			FDSControlClient.inputFile = new File(inputFilename);
-
 			FDSControlClient.inputSchemaFile = new File("./xsd/fdsBoarding.xsd");
-
-			FDSControlClient.outputFile = new File(outputFilename);
 
 			// Parse the input file
 			Source schemaSource = new StreamSource(FDSControlClient.inputSchemaFile);
@@ -134,14 +130,25 @@ public class FDSControlClient {
 			closeBuffers(1);
 		} catch (IOException e) {
 			e.printStackTrace();
-			closeBuffers(2);
+			closeBuffers(1);
 		} catch (SAXException e) {
 			e.printStackTrace();
 			closeBuffers(1);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			closeBuffers(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			closeBuffers(1);
 		}
+		
+		try {
+			FDSControlClient.outputFile = new File(outputFilename);
+		} catch (Exception e) {
+			e.printStackTrace();
+			closeBuffers(2);
+		}
+		
 	}
 
 	private static void prepareControlEndpoint()
@@ -247,7 +254,7 @@ public class FDSControlClient {
 			date = departureDate.toGregorianCalendar();
 
 			XMLGregorianCalendar depDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(departureDate.toGregorianCalendar());
-
+			
 			Boolean lastPage = false;
 			int pageNumber = 0;
 			while(!lastPage)
@@ -321,6 +328,7 @@ public class FDSControlClient {
 			FDSControlClient.outputstream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.exit(2);
 		}
 		System.exit(exitCode);
 	}

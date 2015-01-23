@@ -37,7 +37,6 @@ import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlightInstance_Exception;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.logging.Logger;
 
 import javax.jws.HandlerChain;
 import javax.jws.WebService;
@@ -51,14 +50,13 @@ public class FDSControlImpl implements Control {
 
 	private static DataManager manager;
 
-	private static final String FLIGHTID_PATTERN = "^[A-Z]{2}[0-9]{1,4}$"; //two char and three numbers
 	private static final Integer MAX_ENTRIES_PER_PAGE = 10;
 
-	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
+//	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
 
 	public FDSControlImpl()
 	{
-		logger.info("FDSControlImpl starting...");
+//		logger.info("FDSControlImpl starting...");
 		FDSControlImpl.manager = DataManager.getInstance();
 	}
 
@@ -69,24 +67,7 @@ public class FDSControlImpl implements Control {
 			throws CancelledFlight_Exception, InvalidArgument_Exception,
 			UnknownFlightInstance_Exception, InvalidStatus_Exception, Monitor_Exception {
 
-		logger.info("startBoarding()");
-
-		if (!parameters.getFlightID().matches(FLIGHTID_PATTERN))
-		{
-			logger.warning("The specified flight number is not valid");
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The specified flight number is not valid");
-			throw new InvalidArgument_Exception("Check th flight number input parameter", invArg);
-		}
-
-		if (parameters.getDepartureDate() == null)
-		{
-			logger.warning("The departure date is null");
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The departure date is null");
-			throw new InvalidArgument_Exception("The departure date is null: insert a departure date", invArg);
-		}
-
+//		logger.info("startBoarding()");
 
 		FlightInstanceKey key = new FlightInstanceKey(parameters.getFlightID(), parameters.getDepartureDate());
 
@@ -98,22 +79,23 @@ public class FDSControlImpl implements Control {
 				{
 					if (f.getStatus() == FlightInstanceStatus.CHECKINGIN)
 					{
-						logger.info("Flight instance="+f.getFlightID()+" "+f.getDate().toString()+" CHECKING --> BOARDING");
+//						logger.info("Flight instance="+f.getFlightID()+" "+f.getDate().toString()+" CHECKING --> BOARDING");
 						f.setStatus(FlightInstanceStatus.BOARDING);
 
 						// Update the flightInstancesMap
 						manager.putflightInstancesMap(key, f);
 						// SUCCESS!
-						return null;
+						StartBoardingResponse res = new StartBoardingResponse();
+						return res;
 					}else if (f.getStatus() == FlightInstanceStatus.CANCELLED)
 					{
-						logger.warning("The requested flight instance has been cancelled");
+//						logger.warning("The requested flight instance has been cancelled");
 						CancelledFlight unkFli = new CancelledFlight();
 						unkFli.setMessage("The requested flight instance has been cancelled");
 						throw new CancelledFlight_Exception("The requested flight instance has been cancelled", unkFli);
 					}else
 					{
-						logger.warning("The flight instance status for this flight instance is not valid");
+//						logger.warning("The flight instance status for this flight instance is not valid");
 						InvalidStatus invSta = new InvalidStatus();
 						invSta.setMessage("The flight instance status for this flight instance is not valid");
 						throw new InvalidStatus_Exception("The flight instance status for this flight instance is not valid", invSta);
@@ -121,7 +103,7 @@ public class FDSControlImpl implements Control {
 				}
 			}else
 			{
-				logger.warning("The requested flight number is not in our database");
+//				logger.warning("The requested flight number is not in our database");
 				UnknownFlightInstance unkFli = new UnknownFlightInstance();
 				unkFli.setMessage("The requested flight number is not in our database");
 				throw new UnknownFlightInstance_Exception("The requested flight number is not in our database", unkFli);
@@ -140,24 +122,7 @@ public class FDSControlImpl implements Control {
 			NotBoarding_Exception, PassengerAlreadyRegistered_Exception,
 			UnknownFlightInstance_Exception, Monitor_Exception {
 
-		logger.info("registering a new passenger:"+parameters.getPassengerName());
-
-		// Check if the flight number is valid
-		if (!parameters.getFlightID().matches(FLIGHTID_PATTERN))
-		{
-			logger.warning("The specified flight number is not valid");
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The specified flight number is not valid");
-			throw new InvalidArgument_Exception("The specified flight number is not valid", invArg);
-		}
-
-		if (parameters.getDepartureDate()==null)
-		{
-			logger.warning("The specified departure date is not valid");
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The specified departure date is not valid");
-			throw new InvalidArgument_Exception("The specified departure date is not valid", invArg);
-		}
+//		logger.info("registering a new passenger:"+parameters.getPassengerName());
 
 		FlightInstanceKey key = new FlightInstanceKey(parameters.getFlightID(), parameters.getDepartureDate());
 
@@ -170,7 +135,7 @@ public class FDSControlImpl implements Control {
 				{
 					if (flightInstance.getStatus() == FlightInstanceStatus.CHECKINGIN)
 					{
-						logger.info("Flight instance="+flightInstance.getFlightID()+" "+flightInstance.getDate().toString()+" CHECKING --> BOARDING");
+//						logger.info("Flight instance="+flightInstance.getFlightID()+" "+flightInstance.getDate().toString()+" CHECKING --> BOARDING");
 						flightInstance.setStatus(FlightInstanceStatus.BOARDING);
 
 						// Update the flightInstancesMap with the updated flightInstance
@@ -179,7 +144,7 @@ public class FDSControlImpl implements Control {
 
 					if (flightInstance.getStatus() != FlightInstanceStatus.BOARDING)
 					{
-						logger.warning("The flight status is not BOARDING");
+//						logger.warning("The flight status is not BOARDING");
 						NotBoarding notBoa = new NotBoarding();
 						notBoa.setMessage("The flight status is not BOARDING");
 						throw new NotBoarding_Exception("The flight status is not BOARDING", notBoa);
@@ -196,13 +161,13 @@ public class FDSControlImpl implements Control {
 							{
 								if (passenger.isBoarded())
 								{
-									logger.warning("This passenger has already been registered on this flight instance");
+//									logger.warning("This passenger has already been registered on this flight instance");
 									PassengerAlreadyRegistered passReg = new PassengerAlreadyRegistered();
 									passReg.setMessage("This passenger has already been registered on this flight instance");
 									throw new PassengerAlreadyRegistered_Exception("Passenger is already on this flight",passReg);
 								}else
 								{
-									logger.info(passenger.getName()+" BOARDED!");
+//									logger.info(passenger.getName()+" BOARDED!");
 									passenger.setBoarded(true);
 
 									// Update the passenger list for this flight instance
@@ -213,12 +178,13 @@ public class FDSControlImpl implements Control {
 									manager.putFplist_map(key, passengerList);
 
 									// SUCCESS!
-									return null;
+									RegisterPassengerResponse res = new RegisterPassengerResponse();
+									return res;
 								}
 							}
 						}
 
-						logger.warning("The specified passenger's name is not valid");
+//						logger.warning("The specified passenger's name is not valid");
 						InvalidArgument invArg = new InvalidArgument();
 						invArg.setMessage("The specified passenger's name is not valid");
 						throw new InvalidArgument_Exception("The specified passenger's name is not valid", invArg);
@@ -226,7 +192,7 @@ public class FDSControlImpl implements Control {
 				}
 			}else
 			{
-				logger.warning("The specified flight number does not exist");
+//				logger.warning("The specified flight number does not exist");
 				UnknownFlightInstance unkFli = new UnknownFlightInstance();
 				unkFli.setMessage("The specified flight number does not exist");
 				throw new UnknownFlightInstance_Exception("The specified flight number does not exist", unkFli);
@@ -242,21 +208,6 @@ public class FDSControlImpl implements Control {
 	@Override
 	public GetBoardedPassengersResponse getBoardedPassengers (GetBoardedPassengers parameters)
 			throws InvalidArgument_Exception, UnknownFlightInstance_Exception, Monitor_Exception {
-
-		if (!parameters.getFlightID().matches(FLIGHTID_PATTERN))
-		{
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The specified flight number is not valid");
-			throw new InvalidArgument_Exception("Check th flight number input parameter", invArg);
-		}
-
-		if (parameters.getDepartureDate()==null)
-		{
-			logger.warning("The specified departure date is not valid");
-			InvalidArgument invArg = new InvalidArgument();
-			invArg.setMessage("The specified departure date is not valid");
-			throw new InvalidArgument_Exception("The specified departure date is not valid", invArg);
-		}
 
 		FlightInstanceKey key = new FlightInstanceKey(parameters.getFlightID(), parameters.getDepartureDate());
 
@@ -293,10 +244,10 @@ public class FDSControlImpl implements Control {
 									if (passengers == passList.size())
 									{
 										res.setLastPage(true);
-										logger.info("Boarded passengers last page returned!");
+//										logger.info("Boarded passengers last page returned!");
 									}else
 									{
-										logger.info("Boarded passengers page number "+pageNumber+" returned!");
+//										logger.info("Boarded passengers page number "+pageNumber+" returned!");
 										res.setLastPage(false);
 									}
 									return res;
@@ -305,13 +256,13 @@ public class FDSControlImpl implements Control {
 						}
 					}
 				}
-				logger.info("Boarded passengers last page returned!");
+//				logger.info("Boarded passengers last page returned!");
 				res.setLastPage(true);
 				res.setPageNumber(pageNumber);
 				return res;
 			}else
 			{
-				logger.warning("There are no flight instances for the specified departure date");
+//				logger.warning("There are no flight instances for the specified departure date");
 				UnknownFlightInstance unkFlight = new UnknownFlightInstance();
 				unkFlight.setMessage("There are no flight instances for the specified departure date");
 				throw new UnknownFlightInstance_Exception("There are no flight instances for the specified departure date",unkFlight);
@@ -349,7 +300,6 @@ public class FDSControlImpl implements Control {
 	public AssignSeatResponse assignSeat(AssignSeat parameters)
 			throws FullyBookedFlight_Exception, Monitor_Exception,
 			SeatAlreadyAssigned_Exception, UnknownFlightInstance_Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

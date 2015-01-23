@@ -16,21 +16,19 @@ import it.polito.dp2.FDS.sol4.server.jaxws.Passenger;
 import it.polito.dp2.FDS.sol4.server.jaxws.Time;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.logging.Logger;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 public class DataManager {
-
-	private static Logger logger = Logger.getLogger(DataManager.class.getName());
 
 	// Lazy initialization and Singleton pattern
 	private static FlightMonitor monitor;
@@ -43,6 +41,7 @@ public class DataManager {
 	private static ConcurrentHashMap<FlightInstanceKey, CopyOnWriteArrayList<Passenger>> fplist_map = null;
 	//			new ConcurrentHashMap<FlightInstanceKey, CopyOnWriteArrayList<Passenger>>();
 
+//	private static Logger logger = Logger.getLogger(DataManager.class.getName());
 
 	private static class DataManagerHolder {
 		private final static DataManager INSTANCE = new DataManager();
@@ -61,7 +60,7 @@ public class DataManager {
 		} catch (FlightMonitorException e) {
 			e.printStackTrace();
 		}
-		logger.fine("DataManager created.");
+//		logger.fine("DataManager created.");
 	}
 
 	private Set<AircraftType> createAircraftsSet()
@@ -97,6 +96,10 @@ public class DataManager {
 			GregorianCalendar cal = fi.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddXXX");
 			sdf.setTimeZone(cal.getTimeZone());
+			cal.set(Calendar.HOUR, 0);
+			cal.set(Calendar.MINUTE, 0);
+			cal.set(Calendar.SECOND, 0);
+			cal.set(Calendar.MILLISECOND, 0);
 			String date = sdf.format(cal.getTime());
 
 			XMLGregorianCalendar departureDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(date);
@@ -134,6 +137,10 @@ public class DataManager {
 			GregorianCalendar cal = fi.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddXXX");
 			sdf.setTimeZone(cal.getTimeZone());
+			cal.set(Calendar.HOUR, 0);
+			cal.set(Calendar.MINUTE, 0);
+			cal.set(Calendar.SECOND, 0);
+			cal.set(Calendar.MILLISECOND, 0);
 			String date = sdf.format(cal.getTime());
 
 			XMLGregorianCalendar departureDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(date);
@@ -277,7 +284,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -291,10 +298,10 @@ public class DataManager {
 					try {
 						flightInstancesMap = res = createFlightInstancesMap();
 						flightInstancesMap.put(key, value);
-						logger.info("KEY="+key+" added to FlightInstancesMap");
+//						logger.info("KEY="+key+" added to FlightInstancesMap");
 					} catch (DatatypeConfigurationException
 							| MalformedArgumentException e) {
-						logger.warning("Impossible adding "+key+" to FlightInstancesMap");
+//						logger.warning("Impossible adding "+key+" to FlightInstancesMap");
 						throw new DataManagerException();
 					}
 			}
@@ -305,7 +312,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -320,10 +327,10 @@ public class DataManager {
 					try {
 						res = fplist_map = createFplist_map();
 						fplist_map.put(key, value);
-						logger.info("KEY="+key+" added to FPListMap");
+//						logger.info("KEY="+key+" added to FPListMap");
 					} catch (DatatypeConfigurationException
 							| MalformedArgumentException e) {
-						logger.warning("Impossible adding "+key+" to FPListMap");
+//						logger.warning("Impossible adding "+key+" to FPListMap");
 						throw new DataManagerException();
 					}
 				}
@@ -335,7 +342,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -350,7 +357,7 @@ public class DataManager {
 						flightInstancesMap = res = createFlightInstancesMap();
 					} catch (DatatypeConfigurationException
 							| MalformedArgumentException e) {
-						logger.warning("Error while looking for "+key+" in FlightInstancesMap");
+//						logger.warning("Error while looking for "+key+" in FlightInstancesMap");
 						throw new DataManagerException();
 					}
 			}
@@ -362,7 +369,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -378,7 +385,7 @@ public class DataManager {
 						res = fplist_map = createFplist_map();
 					} catch (DatatypeConfigurationException
 							| MalformedArgumentException e) {
-						logger.warning("Error while looking for "+key+" in FPListMap");
+//						logger.warning("Error while looking for "+key+" in FPListMap");
 						throw new DataManagerException();
 					}
 				}
@@ -391,7 +398,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -407,7 +414,7 @@ public class DataManager {
 					try {
 						res = flightsMap = createFlightsMap();
 					} catch (MalformedArgumentException e) {
-						logger.warning("Error while looking for "+key+" in Flights Map");
+//						logger.warning("Error while looking for "+key+" in Flights Map");
 						throw new DataManagerException();
 					}
 				}
@@ -420,7 +427,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -435,7 +442,7 @@ public class DataManager {
 						flightInstancesMap = res = createFlightInstancesMap();
 					} catch (DatatypeConfigurationException
 							| MalformedArgumentException e) {
-						logger.warning("Error while looking for "+key+" in FlightInstancesMap");
+//						logger.warning("Error while looking for "+key+" in FlightInstancesMap");
 						throw new DataManagerException();
 					}
 			}
@@ -447,7 +454,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -462,7 +469,7 @@ public class DataManager {
 						fplist_map = res = createFplist_map();
 					} catch (DatatypeConfigurationException
 							| MalformedArgumentException e) {
-						logger.warning("Error while looking for "+key+" in FlightInstancesMap");
+//						logger.warning("Error while looking for "+key+" in FlightInstancesMap");
 						throw new DataManagerException();
 					}
 			}
@@ -474,7 +481,7 @@ public class DataManager {
 	{
 		if (key == null)
 		{
-			logger.info("Invalid key");
+//			logger.info("Invalid key");
 			throw new DataManagerException("Invalid key");
 		}
 
@@ -489,7 +496,7 @@ public class DataManager {
 					try {
 						res = flightsMap = createFlightsMap();
 					} catch (MalformedArgumentException e) {
-						logger.warning("Impossible looking for "+key+" in Flights Map");
+//						logger.warning("Impossible looking for "+key+" in Flights Map");
 						throw new DataManagerException();
 					}
 				}
