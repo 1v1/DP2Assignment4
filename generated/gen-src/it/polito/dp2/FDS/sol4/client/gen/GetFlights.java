@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -20,7 +19,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="departureAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="destinationAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="departureTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="departureTime" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,8 +38,8 @@ public class GetFlights {
 
     protected String departureAirport;
     protected String destinationAirport;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar departureTime;
+    @XmlSchemaType(name = "anySimpleType")
+    protected Object departureTime;
 
     /**
      * Gets the value of the departureAirport property.
@@ -95,10 +94,10 @@ public class GetFlights {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link Object }
      *     
      */
-    public XMLGregorianCalendar getDepartureTime() {
+    public Object getDepartureTime() {
         return departureTime;
     }
 
@@ -107,10 +106,10 @@ public class GetFlights {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link Object }
      *     
      */
-    public void setDepartureTime(XMLGregorianCalendar value) {
+    public void setDepartureTime(Object value) {
         this.departureTime = value;
     }
 

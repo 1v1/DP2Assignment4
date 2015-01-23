@@ -58,11 +58,11 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse
-     * @throws MonitorException
      * @throws CancelledFlightException
-     * @throws UnknownFlightInstanceException
      * @throws InvalidStatusException
+     * @throws MonitorException
      * @throws InvalidArgumentException
+     * @throws UnknownFlightInstanceException
      */
     @WebMethod
     @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -109,11 +109,11 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse
-     * @throws MonitorException
-     * @throws UnknownFlightInstanceException
      * @throws NotBoardingException
-     * @throws InvalidArgumentException
+     * @throws MonitorException
      * @throws PassengerAlreadyRegisteredException
+     * @throws InvalidArgumentException
+     * @throws UnknownFlightInstanceException
      */
     @WebMethod
     @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -161,8 +161,8 @@ public interface Control {
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetBoardedPassengersResponse
      * @throws MonitorException
-     * @throws UnknownFlightInstanceException
      * @throws InvalidArgumentException
+     * @throws UnknownFlightInstanceException
      */
     @WebMethod
     @WebResult(name = "getBoardedPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -208,8 +208,8 @@ public interface Control {
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.CancelFlightInstanceResponse
      * @throws MonitorException
-     * @throws UnknownFlightInstanceException
      * @throws InvalidArgumentException
+     * @throws UnknownFlightInstanceException
      */
     @WebMethod
     @WebResult(name = "cancelFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")

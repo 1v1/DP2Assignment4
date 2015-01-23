@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -17,9 +19,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="departureAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="departureAirport" type="{http://pad.polito.it/FDS}AirportType" minOccurs="0"/>
  *         &lt;element name="departureTime" type="{http://pad.polito.it/FDS}time" minOccurs="0"/>
- *         &lt;element name="destinationAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="destinationAirport" type="{http://pad.polito.it/FDS}AirportType" minOccurs="0"/>
  *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -38,8 +40,10 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Flight {
 
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String departureAirport;
     protected Time departureTime;
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String destinationAirport;
     @XmlElement(required = true)
     protected String number;

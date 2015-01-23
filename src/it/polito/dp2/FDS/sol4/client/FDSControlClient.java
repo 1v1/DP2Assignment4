@@ -50,7 +50,7 @@ public class FDSControlClient {
 	private static File outputFile;
 
 	private static Control controlProxy;
-	//	private static Info infoProxy;
+//	private static Info infoProxy;
 
 	private static FileOutputStream outputstream;
 	private static FileInputStream inputstream;
@@ -141,14 +141,14 @@ public class FDSControlClient {
 			e.printStackTrace();
 			closeBuffers(1);
 		}
-		
+
 		try {
 			FDSControlClient.outputFile = new File(outputFilename);
 		} catch (Exception e) {
 			e.printStackTrace();
 			closeBuffers(2);
 		}
-		
+
 	}
 
 	private static void prepareControlEndpoint()
@@ -176,6 +176,28 @@ public class FDSControlClient {
 		}
 	}
 
+//	private static void prepareInfoEndpoint()
+//	{
+//		try {
+//			URL endpointUrl = new URL("http://localhost:7071/fdsinfo?wsdl");
+//
+//			FDSInfo service = new FDSInfo( endpointUrl,
+//					new QName("http://pad.polito.it/FDSInfo", "FDSInfo"));
+//			infoProxy = service.getFDSInfoImplPort();
+//
+//			BindingProvider bindprov = (BindingProvider) infoProxy;
+//			bindprov.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:7071/fdsinfo?wsdl");
+//		} catch (MalformedURLException e)
+//		{
+//			e.printStackTrace();
+//			closeBuffers(2);
+//		} catch (Exception e)
+//		{
+//			e.printStackTrace();
+//			closeBuffers(2);
+//		}
+//	}
+
 	private static void registerPassengers() throws MalformedURLException
 	{
 		XMLGregorianCalendar departureDate = boardingInfo.getDate();
@@ -186,7 +208,7 @@ public class FDSControlClient {
 			System.out.println("Invalid flight ID in the input file");
 			closeBuffers(1);
 		}
-		
+
 		if (departureDate == null)
 		{
 			System.out.println("Invalid departure date in the input file");
@@ -254,7 +276,7 @@ public class FDSControlClient {
 			date = departureDate.toGregorianCalendar();
 
 			XMLGregorianCalendar depDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(departureDate.toGregorianCalendar());
-			
+
 			Boolean lastPage = false;
 			int pageNumber = 0;
 			while(!lastPage)
@@ -265,7 +287,7 @@ public class FDSControlClient {
 				req.setPageNumber(pageNumber);
 
 				Response<GetBoardedPassengersResponse> res = controlProxy.getBoardedPassengersAsync(req);
-				
+
 				pageNumber++;
 				returnList.addAll(res.get().getReturn());
 				if (res.get().isLastPage())
@@ -333,25 +355,25 @@ public class FDSControlClient {
 		System.exit(exitCode);
 	}
 
-	//	private static void printFlights()
-	//	{
-	//		prepareInfoEndpoint();
-	//		try {
-	//			GetFlights req = new GetFlights();
-	//			req.setDepartureAirport(null);
-	//			req.setDepartureTime(null);
-	//			req.setDestinationAirport(null);
-	//			Response<GetFlightsResponse> res = infoProxy.getFlightsAsync(req);
-	//			List<Flight> returnList = res.get().getReturn();
-	//			for (Flight f:returnList)
-	//				System.out.println("FLIGHT ID="+f.getNumber()+" DEP="+f.getDepartureAirport()+
-	//						" ARR="+f.getDestinationAirport()+" TIME="+f.getDepartureTime().getHour()+":"+f.getDepartureTime().getMinute());
-	//		} catch (InterruptedException e) {
-	//			e.printStackTrace();
-	//			closeBuffers(1);
-	//		} catch (ExecutionException e) {
-	//			e.printStackTrace();
-	//			closeBuffers(1);
-	//		}
-	//	}
+//	private static void printFlights()
+//	{
+//		prepareInfoEndpoint();
+//		try {
+//			GetFlights req = new GetFlights();
+//			req.setDepartureAirport(null);
+//			req.setDepartureTime(null);
+//			req.setDestinationAirport(null);
+//			Response<GetFlightsResponse> res = infoProxy.getFlightsAsync(req);
+//			List<Flight> returnList = res.get().getReturn();
+//			for (Flight f:returnList)
+//				System.out.println("FLIGHT ID="+f.getNumber()+" DEP="+f.getDepartureAirport()+
+//						" ARR="+f.getDestinationAirport()+" TIME="+f.getDepartureTime().getHour()+":"+f.getDepartureTime().getMinute());
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//			closeBuffers(1);
+//		} catch (ExecutionException e) {
+//			e.printStackTrace();
+//			closeBuffers(1);
+//		}
+//	}
 }

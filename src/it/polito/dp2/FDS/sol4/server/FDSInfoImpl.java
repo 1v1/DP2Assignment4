@@ -92,8 +92,8 @@ public class FDSInfoImpl implements Info {
 			startTime.setMinute(0);
 		}else
 		{
-			startTime.setHour(parameters.getDepartureTime().getHour());
-			startTime.setMinute(parameters.getDepartureTime().getMinute());
+			startTime.setHour(parameters.getDepartureTime().getValue().getHour());
+			startTime.setMinute(parameters.getDepartureTime().getValue().getMinute());
 		}
 			
 		GetFlightsResponse res = new GetFlightsResponse();

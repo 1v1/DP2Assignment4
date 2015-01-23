@@ -2,6 +2,24 @@
 <import namespace="http://pad.polito.it/FDS" location="http://localhost:7071/fdsinfo?wsdl=1"></import>
 <binding xmlns:ns1="http://pad.polito.it/FDS" name="FDSInfoImplPortBinding" type="ns1:Info">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+<operation name="getPassengers">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlightInstance_Exception">
+<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
 <operation name="getFlightInstance">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -81,24 +99,6 @@
 </fault>
 <fault name="Monitor_Exception">
 <soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="getPassengers">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlightInstance_Exception">
-<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
 </fault>
 </operation>
 </binding>

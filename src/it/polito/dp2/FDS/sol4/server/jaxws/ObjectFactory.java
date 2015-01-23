@@ -4,6 +4,9 @@ package it.polito.dp2.FDS.sol4.server.jaxws;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 
 
@@ -60,6 +63,9 @@ public class ObjectFactory {
     private final static QName _GetFlightsResponse_QNAME = new QName("http://pad.polito.it/FDS", "getFlightsResponse");
     private final static QName _ChangeBoardingGateResponse_QNAME = new QName("http://pad.polito.it/FDS", "changeBoardingGateResponse");
     private final static QName _RegisterPassengerResponse_QNAME = new QName("http://pad.polito.it/FDS", "registerPassengerResponse");
+    private final static QName _GetFlightsDepartureAirport_QNAME = new QName("", "departureAirport");
+    private final static QName _GetFlightsDepartureTime_QNAME = new QName("", "departureTime");
+    private final static QName _GetFlightsDestinationAirport_QNAME = new QName("", "destinationAirport");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: it.polito.dp2.FDS.sol4.server.jaxws
@@ -726,6 +732,35 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "registerPassengerResponse")
     public JAXBElement<RegisterPassengerResponse> createRegisterPassengerResponse(RegisterPassengerResponse value) {
         return new JAXBElement<RegisterPassengerResponse>(_RegisterPassengerResponse_QNAME, RegisterPassengerResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "departureAirport", scope = GetFlights.class)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    public JAXBElement<String> createGetFlightsDepartureAirport(String value) {
+        return new JAXBElement<String>(_GetFlightsDepartureAirport_QNAME, String.class, GetFlights.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "departureTime", scope = GetFlights.class)
+    public JAXBElement<XMLGregorianCalendar> createGetFlightsDepartureTime(XMLGregorianCalendar value) {
+        return new JAXBElement<XMLGregorianCalendar>(_GetFlightsDepartureTime_QNAME, XMLGregorianCalendar.class, GetFlights.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "destinationAirport", scope = GetFlights.class)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    public JAXBElement<String> createGetFlightsDestinationAirport(String value) {
+        return new JAXBElement<String>(_GetFlightsDestinationAirport_QNAME, String.class, GetFlights.class, value);
     }
 
 }
