@@ -1,4 +1,7 @@
 # DP2Assignment4
+This is the most updated version of DP2 Assignment4. It's not been tested against 
+the pad.polito server yet.
+
 
 CLIENT SIDE:
 Asynchronous client.
