@@ -7,11 +7,6 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * 
- * 				This fault warns the user that the specified flight
- * 				instance is in an invalid status for the specified operation.
- * 			
- * 
  * <p>Java class for InvalidStatus complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.

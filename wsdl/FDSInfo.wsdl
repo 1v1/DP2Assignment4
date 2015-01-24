@@ -6,18 +6,6 @@
       <xsd:import namespace="http://pad.polito.it/FDS" schemaLocation="FDS_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="getFlights">
-    <part name="parameters" element="tns:getFlights"/>
-  </message>
-  <message name="getFlightsResponse">
-    <part name="parameters" element="tns:getFlightsResponse"/>
-  </message>
-  <message name="InvalidArgument">
-    <part name="fault" element="tns:InvalidArgument"/>
-  </message>
-  <message name="Monitor">
-    <part name="fault" element="tns:Monitor"/>
-  </message>
   <message name="getFlight">
     <part name="parameters" element="tns:getFlight"/>
   </message>
@@ -26,6 +14,30 @@
   </message>
   <message name="UnknownFlight">
     <part name="fault" element="tns:UnknownFlight"/>
+  </message>
+  <message name="InvalidArgument">
+    <part name="fault" element="tns:InvalidArgument"/>
+  </message>
+  <message name="Monitor">
+    <part name="fault" element="tns:Monitor"/>
+  </message>
+  <message name="getFlights">
+    <part name="parameters" element="tns:getFlights"/>
+  </message>
+  <message name="getFlightsResponse">
+    <part name="parameters" element="tns:getFlightsResponse"/>
+  </message>
+  <message name="getFlightByDepartureAirport">
+    <part name="parameters" element="tns:getFlightByDepartureAirport"/>
+  </message>
+  <message name="getFlightByDepartureAirportResponse">
+    <part name="parameters" element="tns:getFlightByDepartureAirportResponse"/>
+  </message>
+  <message name="getFlightByDestinationAirport">
+    <part name="parameters" element="tns:getFlightByDestinationAirport"/>
+  </message>
+  <message name="getFlightByDestinationAirportResponse">
+    <part name="parameters" element="tns:getFlightByDestinationAirportResponse"/>
   </message>
   <message name="getFlightInstance">
     <part name="parameters" element="tns:getFlightInstance"/>
@@ -42,11 +54,47 @@
   <message name="getFlightInstancesResponse">
     <part name="parameters" element="tns:getFlightInstancesResponse"/>
   </message>
+  <message name="getFlightInstancesByFlightID">
+    <part name="parameters" element="tns:getFlightInstancesByFlightID"/>
+  </message>
+  <message name="getFlightInstancesByFlightIDResponse">
+    <part name="parameters" element="tns:getFlightInstancesByFlightIDResponse"/>
+  </message>
+  <message name="getFlightInstanceByStatus">
+    <part name="parameters" element="tns:getFlightInstanceByStatus"/>
+  </message>
+  <message name="getFlightInstanceByStatusResponse">
+    <part name="parameters" element="tns:getFlightInstanceByStatusResponse"/>
+  </message>
+  <message name="getFlightInstanceByDepartureDate">
+    <part name="parameters" element="tns:getFlightInstanceByDepartureDate"/>
+  </message>
+  <message name="getFlightInstanceByDepartureDateResponse">
+    <part name="parameters" element="tns:getFlightInstanceByDepartureDateResponse"/>
+  </message>
   <message name="getPassengers">
     <part name="parameters" element="tns:getPassengers"/>
   </message>
   <message name="getPassengersResponse">
     <part name="parameters" element="tns:getPassengersResponse"/>
+  </message>
+  <message name="getPassengerByFlightID">
+    <part name="parameters" element="tns:getPassengerByFlightID"/>
+  </message>
+  <message name="getPassengerByFlightIDResponse">
+    <part name="parameters" element="tns:getPassengerByFlightIDResponse"/>
+  </message>
+  <message name="getPassengerByPrefix">
+    <part name="parameters" element="tns:getPassengerByPrefix"/>
+  </message>
+  <message name="getPassengerByPrefixResponse">
+    <part name="parameters" element="tns:getPassengerByPrefixResponse"/>
+  </message>
+  <message name="getPassengerByDepartureDate">
+    <part name="parameters" element="tns:getPassengerByDepartureDate"/>
+  </message>
+  <message name="getPassengerByDepartureDateResponse">
+    <part name="parameters" element="tns:getPassengerByDepartureDateResponse"/>
   </message>
   <message name="getAircrafts">
     <part name="parameters" element="tns:getAircrafts"/>
@@ -55,18 +103,30 @@
     <part name="parameters" element="tns:getAircraftsResponse"/>
   </message>
   <portType name="Info">
-    <operation name="getFlights">
-      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightsRequest" message="tns:getFlights"/>
-      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightsResponse" message="tns:getFlightsResponse"/>
-      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlights/Fault/InvalidArgument"/>
-      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlights/Fault/Monitor"/>
-    </operation>
     <operation name="getFlight">
       <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightRequest" message="tns:getFlight"/>
       <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightResponse" message="tns:getFlightResponse"/>
       <fault message="tns:UnknownFlight" name="UnknownFlight" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlight/Fault/UnknownFlight"/>
       <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlight/Fault/InvalidArgument"/>
       <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlight/Fault/Monitor"/>
+    </operation>
+    <operation name="getFlights">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightsRequest" message="tns:getFlights"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightsResponse" message="tns:getFlightsResponse"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlights/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlights/Fault/Monitor"/>
+    </operation>
+    <operation name="getFlightByDepartureAirport">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDepartureAirportRequest" message="tns:getFlightByDepartureAirport"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDepartureAirportResponse" message="tns:getFlightByDepartureAirportResponse"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDepartureAirport/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDepartureAirport/Fault/Monitor"/>
+    </operation>
+    <operation name="getFlightByDestinationAirport">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDestinationAirportRequest" message="tns:getFlightByDestinationAirport"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDestinationAirportResponse" message="tns:getFlightByDestinationAirportResponse"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDestinationAirport/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightByDestinationAirport/Fault/Monitor"/>
     </operation>
     <operation name="getFlightInstance">
       <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceRequest" message="tns:getFlightInstance"/>
@@ -78,16 +138,55 @@
     <operation name="getFlightInstances">
       <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesRequest" message="tns:getFlightInstances"/>
       <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesResponse" message="tns:getFlightInstancesResponse"/>
-      <fault message="tns:UnknownFlight" name="UnknownFlight" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstances/Fault/UnknownFlight"/>
-      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstances/Fault/InvalidArgument"/>
       <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstances/Fault/Monitor"/>
+    </operation>
+    <operation name="getFlightInstancesByFlightID">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesByFlightIDRequest" message="tns:getFlightInstancesByFlightID"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesByFlightIDResponse" message="tns:getFlightInstancesByFlightIDResponse"/>
+      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesByFlightID/Fault/UnknownFlightInstance"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesByFlightID/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstancesByFlightID/Fault/Monitor"/>
+    </operation>
+    <operation name="getFlightInstanceByStatus">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByStatusRequest" message="tns:getFlightInstanceByStatus"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByStatusResponse" message="tns:getFlightInstanceByStatusResponse"/>
+      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByStatus/Fault/UnknownFlightInstance"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByStatus/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByStatus/Fault/Monitor"/>
+    </operation>
+    <operation name="getFlightInstanceByDepartureDate">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByDepartureDateRequest" message="tns:getFlightInstanceByDepartureDate"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByDepartureDateResponse" message="tns:getFlightInstanceByDepartureDateResponse"/>
+      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByDepartureDate/Fault/UnknownFlightInstance"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByDepartureDate/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getFlightInstanceByDepartureDate/Fault/Monitor"/>
     </operation>
     <operation name="getPassengers">
       <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengersRequest" message="tns:getPassengers"/>
       <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengersResponse" message="tns:getPassengersResponse"/>
       <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/InvalidArgument"/>
-      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/UnknownFlightInstance"/>
       <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/Monitor"/>
+    </operation>
+    <operation name="getPassengerByFlightID">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByFlightIDRequest" message="tns:getPassengerByFlightID"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByFlightIDResponse" message="tns:getPassengerByFlightIDResponse"/>
+      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByFlightID/Fault/UnknownFlightInstance"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByFlightID/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByFlightID/Fault/Monitor"/>
+    </operation>
+    <operation name="getPassengerByPrefix">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByPrefixRequest" message="tns:getPassengerByPrefix"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByPrefixResponse" message="tns:getPassengerByPrefixResponse"/>
+      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByPrefix/Fault/UnknownFlightInstance"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByPrefix/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByPrefix/Fault/Monitor"/>
+    </operation>
+    <operation name="getPassengerByDepartureDate">
+      <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByDepartureDateRequest" message="tns:getPassengerByDepartureDate"/>
+      <output wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByDepartureDateResponse" message="tns:getPassengerByDepartureDateResponse"/>
+      <fault message="tns:UnknownFlightInstance" name="UnknownFlightInstance" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByDepartureDate/Fault/UnknownFlightInstance"/>
+      <fault message="tns:InvalidArgument" name="InvalidArgument" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByDepartureDate/Fault/InvalidArgument"/>
+      <fault message="tns:Monitor" name="Monitor" wsam:Action="http://pad.polito.it/FDSInfo/Info/getPassengerByDepartureDate/Fault/Monitor"/>
     </operation>
     <operation name="getAircrafts">
       <input wsam:Action="http://pad.polito.it/FDSInfo/Info/getAircraftsRequest" message="tns:getAircrafts"/>
@@ -97,6 +196,24 @@
   </portType>
   <binding name="FDSInfoImplPortBinding" type="tns:Info">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="getFlight">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownFlight">
+        <soap:fault name="UnknownFlight" use="literal"/>
+      </fault>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
+      </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
     <operation name="getFlights">
       <soap:operation soapAction=""/>
       <input>
@@ -112,7 +229,7 @@
         <soap:fault name="Monitor" use="literal"/>
       </fault>
     </operation>
-    <operation name="getFlight">
+    <operation name="getFlightByDepartureAirport">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -120,9 +237,21 @@
       <output>
         <soap:body use="literal"/>
       </output>
-      <fault name="UnknownFlight">
-        <soap:fault name="UnknownFlight" use="literal"/>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
       </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getFlightByDestinationAirport">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
       <fault name="InvalidArgument">
         <soap:fault name="InvalidArgument" use="literal"/>
       </fault>
@@ -156,8 +285,56 @@
       <output>
         <soap:body use="literal"/>
       </output>
-      <fault name="UnknownFlight">
-        <soap:fault name="UnknownFlight" use="literal"/>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getFlightInstancesByFlightID">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownFlightInstance">
+        <soap:fault name="UnknownFlightInstance" use="literal"/>
+      </fault>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
+      </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getFlightInstanceByStatus">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownFlightInstance">
+        <soap:fault name="UnknownFlightInstance" use="literal"/>
+      </fault>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
+      </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getFlightInstanceByDepartureDate">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownFlightInstance">
+        <soap:fault name="UnknownFlightInstance" use="literal"/>
       </fault>
       <fault name="InvalidArgument">
         <soap:fault name="InvalidArgument" use="literal"/>
@@ -177,8 +354,59 @@
       <fault name="InvalidArgument">
         <soap:fault name="InvalidArgument" use="literal"/>
       </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getPassengerByFlightID">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
       <fault name="UnknownFlightInstance">
         <soap:fault name="UnknownFlightInstance" use="literal"/>
+      </fault>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
+      </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getPassengerByPrefix">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownFlightInstance">
+        <soap:fault name="UnknownFlightInstance" use="literal"/>
+      </fault>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
+      </fault>
+      <fault name="Monitor">
+        <soap:fault name="Monitor" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getPassengerByDepartureDate">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownFlightInstance">
+        <soap:fault name="UnknownFlightInstance" use="literal"/>
+      </fault>
+      <fault name="InvalidArgument">
+        <soap:fault name="InvalidArgument" use="literal"/>
       </fault>
       <fault name="Monitor">
         <soap:fault name="Monitor" use="literal"/>
@@ -199,7 +427,7 @@
   </binding>
   <service name="FDSInfo">
     <port name="FDSInfoImplPort" binding="tns:FDSInfoImplPortBinding">
-      <soap:address location="http://localhost:7071/fdsinfo"/>
+      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
     </port>
   </service>
 </definitions>

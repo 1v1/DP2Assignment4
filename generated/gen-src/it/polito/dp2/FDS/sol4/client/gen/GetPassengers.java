@@ -21,7 +21,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="prefix" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,18 +32,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getPassengers", propOrder = {
     "flightID",
-    "departureDate",
-    "prefix"
+    "departureDate"
 })
 public class GetPassengers {
 
-    @XmlElement(required = true, nillable = true)
+    @XmlElement(required = true)
     protected String flightID;
-    @XmlElement(required = true, nillable = true)
+    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
-    @XmlElement(required = true, nillable = true)
-    protected String prefix;
 
     /**
      * Gets the value of the flightID property.
@@ -92,30 +88,6 @@ public class GetPassengers {
      */
     public void setDepartureDate(XMLGregorianCalendar value) {
         this.departureDate = value;
-    }
-
-    /**
-     * Gets the value of the prefix property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPrefix() {
-        return prefix;
-    }
-
-    /**
-     * Sets the value of the prefix property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPrefix(String value) {
-        this.prefix = value;
     }
 
 }

@@ -27,19 +27,13 @@ public interface Control {
 
     /**
      * 
-     * 				This operation is intended for assigning a seat to a
-     * 				specified passenger
-     * 				on a specific flight instance during the
-     * 				checking-in operation.
-     * 			
-     * 
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.AssignSeatResponse
-     * @throws SeatAlreadyAssigned_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
      * @throws FullyBookedFlight_Exception
+     * @throws SeatAlreadyAssigned_Exception
      */
     @WebMethod
     @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -57,24 +51,14 @@ public interface Control {
 
     /**
      * 
-     * 				This operation is intended for starting the boarding
-     * 				operations for a
-     * 				specified flight instance.
-     * 				This operation changes the
-     * 				flight instance status of the specified
-     * 				flight instance status
-     * 				from
-     * 				CHECKING-IN to BOARDING.
-     * 			
-     * 
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.StartBoardingResponse
      * @throws Monitor_Exception
+     * @throws CancelledFlight_Exception
      * @throws UnknownFlightInstance_Exception
      * @throws InvalidArgument_Exception
      * @throws InvalidStatus_Exception
-     * @throws CancelledFlight_Exception
      */
     @WebMethod
     @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -93,20 +77,14 @@ public interface Control {
 
     /**
      * 
-     * 				This operation allows to board a single passenger on
-     * 				the specified flight instance.
-     * 				The flight instance status of the
-     * 				specified flight instance must be BOARDING or CHECKING-IN.
-     * 			
-     * 
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.RegisterPassengerResponse
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws InvalidArgument_Exception
      * @throws PassengerAlreadyRegistered_Exception
      * @throws NotBoarding_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -124,11 +102,6 @@ public interface Control {
     ;
 
     /**
-     * 
-     * 				This operations allows the user to get the list of the
-     * 				boarded
-     * 				passengers on the specified flight instance.
-     * 			
      * 
      * @param parameters
      * @return
@@ -152,10 +125,6 @@ public interface Control {
 
     /**
      * 
-     * 				This operations allows the user to delete a single
-     * 				flight instance.
-     * 			
-     * 
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.CancelFlightInstanceResponse
@@ -178,10 +147,6 @@ public interface Control {
 
     /**
      * 
-     * 				This operations allows the user to change the boarding
-     * 				gate of a single flight instance
-     * 			
-     * 
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.ChangeBoardingGateResponse
@@ -203,11 +168,6 @@ public interface Control {
     ;
 
     /**
-     * 
-     * 				This operations allows the user to change the delay
-     * 				value of a single
-     * 				flight instance
-     * 			
      * 
      * @param parameters
      * @return

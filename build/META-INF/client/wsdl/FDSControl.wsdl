@@ -2,6 +2,30 @@
 <import namespace="http://pad.polito.it/FDS" location="http://localhost:7070/fdscontrol?wsdl=1"></import>
 <binding xmlns:ns1="http://pad.polito.it/FDS" name="FDSControlImplPortBinding" type="ns1:Control">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+<operation name="startBoarding">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="CancelledFlight_Exception">
+<soap:fault name="CancelledFlight_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="InvalidStatus_Exception">
+<soap:fault name="InvalidStatus_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlightInstance_Exception">
+<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
 <operation name="registerPassenger">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -114,30 +138,6 @@
 </fault>
 <fault name="SeatAlreadyAssigned_Exception">
 <soap:fault name="SeatAlreadyAssigned_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlightInstance_Exception">
-<soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="startBoarding">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="CancelledFlight_Exception">
-<soap:fault name="CancelledFlight_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="InvalidStatus_Exception">
-<soap:fault name="InvalidStatus_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
 </fault>
 <fault name="UnknownFlightInstance_Exception">
 <soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>

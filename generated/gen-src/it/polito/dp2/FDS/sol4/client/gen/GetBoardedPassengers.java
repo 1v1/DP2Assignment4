@@ -19,9 +19,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,18 +32,34 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getBoardedPassengers", propOrder = {
+    "pageNumber",
     "flightID",
-    "departureDate",
-    "pageNumber"
+    "departureDate"
 })
 public class GetBoardedPassengers {
 
+    protected int pageNumber;
     @XmlElement(required = true)
     protected String flightID;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
-    protected int pageNumber;
+
+    /**
+     * Gets the value of the pageNumber property.
+     * 
+     */
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    /**
+     * Sets the value of the pageNumber property.
+     * 
+     */
+    public void setPageNumber(int value) {
+        this.pageNumber = value;
+    }
 
     /**
      * Gets the value of the flightID property.
@@ -91,22 +107,6 @@ public class GetBoardedPassengers {
      */
     public void setDepartureDate(XMLGregorianCalendar value) {
         this.departureDate = value;
-    }
-
-    /**
-     * Gets the value of the pageNumber property.
-     * 
-     */
-    public int getPageNumber() {
-        return pageNumber;
-    }
-
-    /**
-     * Sets the value of the pageNumber property.
-     * 
-     */
-    public void setPageNumber(int value) {
-        this.pageNumber = value;
     }
 
 }

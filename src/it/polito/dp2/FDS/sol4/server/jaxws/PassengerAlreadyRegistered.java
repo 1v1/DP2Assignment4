@@ -7,12 +7,6 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * 
- * 				This fault warns the user that the specified
- * 				passenger has already been registered for the specified flight
- * 				instance.
- * 			
- * 
  * <p>Java class for PassengerAlreadyRegistered complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.

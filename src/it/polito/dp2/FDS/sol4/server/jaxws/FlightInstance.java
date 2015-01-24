@@ -3,11 +3,8 @@ package it.polito.dp2.FDS.sol4.server.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -22,10 +19,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="aircraft" type="{http://pad.polito.it/FDS}aircraftType" minOccurs="0"/>
- *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departureGate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType"/>
+ *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="status" type="{http://pad.polito.it/FDS}flightInstanceStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -47,13 +44,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class FlightInstance {
 
     protected AircraftType aircraft;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar date;
     protected int delay;
     protected String departureGate;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String flightID;
     protected FlightInstanceStatus status;
 

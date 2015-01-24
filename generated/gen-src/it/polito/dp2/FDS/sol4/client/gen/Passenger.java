@@ -3,7 +3,6 @@ package it.polito.dp2.FDS.sol4.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -20,10 +19,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="boarded" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="seat" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="seat" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,14 +42,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Passenger {
 
     protected boolean boarded;
-    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
-    @XmlElement(required = true)
     protected String flightID;
-    @XmlElement(required = true)
     protected String name;
-    @XmlElement(required = true, nillable = true)
     protected String seat;
 
     /**

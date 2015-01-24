@@ -3,7 +3,6 @@ package it.polito.dp2.FDS.sol4.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -20,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="departureAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="departureTime" type="{http://pad.polito.it/FDS}time" minOccurs="0"/>
  *         &lt;element name="destinationAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,7 +40,6 @@ public class Flight {
     protected String departureAirport;
     protected Time departureTime;
     protected String destinationAirport;
-    @XmlElement(required = true)
     protected String number;
 
     /**

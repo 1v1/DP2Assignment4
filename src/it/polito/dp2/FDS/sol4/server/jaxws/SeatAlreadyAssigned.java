@@ -7,11 +7,6 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * 
- * 				This fault is sent when the specified passenger has
- * 				already received a seat on the specified flight instance.
- * 			
- * 
  * <p>Java class for SeatAlreadyAssigned complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.

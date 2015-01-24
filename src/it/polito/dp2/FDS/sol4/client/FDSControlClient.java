@@ -61,13 +61,17 @@ public class FDSControlClient {
 	{
 		try {
 			outputstream = new FileOutputStream(FDSControlClient.outputFile);
+			
+			//TODO: toggle
 			registerPassengers();
 			getBoardedPassengers();
+//			printFlightInstances();
 			closeBuffers(0);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			closeBuffers(2);
-		} catch (MalformedURLException e) {
+		}
+			catch (MalformedURLException e) {
 			e.printStackTrace();
 			closeBuffers(1);
 		}
@@ -354,6 +358,28 @@ public class FDSControlClient {
 		}
 		System.exit(exitCode);
 	}
+	
+//	private static void printFlightInstances()
+//	{
+//		prepareInfoEndpoint();
+//		try {
+//			GetFlightInstances req = new GetFlightInstances();
+//			Response<GetFlightInstancesResponse> res = infoProxy.getFlightInstancesAsync(req);
+//			List<FlightInstance> returnList = res.get().getReturn();
+//			
+//			for (FlightInstance fl: returnList)
+//				System.out.println("FLIGHT ID="+fl.getFlightID()+" DEPARTURE DATE="+
+//			fl.getDate().getDay()+"/"+fl.getDate().getMonth()+"/"+fl.getDate().getYear()+" STATUS="+
+//						fl.getStatus().toString());
+//			
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//			System.exit(1);
+//		} catch (ExecutionException e) {
+//			e.printStackTrace();
+//			System.exit(1);
+//		}
+//	}
 
 //	private static void printFlights()
 //	{

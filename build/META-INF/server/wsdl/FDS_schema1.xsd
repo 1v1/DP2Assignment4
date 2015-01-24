@@ -16,11 +16,38 @@
 
 	<xs:element name="getFlight" type="tns:getFlight" />
 
+	<xs:element name="getFlightByDepartureAirport" type="tns:getFlightByDepartureAirport" />
+
+	<xs:element name="getFlightByDepartureAirportResponse" type="tns:getFlightByDepartureAirportResponse" />
+
+	<xs:element name="getFlightByDestinationAirport" type="tns:getFlightByDestinationAirport" />
+
+	<xs:element name="getFlightByDestinationAirportResponse"
+		type="tns:getFlightByDestinationAirportResponse" />
+
+	<xs:element name="getFlightByFlightID" type="tns:getFlightByFlightID" />
+
+	<xs:element name="getFlightByFlightIDResponse" type="tns:getFlightByFlightIDResponse" />
+
 	<xs:element name="getFlightInstance" type="tns:getFlightInstance" />
+
+	<xs:element name="getFlightInstanceByDepartureDate" type="tns:getFlightInstanceByDepartureDate" />
+
+	<xs:element name="getFlightInstanceByDepartureDateResponse"
+		type="tns:getFlightInstanceByDepartureDateResponse" />
+
+	<xs:element name="getFlightInstanceByStatus" type="tns:getFlightInstanceByStatus" />
+
+	<xs:element name="getFlightInstanceByStatusResponse" type="tns:getFlightInstanceByStatusResponse" />
 
 	<xs:element name="getFlightInstanceResponse" type="tns:getFlightInstanceResponse" />
 
 	<xs:element name="getFlightInstances" type="tns:getFlightInstances" />
+
+	<xs:element name="getFlightInstancesByFlightID" type="tns:getFlightInstancesByFlightID" />
+
+	<xs:element name="getFlightInstancesByFlightIDResponse"
+		type="tns:getFlightInstancesByFlightIDResponse" />
 
 	<xs:element name="getFlightInstancesResponse" type="tns:getFlightInstancesResponse" />
 
@@ -29,6 +56,18 @@
 	<xs:element name="getFlights" type="tns:getFlights" />
 
 	<xs:element name="getFlightsResponse" type="tns:getFlightsResponse" />
+
+	<xs:element name="getPassengerByDepartureDate" type="tns:getPassengerByDepartureDate" />
+
+	<xs:element name="getPassengerByDepartureDateResponse" type="tns:getPassengerByDepartureDateResponse" />
+
+	<xs:element name="getPassengerByFlightID" type="tns:getPassengerByFlightID" />
+
+	<xs:element name="getPassengerByFlightIDResponse" type="tns:getPassengerByFlightIDResponse" />
+
+	<xs:element name="getPassengerByPrefix" type="tns:getPassengerByPrefix" />
+
+	<xs:element name="getPassengerByPrefixResponse" type="tns:getPassengerByPrefixResponse" />
 
 	<xs:element name="getPassengers" type="tns:getPassengers" />
 
@@ -74,6 +113,55 @@
 
 	<xs:element name="startBoardingResponse" type="tns:startBoardingResponse" />
 
+	<xs:complexType name="getFlightByFlightID">
+		<xs:sequence>
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightByFlightIDResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:flight" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="flight">
+		<xs:sequence>
+			<xs:element name="departureAirport" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="departureTime" type="tns:time"
+				minOccurs="0" />
+			<xs:element name="destinationAirport" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="number" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="time">
+		<xs:sequence>
+			<xs:element name="hour" type="xs:int" />
+			<xs:element name="minute" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UnknownFlight">
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InvalidArgument">
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Monitor">
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
 
 	<xs:complexType name="getAircrafts">
 		<xs:sequence />
@@ -88,30 +176,19 @@
 
 	<xs:complexType name="aircraftType">
 		<xs:sequence>
-			<xs:element name="freeSeat" type="xs:string" nillable="false"
+			<xs:element name="freeSeat" type="xs:string" nillable="true"
 				minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="model" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="Monitor">
+	<xs:complexType name="getPassengerByPrefix">
 		<xs:sequence>
-			<xs:element name="message" type="xs:string" minOccurs="0" />
+			<xs:element name="prefix" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="getPassengers">
-		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" nillable="true" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" nillable="true" />
-			<xs:element name="prefix" type="xs:string" minOccurs="1"
-				nillable="true" />
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:complexType name="getPassengersResponse">
+	<xs:complexType name="getPassengerByPrefixResponse">
 		<xs:sequence>
 			<xs:element name="return" type="tns:passenger" minOccurs="0"
 				maxOccurs="unbounded" />
@@ -122,18 +199,10 @@
 		<xs:sequence>
 			<xs:element name="boarded" type="xs:boolean" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
-			<xs:element name="name" type="xs:string" minOccurs="1" />
-			<xs:element name="seat" type="tns:SeatType" minOccurs="1"
-				nillable="true" />
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:complexType name="InvalidArgument">
-		<xs:sequence>
-			<xs:element name="message" type="xs:string" minOccurs="0" />
+				minOccurs="0" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
+			<xs:element name="name" type="xs:string" minOccurs="0" />
+			<xs:element name="seat" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -143,15 +212,22 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="getFlightInstances">
+	<xs:complexType name="getPassengers">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" nillable="true" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" nillable="true" />
-			<xs:element name="flightStatus" type="tns:flightInstanceStatus"
-				minOccurs="1" nillable="true" />
+			<xs:element name="flightID" type="xs:string" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getPassengersResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:passenger" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstances">
+		<xs:sequence />
 	</xs:complexType>
 
 	<xs:complexType name="getFlightInstancesResponse">
@@ -165,29 +241,21 @@
 		<xs:sequence>
 			<xs:element name="aircraft" type="tns:aircraftType"
 				minOccurs="0" />
-			<xs:element name="date" type="xs:dateTime" minOccurs="1" />
+			<xs:element name="date" type="xs:dateTime" minOccurs="0" />
 			<xs:element name="delay" type="xs:int" />
 			<xs:element name="departureGate" type="xs:string"
 				minOccurs="0" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="status" type="tns:flightInstanceStatus"
 				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="UnknownFlight">
-		<xs:sequence>
-			<xs:element name="message" type="xs:string" minOccurs="0" />
-		</xs:sequence>
-	</xs:complexType>
-
 	<xs:complexType name="getFlightInstance">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
+				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -198,15 +266,90 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="getFlights">
+	<xs:complexType name="getFlightByDestinationAirport">
 		<xs:sequence>
-			<xs:element name="departureAirport" type="tns:AirportType"
-				minOccurs="0" nillable="true" />
-			<xs:element name="destinationAirport" type="tns:AirportType"
-				minOccurs="0" nillable="true" />
-			<xs:element name="departureTime" type="xs:dateTime"
-				minOccurs="0" nillable="true" />
+			<xs:element name="destinationAirport" type="xs:string"
+				minOccurs="0" />
 		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightByDestinationAirportResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:flight" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstanceByDepartureDate">
+		<xs:sequence>
+			<xs:element name="departureDate" type="xs:dateTime"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstanceByDepartureDateResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:flightInstance"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstancesByFlightID">
+		<xs:sequence>
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstancesByFlightIDResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:flightInstance"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getPassengerByFlightID">
+		<xs:sequence>
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getPassengerByFlightIDResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:passenger" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstanceByStatus">
+		<xs:sequence>
+			<xs:element name="status" type="tns:flightInstanceStatus"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightInstanceByStatusResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:flightInstance"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getPassengerByDepartureDate">
+		<xs:sequence>
+			<xs:element name="departureDate" type="xs:dateTime"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getPassengerByDepartureDateResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:passenger" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlights">
+		<xs:sequence />
 	</xs:complexType>
 
 	<xs:complexType name="getFlightsResponse">
@@ -216,29 +359,9 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="flight">
-		<xs:sequence>
-			<xs:element name="departureAirport" type="tns:AirportType"
-				minOccurs="0" />
-			<xs:element name="departureTime" type="tns:time"
-				minOccurs="0" />
-			<xs:element name="destinationAirport" type="tns:AirportType"
-				minOccurs="0" />
-			<xs:element name="number" type="xs:string" minOccurs="1" />
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:complexType name="time">
-		<xs:sequence>
-			<xs:element name="hour" type="xs:int" />
-			<xs:element name="minute" type="xs:int" />
-		</xs:sequence>
-	</xs:complexType>
-
 	<xs:complexType name="getFlight">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -248,23 +371,26 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="changeBoardingGate">
-		<xs:annotation>
-			<xs:documentation>
-				This complex type is composed by flight ID and
-				departure date, which combined together uniquely identify
-				a single
-				flight instance, and the new value of the boarding gate.
-				All of these
-				element are mandatory.
-			</xs:documentation>
-		</xs:annotation>
+	<xs:complexType name="getFlightByDepartureAirport">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" nillable="false" />
+			<xs:element name="departureAirport" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getFlightByDepartureAirportResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:flight" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="changeBoardingGate">
+		<xs:sequence>
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" nillable="false" />
-			<xs:element name="gate" type="xs:string" minOccurs="1" />
+				minOccurs="0" />
+			<xs:element name="gate" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -273,17 +399,10 @@
 	</xs:complexType>
 
 	<xs:complexType name="cancelFlightInstance">
-		<xs:annotation>
-			<xs:documentation>
-				The flightID and departure date uniquely identify
-				the single flight instance that the user wants to delete.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" nillable="false" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" nillable="false" />
+				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -292,46 +411,28 @@
 	</xs:complexType>
 
 	<xs:complexType name="getBoardedPassengers">
-
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" nillable="false" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" nillable="false" />
-			<xs:element name="pageNumber" type="xs:int" minOccurs="1" />
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="flightID" type="xs:string" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getBoardedPassengersResponse">
-		<xs:annotation>
-			<xs:documentation>
-				The flightID and departure date uniquely identify
-				the single flight instance that the user wants to delete.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="lastPage" type="xs:boolean" minOccurs="1" />
-			<xs:element name="pageNumber" type="xs:int" minOccurs="1" />
 			<xs:element name="return" type="tns:passenger" minOccurs="0"
 				maxOccurs="unbounded" />
+			<xs:element name="lastPage" type="xs:boolean" />
+			<xs:element name="pageNumber" type="xs:int" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="changeDelay">
-		<xs:annotation>
-			<xs:documentation>
-				In order to change the value of the delay of a
-				flight instance is mandatory to specify the flight ID and the
-				departure date and the new delay value. Therefore all these three
-				elements are mandatory.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
-			<xs:element name="delay" type="xs:int" minOccurs="1" />
+				minOccurs="0" />
+			<xs:element name="delay" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -340,90 +441,52 @@
 	</xs:complexType>
 
 	<xs:complexType name="assignSeat">
-		<xs:annotation>
-			<xs:documentation>
-				A passenger is uniquely identify by her name. A
-				single passenger can be registered for many flight instances.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="passengerName" type="xs:string"
-				minOccurs="1" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+				minOccurs="0" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
+				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="assignSeatResponse">
 		<xs:sequence>
 			<xs:element name="return" type="tns:boardingInfo"
-				minOccurs="1" />
+				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="boardingInfo">
-		<xs:annotation>
-			<xs:documentation>
-				This type contains all the information about the
-				boarding of a single passenger on a flight instance.
-				Flight id,
-				departure date and passengerName are mandatory, because they
-				uniquely identify the passenger and the flight isntance on which she
-				has been registered.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="delay" type="xs:int" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+				minOccurs="0" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="gate" type="xs:string" minOccurs="0" />
 			<xs:element name="passengerName" type="xs:string"
-				minOccurs="1" />
-			<xs:element name="seat" type="tns:SeatType" minOccurs="1" />
+				minOccurs="0" />
+			<xs:element name="seat" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="SeatAlreadyAssigned">
-		<xs:annotation>
-			<xs:documentation>
-				This fault is sent when the specified passenger has
-				already received a seat on the specified flight instance.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="message" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="FullyBookedFlight">
-		<xs:annotation>
-			<xs:documentation>
-				This fault is sent when the flight instance, on
-				which the user had tried to receive a seat, is fully booked.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="message" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="startBoarding">
-		<xs:annotation>
-			<xs:documentation>
-				In order to start the boarding operations, the user
-				must specify the flight ID and the departure date which uniquely
-				identify a single flight instance.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
+				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -432,45 +495,24 @@
 	</xs:complexType>
 
 	<xs:complexType name="CancelledFlight">
-		<xs:annotation>
-			<xs:documentation>
-				This fault warns the user that the specified flight
-				instance has been cancelled.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="message" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="InvalidStatus">
-		<xs:annotation>
-			<xs:documentation>
-				This fault warns the user that the specified flight
-				instance is in an invalid status for the specified operation.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="message" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="registerPassenger">
-		<xs:annotation>
-			<xs:documentation>
-				In order to register a passenger the user must
-				specify the flight ID and departure date to uniquely identify the
-				flight instance and the passenger name which uniquely identifies a
-				single passenger.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="1" />
+			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="1" />
-			<xs:element name="passengerName" type="xs:normalizedString"
-				minOccurs="1" />
+				minOccurs="0" />
+			<xs:element name="passengerName" type="xs:string"
+				minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -479,31 +521,16 @@
 	</xs:complexType>
 
 	<xs:complexType name="NotBoarding">
-		<xs:annotation>
-			<xs:documentation>
-				This fault warns the user that the status of the
-				specified flight
-				instance is not boarding.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="message" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="PassengerAlreadyRegistered">
-		<xs:annotation>
-			<xs:documentation>
-				This fault warns the user that the specified
-				passenger has already been registered for the specified flight
-				instance.
-			</xs:documentation>
-		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="message" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
-
 
 	<xs:simpleType name="flightInstanceStatus">
 		<xs:restriction base="xs:string">
@@ -515,24 +542,5 @@
 			<xs:enumeration value="DEPARTED" />
 		</xs:restriction>
 	</xs:simpleType>
-
-	<xs:simpleType name="FlightIDType">
-		<xs:restriction base="xs:normalizedString">
-			<xs:pattern value="([A-Z][A-Z])([0-9]{0,4})" />
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="SeatType">
-		<xs:restriction base="xs:normalizedString">
-			<xs:pattern value="^[A-Z]{2}[0-9]{1,4}$" />
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="AirportType">
-		<xs:restriction base="xs:normalizedString">
-			<xs:pattern value="[A-Z]{3}"></xs:pattern>
-		</xs:restriction>
-	</xs:simpleType>
-
 </xs:schema>
 

@@ -3,7 +3,6 @@ package it.polito.dp2.FDS.sol4.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +31,6 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class GetFlight {
 
-    @XmlElement(required = true)
     protected String flightID;
 
     /**
