@@ -31,9 +31,9 @@ public interface Control {
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.AssignSeatResponse
      * @throws Monitor_Exception
+     * @throws SeatAlreadyAssigned_Exception
      * @throws UnknownFlightInstance_Exception
      * @throws FullyBookedFlight_Exception
-     * @throws SeatAlreadyAssigned_Exception
      */
     @WebMethod
     @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -54,10 +54,10 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.StartBoardingResponse
+     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
      * @throws CancelledFlight_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws InvalidArgument_Exception
      * @throws InvalidStatus_Exception
      */
     @WebMethod
@@ -80,11 +80,11 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.RegisterPassengerResponse
+     * @throws NotBoarding_Exception
+     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
      * @throws PassengerAlreadyRegistered_Exception
-     * @throws NotBoarding_Exception
-     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -106,9 +106,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetBoardedPassengersResponse
+     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getBoardedPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -128,9 +128,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.CancelFlightInstanceResponse
+     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "cancelFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -150,9 +150,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.ChangeBoardingGateResponse
+     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "changeBoardingGateResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -172,9 +172,9 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.ChangeDelayResponse
+     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
      * @throws UnknownFlightInstance_Exception
-     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "changeDelayResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")

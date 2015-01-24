@@ -20,63 +20,6 @@
 <soap:fault name="UnknownFlightInstance_Exception" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="getAircrafts">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="getFlight">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="UnknownFlight_Exception">
-<soap:fault name="UnknownFlight_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="getFlightInstances">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="getFlights">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-<fault name="InvalidArgument_Exception">
-<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
-</fault>
-<fault name="Monitor_Exception">
-<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
-</fault>
-</operation>
 <operation name="getPassengerByDepartureDate">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -216,6 +159,63 @@
 </fault>
 </operation>
 <operation name="getPassengers">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getAircrafts">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getFlight">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="InvalidArgument_Exception">
+<soap:fault name="InvalidArgument_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+<fault name="UnknownFlight_Exception">
+<soap:fault name="UnknownFlight_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getFlightInstances">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+<fault name="Monitor_Exception">
+<soap:fault name="Monitor_Exception" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getFlights">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="lastPage" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="return" type="{http://pad.polito.it/FDS}flight" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -30,12 +32,48 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getFlightsResponse", propOrder = {
+    "pageNumber",
+    "lastPage",
     "_return"
 })
 public class GetFlightsResponse {
 
+    protected int pageNumber;
+    protected boolean lastPage;
     @XmlElement(name = "return")
     protected List<Flight> _return;
+
+    /**
+     * Gets the value of the pageNumber property.
+     * 
+     */
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    /**
+     * Sets the value of the pageNumber property.
+     * 
+     */
+    public void setPageNumber(int value) {
+        this.pageNumber = value;
+    }
+
+    /**
+     * Gets the value of the lastPage property.
+     * 
+     */
+    public boolean isLastPage() {
+        return lastPage;
+    }
+
+    /**
+     * Sets the value of the lastPage property.
+     * 
+     */
+    public void setLastPage(boolean value) {
+        this.lastPage = value;
+    }
 
     /**
      * Gets the value of the return property.

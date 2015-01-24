@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -25,8 +26,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getFlights")
+@XmlType(name = "getFlights", propOrder = {
+    "pageNumber"
+})
 public class GetFlights {
 
+    protected int pageNumber;
+
+    /**
+     * Gets the value of the pageNumber property.
+     * 
+     */
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    /**
+     * Sets the value of the pageNumber property.
+     * 
+     */
+    public void setPageNumber(int value) {
+        this.pageNumber = value;
+    }
 
 }

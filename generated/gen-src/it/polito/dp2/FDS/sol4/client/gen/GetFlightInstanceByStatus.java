@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="status" type="{http://pad.polito.it/FDS}flightInstanceStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -27,11 +28,29 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getFlightInstanceByStatus", propOrder = {
+    "pageNumber",
     "status"
 })
 public class GetFlightInstanceByStatus {
 
+    protected int pageNumber;
     protected FlightInstanceStatus status;
+
+    /**
+     * Gets the value of the pageNumber property.
+     * 
+     */
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    /**
+     * Sets the value of the pageNumber property.
+     * 
+     */
+    public void setPageNumber(int value) {
+        this.pageNumber = value;
+    }
 
     /**
      * Gets the value of the status property.

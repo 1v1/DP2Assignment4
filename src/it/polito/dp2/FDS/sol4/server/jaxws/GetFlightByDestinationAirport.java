@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="destinationAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -27,11 +28,29 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getFlightByDestinationAirport", propOrder = {
+    "pageNumber",
     "destinationAirport"
 })
 public class GetFlightByDestinationAirport {
 
+    protected int pageNumber;
     protected String destinationAirport;
+
+    /**
+     * Gets the value of the pageNumber property.
+     * 
+     */
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    /**
+     * Sets the value of the pageNumber property.
+     * 
+     */
+    public void setPageNumber(int value) {
+        this.pageNumber = value;
+    }
 
     /**
      * Gets the value of the destinationAirport property.

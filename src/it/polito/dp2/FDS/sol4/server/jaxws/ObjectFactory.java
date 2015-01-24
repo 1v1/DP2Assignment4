@@ -50,10 +50,8 @@ public class ObjectFactory {
     private final static QName _Monitor_QNAME = new QName("http://pad.polito.it/FDS", "Monitor");
     private final static QName _StartBoarding_QNAME = new QName("http://pad.polito.it/FDS", "startBoarding");
     private final static QName _GetFlightInstance_QNAME = new QName("http://pad.polito.it/FDS", "getFlightInstance");
-    private final static QName _GetFlightByFlightID_QNAME = new QName("http://pad.polito.it/FDS", "getFlightByFlightID");
     private final static QName _RegisterPassengerResponse_QNAME = new QName("http://pad.polito.it/FDS", "registerPassengerResponse");
     private final static QName _GetFlight_QNAME = new QName("http://pad.polito.it/FDS", "getFlight");
-    private final static QName _GetFlightByFlightIDResponse_QNAME = new QName("http://pad.polito.it/FDS", "getFlightByFlightIDResponse");
     private final static QName _GetFlightInstanceResponse_QNAME = new QName("http://pad.polito.it/FDS", "getFlightInstanceResponse");
     private final static QName _GetFlightInstanceByDepartureDate_QNAME = new QName("http://pad.polito.it/FDS", "getFlightInstanceByDepartureDate");
     private final static QName _CancelFlightInstanceResponse_QNAME = new QName("http://pad.polito.it/FDS", "cancelFlightInstanceResponse");
@@ -68,8 +66,8 @@ public class ObjectFactory {
     private final static QName _GetFlights_QNAME = new QName("http://pad.polito.it/FDS", "getFlights");
     private final static QName _GetFlightInstancesResponse_QNAME = new QName("http://pad.polito.it/FDS", "getFlightInstancesResponse");
     private final static QName _GetFlightInstanceByDepartureDateResponse_QNAME = new QName("http://pad.polito.it/FDS", "getFlightInstanceByDepartureDateResponse");
-    private final static QName _GetBoardedPassengersResponse_QNAME = new QName("http://pad.polito.it/FDS", "getBoardedPassengersResponse");
     private final static QName _GetBoardedPassengers_QNAME = new QName("http://pad.polito.it/FDS", "getBoardedPassengers");
+    private final static QName _GetBoardedPassengersResponse_QNAME = new QName("http://pad.polito.it/FDS", "getBoardedPassengersResponse");
     private final static QName _UnknownFlightInstance_QNAME = new QName("http://pad.polito.it/FDS", "UnknownFlightInstance");
     private final static QName _GetFlightInstanceByStatusResponse_QNAME = new QName("http://pad.polito.it/FDS", "getFlightInstanceByStatusResponse");
     private final static QName _GetPassengers_QNAME = new QName("http://pad.polito.it/FDS", "getPassengers");
@@ -159,19 +157,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetBoardedPassengersResponse }
-     * 
-     */
-    public GetBoardedPassengersResponse createGetBoardedPassengersResponse() {
-        return new GetBoardedPassengersResponse();
-    }
-
-    /**
      * Create an instance of {@link GetBoardedPassengers }
      * 
      */
     public GetBoardedPassengers createGetBoardedPassengers() {
         return new GetBoardedPassengers();
+    }
+
+    /**
+     * Create an instance of {@link GetBoardedPassengersResponse }
+     * 
+     */
+    public GetBoardedPassengersResponse createGetBoardedPassengersResponse() {
+        return new GetBoardedPassengersResponse();
     }
 
     /**
@@ -271,14 +269,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetFlightByFlightIDResponse }
-     * 
-     */
-    public GetFlightByFlightIDResponse createGetFlightByFlightIDResponse() {
-        return new GetFlightByFlightIDResponse();
-    }
-
-    /**
      * Create an instance of {@link GetFlight }
      * 
      */
@@ -292,14 +282,6 @@ public class ObjectFactory {
      */
     public GetFlightInstanceResponse createGetFlightInstanceResponse() {
         return new GetFlightInstanceResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetFlightByFlightID }
-     * 
-     */
-    public GetFlightByFlightID createGetFlightByFlightID() {
-        return new GetFlightByFlightID();
     }
 
     /**
@@ -801,15 +783,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFlightByFlightID }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "getFlightByFlightID")
-    public JAXBElement<GetFlightByFlightID> createGetFlightByFlightID(GetFlightByFlightID value) {
-        return new JAXBElement<GetFlightByFlightID>(_GetFlightByFlightID_QNAME, GetFlightByFlightID.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RegisterPassengerResponse }{@code >}}
      * 
      */
@@ -825,15 +798,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "getFlight")
     public JAXBElement<GetFlight> createGetFlight(GetFlight value) {
         return new JAXBElement<GetFlight>(_GetFlight_QNAME, GetFlight.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFlightByFlightIDResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "getFlightByFlightIDResponse")
-    public JAXBElement<GetFlightByFlightIDResponse> createGetFlightByFlightIDResponse(GetFlightByFlightIDResponse value) {
-        return new JAXBElement<GetFlightByFlightIDResponse>(_GetFlightByFlightIDResponse_QNAME, GetFlightByFlightIDResponse.class, null, value);
     }
 
     /**
@@ -963,21 +927,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBoardedPassengersResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "getBoardedPassengersResponse")
-    public JAXBElement<GetBoardedPassengersResponse> createGetBoardedPassengersResponse(GetBoardedPassengersResponse value) {
-        return new JAXBElement<GetBoardedPassengersResponse>(_GetBoardedPassengersResponse_QNAME, GetBoardedPassengersResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBoardedPassengers }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "getBoardedPassengers")
     public JAXBElement<GetBoardedPassengers> createGetBoardedPassengers(GetBoardedPassengers value) {
         return new JAXBElement<GetBoardedPassengers>(_GetBoardedPassengers_QNAME, GetBoardedPassengers.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBoardedPassengersResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://pad.polito.it/FDS", name = "getBoardedPassengersResponse")
+    public JAXBElement<GetBoardedPassengersResponse> createGetBoardedPassengersResponse(GetBoardedPassengersResponse value) {
+        return new JAXBElement<GetBoardedPassengersResponse>(_GetBoardedPassengersResponse_QNAME, GetBoardedPassengersResponse.class, null, value);
     }
 
     /**

@@ -18,6 +18,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -29,12 +30,30 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getFlightInstanceByDepartureDate", propOrder = {
+    "pageNumber",
     "departureDate"
 })
 public class GetFlightInstanceByDepartureDate {
 
+    protected int pageNumber;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
+
+    /**
+     * Gets the value of the pageNumber property.
+     * 
+     */
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    /**
+     * Sets the value of the pageNumber property.
+     * 
+     */
+    public void setPageNumber(int value) {
+        this.pageNumber = value;
+    }
 
     /**
      * Gets the value of the departureDate property.

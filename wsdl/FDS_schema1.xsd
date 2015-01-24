@@ -25,10 +25,6 @@
 	<xs:element name="getFlightByDestinationAirportResponse"
 		type="tns:getFlightByDestinationAirportResponse" />
 
-	<xs:element name="getFlightByFlightID" type="tns:getFlightByFlightID" />
-
-	<xs:element name="getFlightByFlightIDResponse" type="tns:getFlightByFlightIDResponse" />
-
 	<xs:element name="getFlightInstance" type="tns:getFlightInstance" />
 
 	<xs:element name="getFlightInstanceByDepartureDate" type="tns:getFlightInstanceByDepartureDate" />
@@ -113,19 +109,6 @@
 
 	<xs:element name="startBoardingResponse" type="tns:startBoardingResponse" />
 
-	<xs:complexType name="getFlightByFlightID">
-		<xs:sequence>
-			<xs:element name="flightID" type="xs:string" minOccurs="0" />
-		</xs:sequence>
-	</xs:complexType>
-
-	<xs:complexType name="getFlightByFlightIDResponse">
-		<xs:sequence>
-			<xs:element name="return" type="tns:flight" minOccurs="0"
-				maxOccurs="unbounded" />
-		</xs:sequence>
-	</xs:complexType>
-
 	<xs:complexType name="flight">
 		<xs:sequence>
 			<xs:element name="departureAirport" type="xs:string"
@@ -164,11 +147,15 @@
 	</xs:complexType>
 
 	<xs:complexType name="getAircrafts">
-		<xs:sequence />
+		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getAircraftsResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:aircraftType"
 				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
@@ -184,12 +171,15 @@
 
 	<xs:complexType name="getPassengerByPrefix">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="prefix" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getPassengerByPrefixResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:passenger" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>
@@ -214,6 +204,7 @@
 
 	<xs:complexType name="getPassengers">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="flightID" type="xs:string" />
 			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
@@ -221,17 +212,23 @@
 
 	<xs:complexType name="getPassengersResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:passenger" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightInstances">
-		<xs:sequence />
+		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightInstancesResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flightInstance"
 				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
@@ -268,6 +265,7 @@
 
 	<xs:complexType name="getFlightByDestinationAirport">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="destinationAirport" type="xs:string"
 				minOccurs="0" />
 		</xs:sequence>
@@ -275,6 +273,8 @@
 
 	<xs:complexType name="getFlightByDestinationAirportResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flight" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>
@@ -282,6 +282,7 @@
 
 	<xs:complexType name="getFlightInstanceByDepartureDate">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="departureDate" type="xs:dateTime"
 				minOccurs="0" />
 		</xs:sequence>
@@ -289,6 +290,8 @@
 
 	<xs:complexType name="getFlightInstanceByDepartureDateResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flightInstance"
 				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
@@ -296,12 +299,15 @@
 
 	<xs:complexType name="getFlightInstancesByFlightID">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightInstancesByFlightIDResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flightInstance"
 				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
@@ -309,12 +315,15 @@
 
 	<xs:complexType name="getPassengerByFlightID">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="flightID" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getPassengerByFlightIDResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:passenger" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>
@@ -322,6 +331,7 @@
 
 	<xs:complexType name="getFlightInstanceByStatus">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="status" type="tns:flightInstanceStatus"
 				minOccurs="0" />
 		</xs:sequence>
@@ -329,6 +339,8 @@
 
 	<xs:complexType name="getFlightInstanceByStatusResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flightInstance"
 				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
@@ -336,6 +348,7 @@
 
 	<xs:complexType name="getPassengerByDepartureDate">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="departureDate" type="xs:dateTime"
 				minOccurs="0" />
 		</xs:sequence>
@@ -343,17 +356,24 @@
 
 	<xs:complexType name="getPassengerByDepartureDateResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:passenger" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlights">
-		<xs:sequence />
+		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+		</xs:sequence>
+
 	</xs:complexType>
 
 	<xs:complexType name="getFlightsResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flight" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>
@@ -373,6 +393,7 @@
 
 	<xs:complexType name="getFlightByDepartureAirport">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
 			<xs:element name="departureAirport" type="xs:string"
 				minOccurs="0" />
 		</xs:sequence>
@@ -380,6 +401,8 @@
 
 	<xs:complexType name="getFlightByDepartureAirportResponse">
 		<xs:sequence>
+			<xs:element name="pageNumber" type="xs:int" />
+			<xs:element name="lastPage" type="xs:boolean" />
 			<xs:element name="return" type="tns:flight" minOccurs="0"
 				maxOccurs="unbounded" />
 		</xs:sequence>

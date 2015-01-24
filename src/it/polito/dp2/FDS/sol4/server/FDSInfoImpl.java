@@ -1,4 +1,5 @@
 package it.polito.dp2.FDS.sol4.server;
+import it.polito.dp2.FDS.sol4.server.jaxws.AircraftType;
 import it.polito.dp2.FDS.sol4.server.jaxws.Flight;
 import it.polito.dp2.FDS.sol4.server.jaxws.FlightInstance;
 import it.polito.dp2.FDS.sol4.server.jaxws.GetAircrafts;
@@ -55,6 +56,7 @@ endpointInterface="it.polito.dp2.FDS.sol4.server.jaxws.Info")
 public class FDSInfoImpl implements Info {
 
 	private static DataManager manager;
+	private static final Integer MAX_ENTRIES_PER_PAGE = 10;
 
 	//	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
 
@@ -126,7 +128,31 @@ public class FDSInfoImpl implements Info {
 	public GetAircraftsResponse getAircrafts(GetAircrafts parameters)
 	{
 		GetAircraftsResponse res = new GetAircraftsResponse();
-		res.getReturn().addAll(manager.getAircrafts());
+		int total = 0;
+		int pageNumber = parameters.getPageNumber();
+		int entriesPerPage = 0;
+		int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
+		for (AircraftType a:manager.getAircrafts())
+		{
+			total++;
+			if ( total > pageBeginning )
+			{
+				entriesPerPage++;
+				res.getReturn().add(a);
+				if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+				{
+					res.setPageNumber(pageNumber);
+					if (total == manager.getAircrafts().size())
+						res.setLastPage(true);
+					else
+						res.setLastPage(false);
+					return res;
+				}
+			}
+		}
+
+		res.setLastPage(true);
+		res.setPageNumber(pageNumber);
 		return res;
 	}
 
@@ -167,19 +193,38 @@ public class FDSInfoImpl implements Info {
 		GetFlightsResponse res = new GetFlightsResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<String, Flight> entry:manager.getFlightsMap().entrySet())
 			{
-				// This is one of the requested flights
-				res.getReturn().add(entry.getValue());
+				total++;
+				if (total > pageBeginning)
+				{
+					entriesPerPage++;
+					res.getReturn().add(entry.getValue());
+					if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+					{
+						res.setPageNumber(pageNumber);
+						if (total == manager.getFlightsMap().entrySet().size())
+							res.setLastPage(true);
+						else
+							res.setLastPage(false);
+						return res;
+					}
+				}
 			}
+			res.setPageNumber(pageNumber);
+			res.setLastPage(true);
+			return res;
+
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-
-		return res;
 	}
 
 	@Override
@@ -189,17 +234,39 @@ public class FDSInfoImpl implements Info {
 	{
 		GetFlightByDepartureAirportResponse res = new GetFlightByDepartureAirportResponse();
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<String, Flight> entry:manager.getFlightsMap().entrySet())
 				if ( entry.getValue().getDepartureAirport().equals(parameters.getDepartureAirport()) ) 
 					// This is one of the requested flights
-					res.getReturn().add(entry.getValue());
+				{
+					total++;
+					if (total > pageBeginning)
+					{
+						++entriesPerPage;
+						res.getReturn().add(entry.getValue());
+						if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+						{
+							res.setPageNumber(pageNumber);
+							if (total == manager.getFlightsMap().entrySet().size())
+								res.setLastPage(true);
+							else
+								res.setLastPage(false);
+							return res;
+						}
+					}
+				}
+			res.setLastPage(true);
+			res.setPageNumber(pageNumber);
+			return res;
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-		return res;
 	}
 
 	@Override
@@ -208,17 +275,39 @@ public class FDSInfoImpl implements Info {
 					throws InvalidArgument_Exception, Monitor_Exception {
 		GetFlightByDestinationAirportResponse res = new GetFlightByDestinationAirportResponse();
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<String, Flight> entry:manager.getFlightsMap().entrySet())
 				if ( entry.getValue().getDestinationAirport().equals(parameters.getDestinationAirport()) ) 
 					// This is one of the requested flights
-					res.getReturn().add(entry.getValue());
+				{
+					total++;
+					if (total > pageBeginning)
+					{
+						entriesPerPage++;
+						res.getReturn().add(entry.getValue());
+						if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+						{
+							res.setPageNumber(pageNumber);
+							if (total == manager.getFlightsMap().entrySet().size())
+								res.setLastPage(true);
+							else
+								res.setLastPage(false);
+							return res;
+						}
+					}
+				}
+			res.setLastPage(true);
+			res.setPageNumber(pageNumber);
+			return res;
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-		return res;
 	}
 
 	@Override
@@ -259,17 +348,37 @@ public class FDSInfoImpl implements Info {
 
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<FlightInstanceKey, FlightInstance> entry:manager.getflightInstancesMap().entrySet())
-				res.getReturn().add(entry.getValue());
+			{
+				total++;
+				if (total > pageBeginning)
+				{
+					entriesPerPage++;
+					res.getReturn().add(entry.getValue());
+					if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+					{
+						res.setPageNumber(pageNumber);
+						if (total == manager.getflightInstancesMap().entrySet().size())
+							res.setLastPage(true);
+						else
+							res.setLastPage(false);
+						return res;
+					}
+				}
+			}
+			res.setLastPage(true);
+			res.setPageNumber(pageNumber);
+			return res;
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-
-
-		return res;
 	}
 
 	@Override
@@ -280,16 +389,38 @@ public class FDSInfoImpl implements Info {
 		GetFlightInstancesByFlightIDResponse res = new GetFlightInstancesByFlightIDResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<FlightInstanceKey, FlightInstance> entry:manager.getflightInstancesMap().entrySet())
 				if (entry.getValue().getFlightID().equals(parameters.getFlightID()))
-					res.getReturn().add(entry.getValue());
+				{
+					total++;
+					if (total > pageBeginning)
+					{
+						entriesPerPage++;
+						res.getReturn().add(entry.getValue());
+						if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+						{
+							res.setPageNumber(pageNumber);
+							if (total == manager.getflightInstancesMap().entrySet().size())
+								res.setLastPage(true);
+							else
+								res.setLastPage(false);
+							return res;
+						}
+					}
+				}
+			res.setLastPage(true);
+			res.setPageNumber(pageNumber);
+			return res;
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-		return res;
 	}
 
 	@Override
@@ -300,16 +431,38 @@ public class FDSInfoImpl implements Info {
 		GetFlightInstanceByStatusResponse res = new GetFlightInstanceByStatusResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<FlightInstanceKey, FlightInstance> entry:manager.getflightInstancesMap().entrySet())
 				if (entry.getValue().getStatus() == parameters.getStatus())
-					res.getReturn().add(entry.getValue());
+				{
+					total++;
+					if (total > pageBeginning)
+					{
+						entriesPerPage++;
+						res.getReturn().add(entry.getValue());
+						if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+						{
+							res.setPageNumber(pageNumber);
+							if (total == manager.getflightInstancesMap().entrySet().size())
+								res.setLastPage(true);
+							else
+								res.setLastPage(false);
+							return res;
+						}
+					}
+				}
+			res.setLastPage(true);
+			res.setPageNumber(pageNumber);
+			return res;
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-		return res;
 	}
 
 	@Override
@@ -320,16 +473,38 @@ public class FDSInfoImpl implements Info {
 		GetFlightInstanceByDepartureDateResponse res = new GetFlightInstanceByDepartureDateResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for (Map.Entry<FlightInstanceKey, FlightInstance> entry:manager.getflightInstancesMap().entrySet())
 				if (isEqual(entry.getValue().getDate(), parameters.getDepartureDate()))
-					res.getReturn().add(entry.getValue());
+				{
+					total++;
+					if (total > pageBeginning)
+					{
+						entriesPerPage++;
+						res.getReturn().add(entry.getValue());
+						if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+						{
+							res.setPageNumber(pageNumber);
+							if (total == manager.getflightInstancesMap().entrySet().size())
+								res.setLastPage(true);
+							else
+								res.setLastPage(false);
+							return res;
+						}
+					}
+				}
+			res.setLastPage(true);
+			res.setPageNumber(pageNumber);
+			return res;
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
 			mon.setMessage("Error during lazy initialization");
 			throw new Monitor_Exception("Error during lazy initialization", mon);
 		}
-		return res;
 	}
 
 	@Override
@@ -340,10 +515,33 @@ public class FDSInfoImpl implements Info {
 		FlightInstanceKey key = new FlightInstanceKey(parameters.getFlightID(), parameters.getDepartureDate());
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			if (manager.containsKeyFplist_map(key))
 			{
 				GetPassengersResponse res = new GetPassengersResponse();
-				res.getReturn().addAll(manager.getPassengerList(key));
+				for (Passenger p:manager.getPassengerList(key))
+				{
+					total++;
+					if (total > pageBeginning)
+					{
+						entriesPerPage++;
+						res.getReturn().add(p);
+						if (entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+						{
+							res.setPageNumber(pageNumber);
+							if (total == manager.getPassengerList(key).size())
+								res.setLastPage(true);
+							else
+								res.setLastPage(false);
+							return res;
+						}
+					}
+				}
+				res.setLastPage(true);
+				res.setPageNumber(pageNumber);
 				return res;
 			}else
 			{
@@ -368,12 +566,35 @@ public class FDSInfoImpl implements Info {
 		GetPassengerByFlightIDResponse res = new GetPassengerByFlightIDResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for(Map.Entry<FlightInstanceKey, CopyOnWriteArrayList<Passenger>> entry:manager.getFplist_map().entrySet())
 			{
 				if (entry.getValue().get(0).getFlightID().equals(parameters.getFlightID()))
 				{
-					res.getReturn().addAll(entry.getValue());
-					break;
+					for (Passenger p:entry.getValue())
+					{
+						total++;
+						if (total > pageBeginning)
+						{
+							entriesPerPage++;
+							res.getReturn().add(p);
+							if ( entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+							{
+								res.setPageNumber(pageNumber);
+								if (total == entry.getValue().size())
+									res.setLastPage(true);
+								else
+									res.setLastPage(false);
+								return res;
+							}
+						}
+					}
+					res.setLastPage(true);
+					res.setPageNumber(pageNumber);
+					return res;
 				}
 			}
 		} catch (DataManagerException e) {
@@ -392,12 +613,35 @@ public class FDSInfoImpl implements Info {
 		GetPassengerByPrefixResponse res = new GetPassengerByPrefixResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for(Map.Entry<FlightInstanceKey, CopyOnWriteArrayList<Passenger>> entry:manager.getFplist_map().entrySet())
 			{
 				if (entry.getValue().get(0).getName().startsWith(parameters.getPrefix()))
 				{
-					res.getReturn().addAll(entry.getValue());
-					break;
+					for (Passenger p:entry.getValue())
+					{
+						total++;
+						if (total > pageBeginning)
+						{
+							entriesPerPage++;
+							res.getReturn().add(p);
+							if ( entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+							{
+								res.setPageNumber(pageNumber);
+								if (total == entry.getValue().size())
+									res.setLastPage(true);
+								else
+									res.setLastPage(false);
+								return res;
+							}
+						}
+					}
+					res.setLastPage(true);
+					res.setPageNumber(pageNumber);
+					return res;
 				}
 			}
 		} catch (DataManagerException e) {
@@ -417,12 +661,35 @@ public class FDSInfoImpl implements Info {
 		GetPassengerByDepartureDateResponse res = new GetPassengerByDepartureDateResponse();
 
 		try {
+			int total = 0;
+			int pageNumber = parameters.getPageNumber();
+			int entriesPerPage = 0;
+			int pageBeginning = pageNumber * FDSInfoImpl.MAX_ENTRIES_PER_PAGE;
 			for(Map.Entry<FlightInstanceKey, CopyOnWriteArrayList<Passenger>> entry:manager.getFplist_map().entrySet())
 			{
 				if (isEqual(entry.getValue().get(0).getDepartureDate(), parameters.getDepartureDate()))
 				{
-					res.getReturn().addAll(entry.getValue());
-					break;
+					for (Passenger p:entry.getValue())
+					{
+						total++;
+						if (total > pageBeginning)
+						{
+							entriesPerPage++;
+							res.getReturn().add(p);
+							if ( entriesPerPage == FDSInfoImpl.MAX_ENTRIES_PER_PAGE)
+							{
+								res.setPageNumber(pageNumber);
+								if (total == entry.getValue().size())
+									res.setLastPage(true);
+								else
+									res.setLastPage(false);
+								return res;
+							}
+						}
+					}
+					res.setLastPage(true);
+					res.setPageNumber(pageNumber);
+					return res;
 				}
 			}
 		} catch (DataManagerException e) {
