@@ -58,9 +58,9 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetPassengersResponse
+     * @throws MonitorException
      * @throws UnknownFlightInstanceException
      * @throws InvalidArgumentException
-     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "getPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -105,9 +105,9 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetFlightInstanceResponse
-     * @throws InvalidArgumentException
-     * @throws UnknownFlightInstanceException
      * @throws MonitorException
+     * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
      */
     @WebMethod
     @WebResult(name = "getFlightInstanceResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -195,9 +195,9 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetFlightResponse
+     * @throws MonitorException
      * @throws InvalidArgumentException
      * @throws UnknownFlightException
-     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "getFlightResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -242,9 +242,9 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetFlightInstancesResponse
+     * @throws MonitorException
      * @throws InvalidArgumentException
      * @throws UnknownFlightException
-     * @throws MonitorException
      */
     @WebMethod
     @WebResult(name = "getFlightInstancesResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -289,8 +289,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetFlightsResponse
-     * @throws InvalidArgumentException
      * @throws MonitorException
+     * @throws InvalidArgumentException
      */
     @WebMethod
     @WebResult(name = "getFlightsResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")

@@ -39,14 +39,14 @@ endpointInterface="it.polito.dp2.FDS.sol4.server.jaxws.Info")
 public class FDSInfoImpl implements Info {
 
 	private static DataManager manager;
-	
+
 	private static final String FLIGHTID_PATTERN = "^[A-Z]{2}[0-9]{1,4}$";
 
-//	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
+	//	private static Logger logger = Logger.getLogger(FDSControlImpl.class.getName());
 
 	public FDSInfoImpl ()
 	{
-//		logger.entering(logger.getName(), "FDSInfoImpl()");
+		//		logger.entering(logger.getName(), "FDSInfoImpl()");
 		FDSInfoImpl.manager = DataManager.getInstance();
 	}
 
@@ -66,7 +66,7 @@ public class FDSInfoImpl implements Info {
 				}
 			}else
 			{
-//				logger.warning("The requested flight number is not present in our database");
+				//				logger.warning("The requested flight number is not present in our database");
 				UnknownFlight unkFli = new UnknownFlight();
 				unkFli.setMessage("The requested flight number is not present in our database");
 				throw new UnknownFlight_Exception("The requested flight number is not present in our database", unkFli);
@@ -93,7 +93,15 @@ public class FDSInfoImpl implements Info {
 			startTime.setHour(parameters.getDepartureTime().getValue().getHour());
 			startTime.setMinute(parameters.getDepartureTime().getValue().getMinute());
 		}
-			
+
+		if ( (parameters.getDepartureAirport() != null) && (parameters.getDestinationAirport()!=null) &&
+				(parameters.getDepartureAirport().equals(parameters.getDestinationAirport())) )
+		{
+			InvalidArgument invArg = new InvalidArgument();
+			invArg.setMessage("The departure airport can not be equal to destination airport");
+			throw new InvalidArgument_Exception("Destination airport and departure airport are equal", invArg);
+		}
+
 		GetFlightsResponse res = new GetFlightsResponse();
 
 		try {
@@ -136,11 +144,11 @@ public class FDSInfoImpl implements Info {
 				{
 					res.setReturn(f);
 				}
-//				logger.fine("Flight instance returned");
+				//				logger.fine("Flight instance returned");
 				return res;
 			}else
 			{
-//				logger.warning("The specified flight instance does not exist");
+				//				logger.warning("The specified flight instance does not exist");
 				UnknownFlightInstance unkFli = new UnknownFlightInstance();
 				unkFli.setMessage("The specified flight instance does not exist");
 				throw new UnknownFlightInstance_Exception("The specified flight instance does not exist", unkFli);
@@ -160,7 +168,7 @@ public class FDSInfoImpl implements Info {
 	{
 		if ( (!parameters.getFlightID().matches(FLIGHTID_PATTERN) ) && (parameters.getFlightID() != null) )
 		{
-//			logger.warning("The requested flight number is not valid");
+			//			logger.warning("The requested flight number is not valid");
 			InvalidArgument unkFli = new InvalidArgument();
 			unkFli.setMessage("The requested flight number is not valid");
 			throw new InvalidArgument_Exception("The requested flight number is not valid", unkFli);
@@ -168,7 +176,7 @@ public class FDSInfoImpl implements Info {
 
 		if ( (! isStatusValid(parameters.getFlightStatus())) && ( parameters.getFlightStatus() != null ) )
 		{
-//			logger.warning("The requested flight status is not valid");
+			//			logger.warning("The requested flight status is not valid");
 			InvalidArgument unkFli = new InvalidArgument();
 			unkFli.setMessage("The requested flight status is not valid");
 			throw new InvalidArgument_Exception("The requested flight status is not valid", unkFli);
@@ -181,12 +189,12 @@ public class FDSInfoImpl implements Info {
 				if ( ( (parameters.getFlightStatus() == null) ||
 						(f.getStatus().equals(parameters.getFlightStatus())) ) &&
 						((parameters.getDepartureDate() == null ) ||
-						( isBefore(f.getDate(), parameters.getDepartureDate()) ) ) &&
-						((parameters.getFlightID() == null) ||
-						 (f.getFlightID().equals(parameters.getFlightID()))) )
+								( isBefore(f.getDate(), parameters.getDepartureDate()) ) ) &&
+								((parameters.getFlightID() == null) ||
+										(f.getFlightID().equals(parameters.getFlightID()))) )
 
 					res.getReturn().add(f);
-//			logger.info("Flight instances returned!");
+			//			logger.info("Flight instances returned!");
 		} catch (DataManagerException e) {
 			e.printStackTrace();
 			Monitor mon = new Monitor();
@@ -211,7 +219,7 @@ public class FDSInfoImpl implements Info {
 				return res;
 			}else
 			{
-//				logger.warning("The requested flight number is not in our database");
+				//				logger.warning("The requested flight number is not in our database");
 				UnknownFlightInstance unkFli = new UnknownFlightInstance();
 				unkFli.setMessage("The requested flight number is not in our database");
 				throw new UnknownFlightInstance_Exception("The requested flight number is not in our database", unkFli);
@@ -262,23 +270,23 @@ public class FDSInfoImpl implements Info {
 				return true;
 		return false;
 	}
-	
+
 	private boolean isBefore(XMLGregorianCalendar flightDate, XMLGregorianCalendar wantedDate)
 	{
-//		GregorianCalendar flightDate_gc = flightDate.toGregorianCalendar();
-//		GregorianCalendar wantedDate_gc = wantedDate.toGregorianCalendar();
-//		
-//		flightDate_gc.set(Calendar.HOUR, 0);
-//		flightDate_gc.set(Calendar.MINUTE, 0);
-//		flightDate_gc.set(Calendar.SECOND, 0);
-//		flightDate_gc.set(Calendar.MILLISECOND, 0);
-//		wantedDate_gc.set(Calendar.HOUR, 0);
-//		wantedDate_gc.set(Calendar.MINUTE, 0);
-//		wantedDate_gc.set(Calendar.SECOND, 0);
-//		wantedDate_gc.set(Calendar.MILLISECOND, 0);
-//		
-//		return !wantedDate_gc.after(flightDate_gc);
-		
+		//		GregorianCalendar flightDate_gc = flightDate.toGregorianCalendar();
+		//		GregorianCalendar wantedDate_gc = wantedDate.toGregorianCalendar();
+		//		
+		//		flightDate_gc.set(Calendar.HOUR, 0);
+		//		flightDate_gc.set(Calendar.MINUTE, 0);
+		//		flightDate_gc.set(Calendar.SECOND, 0);
+		//		flightDate_gc.set(Calendar.MILLISECOND, 0);
+		//		wantedDate_gc.set(Calendar.HOUR, 0);
+		//		wantedDate_gc.set(Calendar.MINUTE, 0);
+		//		wantedDate_gc.set(Calendar.SECOND, 0);
+		//		wantedDate_gc.set(Calendar.MILLISECOND, 0);
+		//		
+		//		return !wantedDate_gc.after(flightDate_gc);
+
 		if (flightDate.getYear() > wantedDate.getYear())
 			return true;
 		if(flightDate.getYear() == wantedDate.getYear())
