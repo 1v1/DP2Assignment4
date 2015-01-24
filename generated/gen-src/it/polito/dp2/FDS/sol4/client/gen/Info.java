@@ -32,53 +32,6 @@ public interface Info {
      * 
      * @param parameters
      * @return
-     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.GetPassengersResponse>
-     */
-    @WebMethod(operationName = "getPassengers")
-    public Response<GetPassengersResponse> getPassengersAsync(
-        @WebParam(name = "getPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-        GetPassengers parameters);
-
-    /**
-     * 
-     * @param asyncHandler
-     * @param parameters
-     * @return
-     *     returns java.util.concurrent.Future<? extends java.lang.Object>
-     */
-    @WebMethod(operationName = "getPassengers")
-    public Future<?> getPassengersAsync(
-        @WebParam(name = "getPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-        GetPassengers parameters,
-        @WebParam(name = "getPassengersResponse", targetNamespace = "", partName = "asyncHandler")
-        AsyncHandler<GetPassengersResponse> asyncHandler);
-
-    /**
-     * 
-     * @param parameters
-     * @return
-     *     returns it.polito.dp2.FDS.sol4.client.gen.GetPassengersResponse
-     * @throws MonitorException
-     * @throws UnknownFlightInstanceException
-     * @throws InvalidArgumentException
-     */
-    @WebMethod
-    @WebResult(name = "getPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-    @Action(input = "http://pad.polito.it/FDSInfo/Info/getPassengersRequest", output = "http://pad.polito.it/FDSInfo/Info/getPassengersResponse", fault = {
-        @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/InvalidArgument"),
-        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/Monitor"),
-        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/UnknownFlightInstance")
-    })
-    public GetPassengersResponse getPassengers(
-        @WebParam(name = "getPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-        GetPassengers parameters)
-        throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
-    ;
-
-    /**
-     * 
-     * @param parameters
-     * @return
      *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.GetFlightInstanceResponse>
      */
     @WebMethod(operationName = "getFlightInstance")
@@ -119,6 +72,53 @@ public interface Info {
     public GetFlightInstanceResponse getFlightInstance(
         @WebParam(name = "getFlightInstance", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         GetFlightInstance parameters)
+        throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
+    ;
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.GetPassengersResponse>
+     */
+    @WebMethod(operationName = "getPassengers")
+    public Response<GetPassengersResponse> getPassengersAsync(
+        @WebParam(name = "getPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+        GetPassengers parameters);
+
+    /**
+     * 
+     * @param asyncHandler
+     * @param parameters
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getPassengers")
+    public Future<?> getPassengersAsync(
+        @WebParam(name = "getPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+        GetPassengers parameters,
+        @WebParam(name = "getPassengersResponse", targetNamespace = "", partName = "asyncHandler")
+        AsyncHandler<GetPassengersResponse> asyncHandler);
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns it.polito.dp2.FDS.sol4.client.gen.GetPassengersResponse
+     * @throws MonitorException
+     * @throws UnknownFlightInstanceException
+     * @throws InvalidArgumentException
+     */
+    @WebMethod
+    @WebResult(name = "getPassengersResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+    @Action(input = "http://pad.polito.it/FDSInfo/Info/getPassengersRequest", output = "http://pad.polito.it/FDSInfo/Info/getPassengersResponse", fault = {
+        @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/InvalidArgument"),
+        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/Monitor"),
+        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSInfo/Info/getPassengers/Fault/UnknownFlightInstance")
+    })
+    public GetPassengersResponse getPassengers(
+        @WebParam(name = "getPassengers", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+        GetPassengers parameters)
         throws InvalidArgumentException, MonitorException, UnknownFlightInstanceException
     ;
 

@@ -32,57 +32,6 @@ public interface Control {
      * 
      * @param parameters
      * @return
-     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse>
-     */
-    @WebMethod(operationName = "startBoarding")
-    public Response<StartBoardingResponse> startBoardingAsync(
-        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-        StartBoarding parameters);
-
-    /**
-     * 
-     * @param asyncHandler
-     * @param parameters
-     * @return
-     *     returns java.util.concurrent.Future<? extends java.lang.Object>
-     */
-    @WebMethod(operationName = "startBoarding")
-    public Future<?> startBoardingAsync(
-        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-        StartBoarding parameters,
-        @WebParam(name = "startBoardingResponse", targetNamespace = "", partName = "asyncHandler")
-        AsyncHandler<StartBoardingResponse> asyncHandler);
-
-    /**
-     * 
-     * @param parameters
-     * @return
-     *     returns it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse
-     * @throws MonitorException
-     * @throws InvalidArgumentException
-     * @throws UnknownFlightInstanceException
-     * @throws InvalidStatusException
-     * @throws CancelledFlightException
-     */
-    @WebMethod
-    @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-    @Action(input = "http://pad.polito.it/FDSControl/Control/startBoardingRequest", output = "http://pad.polito.it/FDSControl/Control/startBoardingResponse", fault = {
-        @FaultAction(className = CancelledFlightException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/CancelledFlight"),
-        @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/InvalidArgument"),
-        @FaultAction(className = InvalidStatusException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/InvalidStatus"),
-        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/Monitor"),
-        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/UnknownFlightInstance")
-    })
-    public StartBoardingResponse startBoarding(
-        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
-        StartBoarding parameters)
-        throws CancelledFlightException, InvalidArgumentException, InvalidStatusException, MonitorException, UnknownFlightInstanceException
-    ;
-
-    /**
-     * 
-     * @param parameters
-     * @return
      *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse>
      */
     @WebMethod(operationName = "registerPassenger")
@@ -109,11 +58,11 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.RegisterPassengerResponse
-     * @throws PassengerAlreadyRegisteredException
-     * @throws MonitorException
      * @throws InvalidArgumentException
      * @throws NotBoardingException
+     * @throws MonitorException
      * @throws UnknownFlightInstanceException
+     * @throws PassengerAlreadyRegisteredException
      */
     @WebMethod
     @WebResult(name = "registerPassengerResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -160,8 +109,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.GetBoardedPassengersResponse
-     * @throws MonitorException
      * @throws InvalidArgumentException
+     * @throws MonitorException
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
@@ -207,8 +156,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.CancelFlightInstanceResponse
-     * @throws MonitorException
      * @throws InvalidArgumentException
+     * @throws MonitorException
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
@@ -254,8 +203,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.ChangeBoardingGateResponse
-     * @throws MonitorException
      * @throws InvalidArgumentException
+     * @throws MonitorException
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
@@ -301,8 +250,8 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.ChangeDelayResponse
-     * @throws MonitorException
      * @throws InvalidArgumentException
+     * @throws MonitorException
      * @throws UnknownFlightInstanceException
      */
     @WebMethod
@@ -348,10 +297,10 @@ public interface Control {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.client.gen.AssignSeatResponse
+     * @throws SeatAlreadyAssignedException
      * @throws FullyBookedFlightException
      * @throws MonitorException
      * @throws UnknownFlightInstanceException
-     * @throws SeatAlreadyAssignedException
      */
     @WebMethod
     @WebResult(name = "assignSeatResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -365,6 +314,57 @@ public interface Control {
         @WebParam(name = "assignSeat", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
         AssignSeat parameters)
         throws FullyBookedFlightException, MonitorException, SeatAlreadyAssignedException, UnknownFlightInstanceException
+    ;
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns javax.xml.ws.Response<it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse>
+     */
+    @WebMethod(operationName = "startBoarding")
+    public Response<StartBoardingResponse> startBoardingAsync(
+        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+        StartBoarding parameters);
+
+    /**
+     * 
+     * @param asyncHandler
+     * @param parameters
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "startBoarding")
+    public Future<?> startBoardingAsync(
+        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+        StartBoarding parameters,
+        @WebParam(name = "startBoardingResponse", targetNamespace = "", partName = "asyncHandler")
+        AsyncHandler<StartBoardingResponse> asyncHandler);
+
+    /**
+     * 
+     * @param parameters
+     * @return
+     *     returns it.polito.dp2.FDS.sol4.client.gen.StartBoardingResponse
+     * @throws InvalidStatusException
+     * @throws InvalidArgumentException
+     * @throws MonitorException
+     * @throws UnknownFlightInstanceException
+     * @throws CancelledFlightException
+     */
+    @WebMethod
+    @WebResult(name = "startBoardingResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+    @Action(input = "http://pad.polito.it/FDSControl/Control/startBoardingRequest", output = "http://pad.polito.it/FDSControl/Control/startBoardingResponse", fault = {
+        @FaultAction(className = CancelledFlightException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/CancelledFlight"),
+        @FaultAction(className = InvalidArgumentException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/InvalidArgument"),
+        @FaultAction(className = InvalidStatusException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/InvalidStatus"),
+        @FaultAction(className = MonitorException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/Monitor"),
+        @FaultAction(className = UnknownFlightInstanceException.class, value = "http://pad.polito.it/FDSControl/Control/startBoarding/Fault/UnknownFlightInstance")
+    })
+    public StartBoardingResponse startBoarding(
+        @WebParam(name = "startBoarding", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
+        StartBoarding parameters)
+        throws CancelledFlightException, InvalidArgumentException, InvalidStatusException, MonitorException, UnknownFlightInstanceException
     ;
 
 }
