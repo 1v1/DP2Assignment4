@@ -111,13 +111,10 @@
 
 	<xs:complexType name="flight">
 		<xs:sequence>
-			<xs:element name="departureAirport" type="xs:string"
-				minOccurs="0" />
-			<xs:element name="departureTime" type="tns:time"
-				minOccurs="0" />
-			<xs:element name="destinationAirport" type="xs:string"
-				minOccurs="0" />
-			<xs:element name="number" type="xs:string" minOccurs="0" />
+			<xs:element name="departureAirport" type="xs:string" />
+			<xs:element name="departureTime" type="tns:time" />
+			<xs:element name="destinationAirport" type="xs:string" />
+			<xs:element name="number" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -163,16 +160,16 @@
 
 	<xs:complexType name="aircraftType">
 		<xs:sequence>
-			<xs:element name="freeSeat" type="xs:string" minOccurs="0"
+			<xs:element name="seat" type="xs:string" minOccurs="0"
 				maxOccurs="unbounded" />
-			<xs:element name="model" type="xs:string" minOccurs="0" />
+			<xs:element name="model" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getPassengerByPrefix">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="prefix" type="xs:string" minOccurs="0" />
+			<xs:element name="prefix" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -188,11 +185,9 @@
 	<xs:complexType name="passenger">
 		<xs:sequence>
 			<xs:element name="boarded" type="xs:boolean" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="name" type="xs:string" minOccurs="0" />
+			<xs:element name="departureDate" type="xs:dateTime" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="name" type="xs:string" />
 			<xs:element name="seat" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
@@ -237,40 +232,33 @@
 
 	<xs:complexType name="flightInstance">
 		<xs:sequence>
-			<xs:element name="aircraft" type="tns:aircraftType"
-				minOccurs="0" />
-			<xs:element name="date" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="aircraft" type="tns:aircraftType" />
+			<xs:element name="date" type="xs:dateTime" />
 			<xs:element name="delay" type="xs:int" />
 			<xs:element name="departureGate" type="xs:string"
 				minOccurs="0" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="status" type="tns:flightInstanceStatus"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType"/>
+			<xs:element name="status" type="tns:flightInstanceStatus" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightInstance">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightInstanceResponse">
 		<xs:sequence>
-			<xs:element name="return" type="tns:flightInstance"
-				minOccurs="0" />
+			<xs:element name="return" type="tns:flightInstance" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightByDestinationAirport">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="destinationAirport" type="xs:string"
-				minOccurs="0" />
+			<xs:element name="destinationAirport" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -286,8 +274,7 @@
 	<xs:complexType name="getFlightInstanceByDepartureDate">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -303,8 +290,7 @@
 	<xs:complexType name="getFlightInstancesByFlightID">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -320,8 +306,7 @@
 	<xs:complexType name="getPassengerByFlightID">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -337,8 +322,7 @@
 	<xs:complexType name="getFlightInstanceByStatus">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="status" type="tns:flightInstanceStatus"
-				minOccurs="0" />
+			<xs:element name="status" type="tns:flightInstanceStatus" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -354,8 +338,7 @@
 	<xs:complexType name="getPassengerByDepartureDate">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -386,22 +369,20 @@
 
 	<xs:complexType name="getFlight">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightResponse">
 		<xs:sequence>
-			<xs:element name="return" type="tns:flight" minOccurs="0" />
+			<xs:element name="return" type="tns:flight" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="getFlightByDepartureAirport">
 		<xs:sequence>
 			<xs:element name="pageNumber" type="xs:int" />
-			<xs:element name="departureAirport" type="xs:string"
-				minOccurs="0" />
+			<xs:element name="departureAirport" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -416,11 +397,9 @@
 
 	<xs:complexType name="changeBoardingGate">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
-			<xs:element name="gate" type="xs:string" minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
+			<xs:element name="gate" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -430,10 +409,8 @@
 
 	<xs:complexType name="cancelFlightInstance">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -460,11 +437,9 @@
 
 	<xs:complexType name="changeDelay">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
-			<xs:element name="delay" type="xs:string" minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
+			<xs:element name="delay" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -474,33 +449,26 @@
 
 	<xs:complexType name="assignSeat">
 		<xs:sequence>
-			<xs:element name="passengerName" type="xs:string"
-				minOccurs="0" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
+			<xs:element name="passengerName" type="xs:string" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="assignSeatResponse">
 		<xs:sequence>
-			<xs:element name="return" type="tns:boardingInfo"
-				minOccurs="0" />
+			<xs:element name="return" type="tns:boardingInfo" />
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="boardingInfo">
 		<xs:sequence>
 			<xs:element name="delay" type="xs:int" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
+			<xs:element name="departureDate" type="xs:dateTime" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
 			<xs:element name="gate" type="xs:string" minOccurs="0" />
-			<xs:element name="passengerName" type="xs:string"
-				minOccurs="0" />
-			<xs:element name="seat" type="xs:string" minOccurs="0" />
+			<xs:element name="passengerName" type="xs:string" />
+			<xs:element name="seat" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -518,10 +486,8 @@
 
 	<xs:complexType name="startBoarding">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -543,12 +509,9 @@
 
 	<xs:complexType name="registerPassenger">
 		<xs:sequence>
-			<xs:element name="flightID" type="tns:FlightIDType"
-				minOccurs="0" />
-			<xs:element name="departureDate" type="xs:dateTime"
-				minOccurs="0" />
-			<xs:element name="passengerName" type="xs:string"
-				minOccurs="0" />
+			<xs:element name="flightID" type="tns:FlightIDType" />
+			<xs:element name="departureDate" type="xs:dateTime" />
+			<xs:element name="passengerName" type="xs:string" />
 		</xs:sequence>
 	</xs:complexType>
 

@@ -72,7 +72,7 @@ public class DataManager {
 		{
 			AircraftType air = new AircraftType();
 			air.setModel(a.model);
-			air.getFreeSeat().addAll(a.seats);
+			air.getSeat().addAll(a.seats);
 			res.add(air);
 		}
 		return res;
@@ -109,7 +109,7 @@ public class DataManager {
 
 			AircraftType a_fi = new AircraftType();
 			a_fi.setModel(fi.getAircraft().model);
-			a_fi.getFreeSeat().addAll(fi.getAircraft().seats);
+			a_fi.getSeat().addAll(fi.getAircraft().seats);
 			flightInstance.setAircraft(a_fi);
 
 			FlightInstanceKey key = new FlightInstanceKey(flightInstance.getFlightID(), departureDate);
@@ -150,7 +150,7 @@ public class DataManager {
 
 			AircraftType a_fi = new AircraftType();
 			a_fi.setModel(fi.getAircraft().model);
-			a_fi.getFreeSeat().addAll(fi.getAircraft().seats);
+			a_fi.getSeat().addAll(fi.getAircraft().seats);
 			flightInstance.setAircraft(a_fi);
 
 			FlightInstanceKey key = new FlightInstanceKey(flightInstance.getFlightID(), departureDate);

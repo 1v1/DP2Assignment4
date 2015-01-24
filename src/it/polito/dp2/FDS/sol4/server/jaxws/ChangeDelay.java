@@ -3,6 +3,7 @@ package it.polito.dp2.FDS.sol4.server.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
@@ -20,9 +21,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType" minOccurs="0"/>
- *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType"/>
+ *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,10 +40,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class ChangeDelay {
 
+    @XmlElement(required = true)
     @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String flightID;
+    @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
+    @XmlElement(required = true)
     protected String delay;
 
     /**

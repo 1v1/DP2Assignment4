@@ -3,6 +3,7 @@ package it.polito.dp2.FDS.sol4.server.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,10 +17,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="departureAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="departureTime" type="{http://pad.polito.it/FDS}time" minOccurs="0"/>
- *         &lt;element name="destinationAirport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="departureAirport" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="departureTime" type="{http://pad.polito.it/FDS}time"/>
+ *         &lt;element name="destinationAirport" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,9 +38,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Flight {
 
+    @XmlElement(required = true)
     protected String departureAirport;
+    @XmlElement(required = true)
     protected Time departureTime;
+    @XmlElement(required = true)
     protected String destinationAirport;
+    @XmlElement(required = true)
     protected String number;
 
     /**

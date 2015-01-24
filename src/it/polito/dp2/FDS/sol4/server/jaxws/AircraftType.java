@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,8 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="freeSeat" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="model" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="seat" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="model" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,27 +31,28 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "aircraftType", propOrder = {
-    "freeSeat",
+    "seat",
     "model"
 })
 public class AircraftType {
 
-    protected List<String> freeSeat;
+    protected List<String> seat;
+    @XmlElement(required = true)
     protected String model;
 
     /**
-     * Gets the value of the freeSeat property.
+     * Gets the value of the seat property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the freeSeat property.
+     * This is why there is not a <CODE>set</CODE> method for the seat property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getFreeSeat().add(newItem);
+     *    getSeat().add(newItem);
      * </pre>
      * 
      * 
@@ -60,11 +62,11 @@ public class AircraftType {
      * 
      * 
      */
-    public List<String> getFreeSeat() {
-        if (freeSeat == null) {
-            freeSeat = new ArrayList<String>();
+    public List<String> getSeat() {
+        if (seat == null) {
+            seat = new ArrayList<String>();
         }
-        return this.freeSeat;
+        return this.seat;
     }
 
     /**
