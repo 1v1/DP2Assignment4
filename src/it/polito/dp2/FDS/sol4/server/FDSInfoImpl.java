@@ -25,8 +25,6 @@ import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlightInstance;
 import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlightInstance_Exception;
 import it.polito.dp2.FDS.sol4.server.jaxws.UnknownFlight_Exception;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Map;
 
 import javax.jws.HandlerChain;
@@ -260,25 +258,37 @@ public class FDSInfoImpl implements Info {
 		if (flightTime.getHour() > wantedTime.getHour())
 			return true;
 		else if (flightTime.getHour() == wantedTime.getHour())
-			if (flightTime.getMinute() >= wantedTime.getMinute())
+			if (flightTime.getMinute() > wantedTime.getMinute())
 				return true;
 		return false;
 	}
 	
 	private boolean isBefore(XMLGregorianCalendar flightDate, XMLGregorianCalendar wantedDate)
 	{
-		GregorianCalendar flightDate_gc = flightDate.toGregorianCalendar();
-		GregorianCalendar wantedDate_gc = wantedDate.toGregorianCalendar();
+//		GregorianCalendar flightDate_gc = flightDate.toGregorianCalendar();
+//		GregorianCalendar wantedDate_gc = wantedDate.toGregorianCalendar();
+//		
+//		flightDate_gc.set(Calendar.HOUR, 0);
+//		flightDate_gc.set(Calendar.MINUTE, 0);
+//		flightDate_gc.set(Calendar.SECOND, 0);
+//		flightDate_gc.set(Calendar.MILLISECOND, 0);
+//		wantedDate_gc.set(Calendar.HOUR, 0);
+//		wantedDate_gc.set(Calendar.MINUTE, 0);
+//		wantedDate_gc.set(Calendar.SECOND, 0);
+//		wantedDate_gc.set(Calendar.MILLISECOND, 0);
+//		
+//		return !wantedDate_gc.after(flightDate_gc);
 		
-		flightDate_gc.set(Calendar.HOUR, 0);
-		flightDate_gc.set(Calendar.MINUTE, 0);
-		flightDate_gc.set(Calendar.SECOND, 0);
-		flightDate_gc.set(Calendar.MILLISECOND, 0);
-		wantedDate_gc.set(Calendar.HOUR, 0);
-		wantedDate_gc.set(Calendar.MINUTE, 0);
-		wantedDate_gc.set(Calendar.SECOND, 0);
-		wantedDate_gc.set(Calendar.MILLISECOND, 0);
-		
-		return !wantedDate_gc.after(flightDate_gc);
+		if (flightDate.getYear() > wantedDate.getYear())
+			return true;
+		if(flightDate.getYear() == wantedDate.getYear())
+		{
+			if (flightDate.getMonth() > wantedDate.getMonth())
+				return true;
+			if (flightDate.getMonth() == wantedDate.getMonth())
+				if (flightDate.getDay() >= wantedDate.getDay())
+					return true;
+		}
+		return false;
 	}
 }

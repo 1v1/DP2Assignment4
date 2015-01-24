@@ -11,6 +11,10 @@ public class FlightInstanceKey {
 	public FlightInstanceKey (String flightID, XMLGregorianCalendar departureDate)
 	{
 		this.departureDate = departureDate;
+		departureDate.setHour(0);
+		departureDate.setMinute(0);
+		departureDate.setSecond(0);
+		departureDate.setMillisecond(0);
 		this.flightID = flightID;
 	}
 	
@@ -20,8 +24,8 @@ public class FlightInstanceKey {
 		final int prime1 = 31;
 		final int prime2 = 2659;
 		int hashcode = (departureDate.getDay() + departureDate.getMonth() +
-				departureDate.getYear() + departureDate.getTimezone()) 
-				* prime2 * (departureDate.toGregorianCalendar().getTimeZone().getRawOffset());
+				departureDate.getYear()) 
+				* prime2;
 		int c1 = (int) flightID.charAt(0);
 		int c2 = (int) flightID.charAt(1);
 		String number = flightID.substring(2);
@@ -45,16 +49,13 @@ public class FlightInstanceKey {
 		FlightInstanceKey other = (FlightInstanceKey) obj;
 		if  (!flightID.equals(other.flightID))
 			return false;
-		if (departureDate.getYear() != other.departureDate.getYear())
-			return false;
-		if (departureDate.getMonth() != other.departureDate.getMonth())
-			return false;
-		if (departureDate.getDay() != other.departureDate.getDay())
-			return false;
-		if (departureDate.toGregorianCalendar().getTimeZone().getRawOffset() !=
-				other.departureDate.toGregorianCalendar().getTimeZone().getRawOffset())
-			return false;
-		return true;
+
+		other.departureDate.setHour(0);
+		other.departureDate.setMinute(0);
+		other.departureDate.setSecond(0);
+		other.departureDate.setMillisecond(0);
+		
+		return (other.departureDate.equals(departureDate));
 	}
 
 }
