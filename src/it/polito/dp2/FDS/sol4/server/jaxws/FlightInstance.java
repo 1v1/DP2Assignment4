@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -22,7 +24,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departureGate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType" minOccurs="0"/>
  *         &lt;element name="status" type="{http://pad.polito.it/FDS}flightInstanceStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -48,6 +50,7 @@ public class FlightInstance {
     protected XMLGregorianCalendar date;
     protected int delay;
     protected String departureGate;
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String flightID;
     protected FlightInstanceStatus status;
 

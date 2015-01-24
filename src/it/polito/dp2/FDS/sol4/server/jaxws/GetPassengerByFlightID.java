@@ -4,6 +4,8 @@ package it.polito.dp2.FDS.sol4.server.jaxws;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -17,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="pageNumber" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
 public class GetPassengerByFlightID {
 
     protected int pageNumber;
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String flightID;
 
     /**

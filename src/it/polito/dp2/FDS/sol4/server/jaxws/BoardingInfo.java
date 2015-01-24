@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -20,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="delay" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="departureDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="flightID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="flightID" type="{http://pad.polito.it/FDS}FlightIDType" minOccurs="0"/>
  *         &lt;element name="gate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="passengerName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="seat" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -46,6 +48,7 @@ public class BoardingInfo {
     protected int delay;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar departureDate;
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String flightID;
     protected String gate;
     protected String passengerName;

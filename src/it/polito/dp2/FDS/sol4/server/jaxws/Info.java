@@ -30,9 +30,9 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightResponse
-     * @throws InvalidArgument_Exception
-     * @throws Monitor_Exception
      * @throws UnknownFlight_Exception
+     * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getFlightResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -52,8 +52,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightsResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getFlightsResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -72,8 +72,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightByDepartureAirportResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getFlightByDepartureAirportResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -92,8 +92,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightByDestinationAirportResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      */
     @WebMethod
     @WebResult(name = "getFlightByDestinationAirportResponse", targetNamespace = "http://pad.polito.it/FDS", partName = "parameters")
@@ -112,8 +112,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightInstanceResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
      */
     @WebMethod
@@ -152,8 +152,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetFlightInstancesByFlightIDResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
      */
     @WebMethod
@@ -260,8 +260,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetPassengerByPrefixResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
      */
     @WebMethod
@@ -282,8 +282,8 @@ public interface Info {
      * @param parameters
      * @return
      *     returns it.polito.dp2.FDS.sol4.server.jaxws.GetPassengerByDepartureDateResponse
-     * @throws InvalidArgument_Exception
      * @throws Monitor_Exception
+     * @throws InvalidArgument_Exception
      * @throws UnknownFlightInstance_Exception
      */
     @WebMethod
